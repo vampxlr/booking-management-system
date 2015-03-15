@@ -1,0 +1,177 @@
+﻿@using Kendo.Mvc.UI
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSemantic.cshtml";
+}
+
+
+<body id="home">
+    <div class="ui inverted masthead segment">
+        <div class="ui page grid">
+            <div class="column">
+                <div class="ui inverted blue menu">
+                    <div class="header item">Simcha Booking</div>
+                    <div class="right menu">
+                        <div class="ui mobile dropdown link item">
+                            Menu
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a href="@Url.Action("index")" class="item">Home</a>
+                                <a href="@Url.Action("Register")" class="item">Register</a>
+                                <a href="@Url.Action("Login")" class="item">Login</a>
+                                <a href="@Url.Action("Search")" class="item">Search</a>
+                                <a href="@Url.Action("Book")" class="item">Book</a>
+                                <a href="@Url.Action("Contact")" class="item">Contact</a>
+                            </div>
+                        </div>
+
+                        <a href="@Url.Action("index")" class="item">Home</a>
+                        <div class="ui dropdown link item">
+                            My Account
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a href="@Url.Action("Register")" class="item">Register</a>
+                                <a href="@Url.Action("Login")" class="item">Login</a>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("Search")" class="item">Search</a>
+                        <a href="@Url.Action("Book")" class="item">Book</a>
+                        <a href="@Url.Action("Contact")" class="item">Contact</a>
+                        <div class="item">
+                            <div class="ui icon input">
+                                <input type="text" placeholder="Search..." />
+                                <i class="search link icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img style="z-index: 10000;" src="~/Content/semanticui/Images/simchaGlass.png" class="ui medium image" />
+                <div class="ui hidden transition information">
+                    <h1 class="ui inverted header">
+                        Stop Looking Start Booking
+                    </h1>
+                    <p> </p>
+                    <div id="searchbutton" class="large basic inverted animated fade ui button">
+                        <div class="visible content">Search for Bookings</div>
+                        <div id="search-now-btn" class="hidden content">Search Now</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="ui vertical feature segment">
+        <div class="ui centered page grid">
+            <div class="fourteen wide column">
+                <div class="ui three column center aligned stackable divided grid">
+                    <div class="column">
+                        <div class="ui icon header">
+                            <i class="student icon"></i>
+                            Experts
+                        </div>
+                        <p>We are experts when it comes to arrange for you the best simcha.</p>
+                        <p>
+                            <a class="ui button" href="#">
+                                Learn
+                            </a>
+                        </p>
+                    </div>
+                    <div class="column">
+                        <div class="ui icon header">
+                            <i class="code icon"></i>
+                            Robust System
+                        </div>
+                        <p>With our robust system we deliver fast and reliable simcha searching service</p>
+                        <p>
+                            <a class="ui blue right labeled icon button" href="#">
+                                Know More
+                                <i class="right chevron icon"></i>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="column">
+                        <div class="ui icon header">
+                            <i class="user icon"></i>
+                            Community
+                        </div>
+                        <p>Arranging simcha was never been easier, quick booking is what you need to bring up the community together</p>
+                        <p>
+                            <a class="ui button" href="#">
+                                Share
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="search-modal" class="ui modal small">
+        <i class="close icon"></i>
+        <div class="header">
+            Search available halls:
+        </div>
+        <div class="content">
+            <div>
+                <label style="width: 120px; display:inline-block;">Event Date: </label>
+                @Html.Kendo().DatePicker().Name("start-date").Min(DateTime.Now).Max(DateTime.Now.AddDays(35)).Value(DateTime.Now)
+            </div>
+
+            <div style="margin-top: 10px;">
+                <label style="width: 120px; display:inline-block;">Select Range: </label>
+                @Html.Kendo().DatePicker().Name("end-date").Min(DateTime.Now).Max(DateTime.Now.AddDays(35)).Value(DateTime.Now)
+            </div>
+
+            <div style="margin-top: 10px;">
+                <label style="width: 120px; display:inline-block; vertical-align:top;">Event Location: </label>
+
+                <div style="width: 220px; display: inline-block;">
+                    @(Html.Kendo().MultiSelect()
+                        .Name("event-location")
+                        .DataTextField("location_name")
+                        .DataValueField("location_id")
+                        .Placeholder("Select Locations...")
+                        .AutoBind(true)
+                        .DataSource(source => source.Read(read => read.Action("GetLocations", "Semantic")).ServerFiltering(true))
+                    )
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui button">Cancel</div>
+            <div id="button-search-action" class="ui button">Search</div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $("#searchbutton").click(function () {
+                $("#search-modal").modal('setting', 'closable', false).modal('show');
+            });
+
+            $("#button-search-action").click(function() {
+                var startDate = $("#start-date").data("kendoDatePicker").value();
+                var endDate = $("#end-date").data("kendoDatePicker").value();
+                var locations = $("#event-location").data("kendoMultiSelect").value();
+
+                if (startDate != null && endDate != null) {
+                    var url = "@Url.Action("Search", "Semantic")";
+                    url += "?startDate=" + kendo.toString(startDate, "MM/dd/yyyy");
+                    url += "&endDate=" + kendo.toString(endDate, "MM/dd/yyyy");
+
+                    for (var i = 0; i < locations.length; i++) {
+                        url += "&locations=" + locations[i];
+                    }
+
+                    window.location.href = url;
+                }
+            });
+
+            var thirtyFiveDaysAhead = new Date();
+            thirtyFiveDaysAhead.setDate((new Date()).getDate() + 35);
+        });
+    </script>
+</body>

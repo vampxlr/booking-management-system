@@ -1,0 +1,152 @@
+﻿@model SimchaMVC.user
+@{
+    ViewBag.Title = "MyAccount";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSite.cshtml";
+}
+
+<div class="mainBody">
+    <div class="scond_mainBodyLeft">
+        <div class="makingsimichsppourt">
+            <img src="~/Content/images/account_img.jpg" alt="">
+
+            <div class="scond_box_bott_text">
+                Please provide short paragraph for the account login page. Please provide short paragraph
+                for the account login page. Please provide short paragraph
+                for the account login page. Please provide short paragraph for the account login page.
+            </div>
+@using (Html.BeginForm())
+                                    {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+ 
+            <div class="scond_box_sppourt">
+                <div class="scond_box_top"><img src="~/Content/images/sec_account_top.jpg" alt=""></div>
+                <div class="scond_box_bg">
+                    <div class="second_left_box">
+
+                        <div class="second_left_text">
+                            <span id="Content_lblEmail" style="color:Black;font-weight:bold;">Email ID:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.email, new {id="Content_txtEmail", style="width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblPass" style="color:Black;font-weight:bold;">Password:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.PasswordFor(m => m.user_password, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblUser" style="color:Black;font-weight:bold;">User Name:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.user_name, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblFirstName" style="color:Black;font-weight:bold;">First Name:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.first_name, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblLastName" style="color:Black;font-weight:bold;">Last Name:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.last_name, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblAdd1" style="color:Black;font-weight:bold;">Address 1:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.address1, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblAdd2" style="color:Black;font-weight:bold;">Address 2:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.address2, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+
+                            <span id="Content_lblCity" style="color:Black;font-weight:bold;">City:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.city, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblState" style="color:Black;font-weight:bold;">State:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.state, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblZip" style="color:Black;font-weight:bold;">Zip Code:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.zipcode, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                    </div>
+
+                    <div class="second_line"><img src="~/Content/images/line.jpg" alt=""></div>
+                    <div class="second_right_box">
+                        <div class="second_left_text">
+                            <span id="Content_lblPhone" style="color:Black;font-weight:bold;">Phone Number:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.phone, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lblFax" style="color:Black;font-weight:bold;">Fax:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.fax, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lbl1" style="color:Black;font-weight:bold;">Best time to reach:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.best_time, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                            
+                        </div>
+                        <div class="second_left_text">
+                            <span id="Content_lbl2" style="color:Black;font-weight:bold;">Contact me by:</span><strong><span style="color:#FF0000">*</span></strong>
+                        </div>
+                        <div class="second_left_text">
+                            @Html.TextBoxFor(m => m.contact_method, new { id = "Content_txtEmail", style = "width:160px; border:1px solid #999999;" })
+                           
+                        </div>
+                    </div>
+
+                    <div class="second_redio_bt">
+                        <input id="Content_chk1" type="checkbox" name="ctl00$Content$chk1">
+                    </div>
+                    <div class="second_redio_bt_text">
+                        I Agree to Simcha Booking’s,<a href="#"><span style="color:#000000"> Terms and Conditions </span><span style="color:#ff0000">*</span></a>
+                    </div>
+                    <div class="second_redio_bt">
+                        <input id="Content_chk2" type="checkbox" name="ctl00$Content$chk2">
+                    </div>
+                    <div class="second_redio_bt_text">
+                        Add me to your mailing list <strong><span style="color:#FF0000"> * </span> </strong>
+                    </div>
+                    <div class="second_redio_bt">
+                        <input id="Content_chk3" type="checkbox" name="ctl00$Content$chk3">
+                    </div>
+                    <div class="second_redio_bt_text">
+                        Automatically sign me in when I visit Simcha Booking.
+                    </div>
+                    <div class="second_redio_bt_text1">
+                        <strong><span style="color:#FF0000"> * </span></strong>denotes a required field
+                    </div>
+                    <div class="submit_bt">
+                        <input type="image" name="ctl00$Content$imgbtnSubmit" id="Content_imgbtnSubmit" src="~/Content/images/submitbt.png" alt="Submit" onclick="return fnValidateAccount('Content_txtEmail', 'Content_txtPass', 'Content_txtUser', 'Content_txtFirstName', 'Content_txtLastName', 'Content_txtAdd1', 'Content_txtAdd2', 'Content_txtCity', 'Content_txtState', 'Content_txtZip', 'Content_txtPhone', 'Content_txtFax', 'Content_chk1');">
+                    </div>
+
+                </div>
+                <div class="scond_box_bott"><img src="~/Content/images/sec_account_bott.jpg" alt=""></div>
+            </div>
+}
+        </div>
+
+    </div>
+</div>

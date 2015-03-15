@@ -1,0 +1,37 @@
+﻿@using SimchaMVC
+@{
+    ViewBag.Title = "Assign";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+    var AllHalls = ViewBag.AllHalls as IQueryable<hall>;
+    var AllAdminUsers = ViewBag.AllAdminUsers as IQueryable<admin_users>; 
+    var Admin = ViewBag.Admin as admin_users;
+    int adminId= ViewBag.AdminId;
+    var halllistSelect = ViewBag.halllistSelect as IEnumerable<SelectListItem>;
+
+}
+
+<div class="row">
+    <div class="col-md-6">
+        
+        @using (Html.BeginForm("Assign", "AdminUsers", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.Hidden("admin_user_id", adminId)
+            <fieldset>
+                <legend> @Admin.user_name is Assigned To Halls</legend>
+                <div class="form-group">
+                    @Html.Label("Halls Assigned to", new { @class = "col-lg-2 control-label" })
+                    <div class="col-lg-10">
+                        @Html.ListBox("halls_list", halllistSelect, new { multiple = "", @class = "form-control" })
+                    </div>
+                </div>
+
+            </fieldset>
+            <input type="submit" value="Edit" class="btn btn-default" />
+            <a onclick="window.history.back()" class="btn btn-default">Cancel</a>
+        }
+
+
+    </div>
+</div>
+
+

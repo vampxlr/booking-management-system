@@ -1,0 +1,499 @@
+﻿@using Kendo.Mvc.UI
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Areas/Site/Views/Shared/_TreloView.cshtml";
+    List<SelectListItem> hallIds = ViewBag.hallIds as List<SelectListItem>;
+    List<SelectListItem> areaIds = ViewBag.hallIds as List<SelectListItem>;
+    List<SelectListItem> eventIds = ViewBag.hallIds as List<SelectListItem>;
+}
+<script src="~/Content/tooltip/jquery.darktooltip.js"></script>
+<link href="~/Content/tooltip/darktooltip.css" rel="stylesheet" />
+
+<script src="~/ngApp/ng-search-controller.js"></script>
+ <!-- Current Page Styles -->
+<link href="~/Content/travelo23/html/components/revolution_slider/css/settings.css" rel="stylesheet" />
+<link href="~/Content/travelo23/html/components/revolution_slider/css/style.css" rel="stylesheet" />
+<link href="~/Content/travelo23/html/components/jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
+<link href="~/Content/travelo23/html/components/flexslider/flexslider.css" rel="stylesheet" />
+
+
+<div class="page-title-container">
+    <div class="container">
+        <div class="page-title pull-left">
+            <h2 class="entry-title">Simcha Search Results</h2>
+        </div>
+        <ul class="breadcrumbs pull-right">
+            <li><a href="#">HOME</a></li>
+            <li class="active">Simcha Search Results</li>
+        </ul>
+    </div>
+</div>
+<section id="content">
+    <div ng-controller="ngSearchController" class="container">
+ 
+        <div id="main">
+            <div class="row">
+                <div class="col-sm-4 col-md-3">
+                    <h4 class="search-results-title"><i class="soap-icon-search"></i><b>{{resultscount}}</b> results found.</h4>
+
+
+                    <div class="toggle-container filters-container">
+
+                        <div class="panel style1 arrow-right">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#date-search-panel" class>Date Range</a>
+                            </h4>
+                            <div id="date-search-panel" class="panel-collapse in">
+                                <div class="panel-content">
+                                    <form method="post">
+                                        <div class="form-group">
+                                            <label>Halls</label>
+                                            @(Html.Kendo().MultiSelect()
+                                                  .Name("hall_id")
+                                                  .DataTextField("Text")
+                                                  .DataValueField("Value")
+                                                  .Placeholder("Select Halls...")
+                                              
+                                                          .HtmlAttributes(new { ng_model = "postdata.hall_ids" })
+                                                 .BindTo(hallIds)
+                                                  )
+                                            
+                                               
+                                        </div>
+                                
+                                        <div class="form-group">
+                                            <label>Start Date</label>
+                                            <div class="datepicker-wrap">
+                                                <input ng-model="postdata.StartDate" ng-init="postdata.StartDate = '@ViewBag.startDate.ToString("MM/dd/yyyy")'" type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                            </div>
+                                         
+                                        </div>
+                                        <div class="form-group">
+                                            <label>End Date</label>
+                                            <div class="datepicker-wrap">
+                                                <input ng-model="postdata.EndDate" ng-init="postdata.EndDate = '@ViewBag.endDate.ToString("MM/dd/yyyy")'" type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                            </div>
+                                         
+                                        </div>
+                                        <br />
+                                        <button ng-click="search()" class=" btn-medium icon-check uppercase full-width">search again</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel style1 arrow-right">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#zip-search-panel" class="collapsed">Search by Zip Code</a>
+                            </h4>
+                            <div id="zip-search-panel" class="panel-collapse collapse">
+                                <div class="panel-content">
+                                    <form method="post">
+                                        <div class="form-group">
+                                            <label>Zip Code</label>
+                                            @(Html.Kendo().AutoComplete()
+                                                          .Name("zip")
+                                                  .DataTextField("zip1")
+                                                  .Filter("contains")
+                                                  .MinLength(3)
+                                                                  .HtmlAttributes(new { @class = "input-text full-width" })
+                                                  .DataSource(source =>
+                                                  {
+                                                      source.Read(read =>
+                                                      {
+                                                          read.Action("GetZips", "trelo")
+                                                              .Data("onAdditionalData");
+                                                      })
+                                                          .ServerFiltering(true);
+                                                  })
+                                                  )
+                                            <script>
+                                                function onAdditionalData() {
+                                                    return {
+                                                        value: tjq("#zip").val()
+                                                    };
+                                                }
+                                            </script>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Radius in miles</label>
+                                            <div>
+                                                <input ng-model="postdata.ZipAprox" type="text" class="input-text full-width" placeholder="# miles" />
+                                            </div>
+                                        </div>
+                                       
+                                        <br />
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel style1 arrow-right">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#price-filter" class="collapsed">Price</a>
+                            </h4>
+                            <div id="price-filter" class="panel-collapse collapse">
+                                <div class="panel-content">
+                                    <div id="price-range"></div>
+                                    <br />
+                                    <span class="min-price-label pull-left"></span>
+                                    <span class="max-price-label pull-right"></span>
+                                    <div class="clearer"></div>
+                                </div><!-- end content -->
+                            </div>
+                        </div>
+
+                        <div class="panel style1 arrow-right">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#capacity-filter" class="collapsed">Capacity</a>
+                            </h4>
+                            <div id="capacity-filter" class="panel-collapse collapse">
+                                <div class="panel-content">
+                                    <div id="capacity-range"></div>
+                                    <br />
+                                    <span class="min-capacity-label pull-left"></span>
+                                    <span class="max-capacity-label pull-right"></span>
+                                    <div class="clearer"></div>
+                                </div><!-- end content -->
+                            </div>
+                        </div>
+
+                        <div class="panel style1 arrow-right">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#rating-filter" class="collapsed">Location</a>
+                            </h4>
+                            <div id="rating-filter" class="panel-collapse collapse filters-container">
+                                <div class="panel-content">
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label>Close to Areas</label>
+                                            
+                                            @(Html.Kendo().MultiSelect()
+                                                          .Name("Area_Id")
+                                                  .DataTextField("Text")
+                                                  .DataValueField("Value")
+                                                          .Placeholder("Select Areas...")
+
+                                              .HtmlAttributes(new { @class = "input-text full-width", @ng_model = "postdata.LocationIds" })
+                                                 .BindTo(areaIds)
+                                            )
+
+
+
+
+
+                                            
+                                            
+
+                                       
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel style1 arrow-right">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#accomodation-type-filter" class="collapsed">Simcha Type</a>
+                            </h4>
+                            <div id="accomodation-type-filter" class="panel-collapse collapse">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label>Event Types</label>
+                                            
+                                            @(Html.Kendo().MultiSelect()
+                                                                  .Name("Event_Id")
+                                                  .DataTextField("Text")
+                                                  .DataValueField("Value")
+                                                                  .Placeholder("Select Events...")
+
+                                                      .HtmlAttributes(new { @class = "input-text full-width", @ng_model = "postdata.SimchaTypeIds" })
+                                                 .BindTo(eventIds)
+                                            )
+
+
+
+                                     
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel style1 arrow-right">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#caterers-type-filter" class="collapsed">Caterers Type</a>
+                            </h4>
+                            <div id="caterers-type-filter" class="panel-collapse collapse">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label>Caterers Types</label>
+                                            @(Html.Kendo().MultiSelect()
+                                                  .Name("Caterers_Id")
+                                                  .DataTextField("caterer_name")
+                                                  .DataValueField("id")
+                                                  .Placeholder("Select Caterers...")
+                                                  .AutoBind(true)
+                                                  .DataSource(source =>
+                                                  {
+                                                      source.Read(read =>
+                                                      {
+                                                          read.Action("GetCaterers", "Trelo");
+                                                      })
+                                                          .ServerFiltering(true);
+                                                  })
+                                                  )
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-sm-8 col-md-9">
+                    <div class="sort-by-section clearfix box">
+                        <h4 class="sort-by-title block-sm">Filter Search Results:</h4>
+                        <ul class="sort-bar clearfix block-sm">
+                            
+                            <li><input type="text" class="input-text " ng-model="searchText" placeholder="Filter Results">
+</li>
+                        </ul>
+
+                    </div>
+                    <div class="flight-list listing-style3 flight">
+
+                        <div class="repeated-item" ng-repeat="x in data | filter:searchText">
+
+                            <article class="box">
+                                <figure class="col-xs-3 col-sm-2">
+                                    <img alt="" src="http://placehold.it/139x98">
+                                </figure>
+                                <div class="details col-xs-9 col-sm-10">
+                                    <div class="details-wrapper">
+                                        <div class="first-row">
+                                            <div>
+                                                <h4 class="box-title">{{x.hall_name}}<small>{{x.state}} , {{x.city}} , {{x.zipcode}}</small></h4>
+                                                <a class="button btn-mini stop">{{x.booking_date}}</a>
+                                                <div class="amenities">
+                                                    <i class="soap-icon-wifi circle"></i>
+                                                    <i class="soap-icon-entertainment circle"></i>
+                                                    <i class="soap-icon-fork circle"></i>
+                                                    <i class="soap-icon-suitcase circle"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="price"><small>Booking Price</small>$620</span>
+                                            </div>
+                                        </div>
+                                        <div class="second-row">
+                                            <div class="time">
+
+
+
+                                                <div class="take-off col-sm-4">
+                                                    <div class="icon"><i class="soap-icon-clock yellow-color"></i></div>
+                                                    <div>
+                                                        <span class="skin-color"><a type="TimeSlots" bs-popover id="pop{{$id}}" rel="popover" data-original-title="Available Time Slots" class="button btn-mini stop">List of time Slots</a></span><br />
+
+                                                        Hover to View List
+                                                    </div>
+                                                </div>
+                                                <div class="landing col-sm-4">
+                                                    <div class="icon"><i class="soap-icon-breakfast yellow-color"></i></div>
+                                                    <div>
+                                                        <span class="skin-color"><a type="Events" bs-popover id="pop{{x.id}}" rel="popover" data-original-title="Events" href="#" class="button btn-mini stop">List of Event Types</a></span><br />
+
+                                                        Hover to View List
+                                                    </div>
+                                                </div>
+                                                <div class="total-time col-sm-4">
+                                                    <div class="icon"><i class="soap-icon-friends yellow-color"></i></div>
+                                                    <div>
+                                                        <span class="skin-color"><a type="Locations" bs-popover id="pop{{x.id}}" rel="popover" data-original-title="Locations" class="button btn-mini stop">List of Neighbourhoods</a></span><br />
+
+                                                        Hover to View List
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="action">
+                                                <a href="/Site/trelo/Bookingdetails/?hallId={{x.hall_id}}&eventDate={{x.event_date}}" class="button btn-mini full-width">BOOK NOW</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+
+
+                    </div>
+                    <a href="#" class="uppercase full-width button btn-large">load more listing</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    tjq(document).ready(function() {
+        tjq("#price-range").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [ 100, 800 ],
+            slide: function( event, ui ) {
+                tjq(".min-price-label").html( "$" + ui.values[ 0 ]);
+                tjq(".max-price-label").html( "$" + ui.values[ 1 ]);
+            }
+        });
+        tjq(".min-price-label").html( "$" + tjq("#price-range").slider( "values", 0 ));
+        tjq(".max-price-label").html( "$" + tjq("#price-range").slider( "values", 1 ));
+
+        tjq("#rating").slider({
+            range: "min",
+            value: 40,
+            min: 0,
+            max: 50,
+            slide: function( event, ui ) {
+
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    tjq(document).ready(function () {
+        tjq("#capacity-range").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [100, 800],
+            slide: function (event, ui) {
+                tjq(".min-capacity-label").html(ui.values[0] + " person(s)" );
+                tjq(".max-capacity-label").html(ui.values[1] + " person(s)");
+            }
+        });
+        tjq(".min-capacity-label").html(tjq("#capacity-range").slider("values", 0) + " person(s)");
+        tjq(".max-capacity-label").html(tjq("#capacity-range").slider("values", 1) + " person(s)");
+
+        tjq("#rating").slider({
+            range: "min",
+            value: 40,
+            min: 0,
+            max: 50,
+            slide: function (event, ui) {
+
+            }
+        });
+    });
+</script>
+
+<style>
+  
+    .repeated-item{
+        opacity:0.9;
+  
+
+    }
+     .repeated-item:hover{
+        opacity:1;
+  
+
+    }
+ 
+    .repeated-item.ng-enter, .repeated-item.ng-move {
+        -webkit-transition:0.2s linear all;
+        -moz-transition:0.2s linear all;
+        -o-transition:0.2s linear all;
+        transition:0.2s linear all;
+        opacity:0;
+
+  
+    }
+
+
+    .repeated-item.ng-enter.ng-enter-active,
+    .repeated-item.ng-move.ng-move-active {
+        opacity:0.8;
+    }
+
+
+    .repeated-item.ng-leave {
+        -webkit-animation:0.2s my_animation;
+        -moz-animation:0.2s my_animation;
+        -o-animation:0.2s my_animation;
+        animation:0.2s my_animation;
+    }
+
+    @@keyframes my_animation {
+        from { opacity:0.9; }
+        to { opacity:0 ;
+        }
+    }
+
+
+    @@-webkit-keyframes my_animation {
+        from { opacity:0.9; }
+        to { opacity:0; }
+    }
+
+    @@-moz-keyframes my_animation {
+        from { opacity:0.9; }
+        to { opacity:0; }
+    }
+
+    @@-o-keyframes my_animation {
+        from { opacity:0.9; }
+        to { opacity:0; }
+    }
+
+</style>
+
+
+<script>
+    tjq(document).ready(function () {
+
+        //Basic
+        tjq('.example').darkTooltip({
+            animation: 'flipIn',
+            gravity: 'south',
+            confirm: false,
+            theme: 'light'
+        });
+
+        //With some options
+        tjq('#light').darkTooltip({
+            animation: 'flipIn',
+            gravity: 'west',
+            confirm: true,
+            theme: 'light'
+        });
+    });
+
+    
+</script>
+<style>
+    
+     .listing-style3.flight .details .details-wrapper .time div.popover
+      {
+         border: 1px solid rgba(0, 0, 0, 0.2);
+         padding-left: 0px;
+     }
+    .listing-style3.flight .details .details-wrapper .time div.popover
+      div.arrow {
+        padding-left: 0px;
+    }
+</style>

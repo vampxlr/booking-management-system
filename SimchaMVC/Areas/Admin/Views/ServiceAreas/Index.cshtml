@@ -1,0 +1,71 @@
+﻿
+
+@{
+    var ServiceAreas = ViewBag.ServiceAreas as IEnumerable<SimchaMVC.service_areas>;
+    ViewBag.Title = "Service Areas";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+<div class="row">
+
+
+
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">List Of @ViewBag.Title</h3>
+            </div>
+            <div class="panel-body">
+                <div id="clientsDb">
+                    @(Html.Kendo().Grid((IEnumerable<SimchaMVC.service_areas>)ViewBag.ServiceAreas)
+    .Name("grid")
+             .ToolBar(toolbar => toolbar.Custom().Action("AddNewRecord", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()).Text("Add New Record"))
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.id).Filterable(true).Title("Id");
+        columns.Bound(p => p.service_area).Title("Service Area");
+
+
+        columns.Template(@<text>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-default btn-sm" })
+        </text>).Width(60);
+        columns.Template(@<text>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-default btn-sm" })
+        </text>).Width(75);
+
+
+
+    }).Filterable()
+                                                                                                                    .DataSource(dataSource => dataSource
+                                                                                                                    .Server()
+                                                                                                                    .Model(model => model.Id(p => p.id))
+
+
+
+                                                                                                                            )
+
+
+                                                                                                                              .Selectable(s => s.Mode(GridSelectionMode.Multiple))
+                                                                                                                        .Sortable()
+                                                                                                                        .Pageable(pageable => pageable
+                                                                                                                            .Refresh(true)
+                                                                                                                            .PageSizes(true)
+                                                                                                                            .ButtonCount(5))
+
+                    )
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>

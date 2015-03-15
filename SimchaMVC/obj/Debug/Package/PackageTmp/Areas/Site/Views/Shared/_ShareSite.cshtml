@@ -1,0 +1,131 @@
+﻿
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head1">
+
+    <link href="~/Content/global.css" type="text/css" rel="Stylesheet" />
+    <title>
+        Simchabooking.com
+    </title>
+
+    <!--  -->
+</head>
+
+<body>
+
+
+
+    <div id="mainAliment">
+
+        <!-- Header Starts Here -->
+
+        <div class="header">
+            <div class="navi">
+                <div class="navigetion">
+                    <ul>
+                        <li id="homenav"><a href="@Url.Action("Index")"><span class="butleft"><span class="butright">HOME</span></span></a></li>
+                        <li id="aboutnav"><a href="@Url.Action("MyAccount")" id="aAcccount" style="display:block;"><span class="butleft"><span class="butright">MY ACCOUNT</span></span></a><a href="Logout.aspx" id="aLogOut" style="display:none;"><span class="butleft"><span class="butright">LOG OUT</span></span></a></li>
+                        <li id="servicesnav"><a href="@Url.Action("Search")"><span class="butleft"><span class="butright">SEARCH</span></span></a></li>
+                        <li id="productsnav"><a href="@Url.Action("BookPage")"><span class="butleft"><span class="butright">BOOK</span></span></a></li>
+                        <li id="enquirynav"><a href="@Url.Action("Contact")"><span class="butleft"><span class="butright">CONTACT</span></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainBody">
+            <div class="serch_baner_sppourt">
+                <div class="serch_baner_left"><img src="~/Content/images/serch_left.jpg" alt="" /></div>
+                <div class=" serch_baner_bg">
+                    <input name="ctl00$txtSearch" type="text" id="txtSearch" style="width:100px; height:12px; margin-top:4px;" />
+                </div>
+                <input type="image" name="ctl00$imgbtnSearch" id="imgbtnSearch" src="~/Content/images/search_icon.png" alt="Search" onclick="return fnValidateSearchKeyword('txtSearch', 'dvSrch', 'dvSrchError');" />
+                <div class="serch_baner_right"><img src="~/Content/images/serch_right.jpg" alt="" /></div>
+            </div>
+            <div id="dvSrch" class="serch_baner_text" style="display:block;">Keyword search:</div>
+            <div id="dvSrchError" class="serch_baner_text" style="display:none;"><span>Enter Keyword</span></div>
+        </div>
+
+        <!-- Header Ends Here -->
+        <!-- Content Goes Here -->
+
+        <script type="text/javascript" language="javascript" src="~/Content/CalendarControl.js"></script><iframe id="CalendarControlIFrame" src="javascript:false;" frameborder="0" scrolling="no"></iframe><div id="CalendarControl"></div>
+        <script type="text/javascript" language="javascript" src="~/Content/JScript.js"></script>
+        <link href="~/Content/CalendarControl.css" type="text/css" rel="Stylesheet" />
+        <!-- Content Goes Here -->
+        @RenderBody()
+        <!-- Content Ends Here -->
+        <!-- Content Ends Here -->
+        <!-- Footer Goes Here -->
+        <div class="footer_sppourt">
+            <div class="footer_top"><img src="~/Content/images/footer_left.png" alt="" /></div>
+            <div class="footer_bg">
+
+                <div class="footer_left">
+                    <div class="footer_pic"><img src="~/Content/images/addyourha.png" alt="" /></div>
+                    <div class="footer_pi_left"><img src="~/Content/images/footer_pic.png" alt="" /></div>
+                    <div class="footer_pi_text">
+                        Join our rapidly expanding list of halls avaialable and watch
+                        your business grow! Join our rapidly expanding list of halls avaialable and watch your
+                        business grow!
+                        <div class="footer_submit">
+                            <!-- <a href="AddHall.aspx"><img src="~/Content/images/addyor_sub.png" alt="" border="0"/></a> -->
+                            <input type="image" name="ctl00$imgbtnAddHall" id="imgbtnAddHall" src="~/Content/images/addyor_sub.png" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_right">
+                    <div id="dvLoginPanel" class="footer_right_sppourt" style="display:block;">
+                        <div class="footer_right_top"><img src="~/Content/images/footer_accountlogin_top.png" alt="" /></div>
+                        <div class="footer_right_bg">
+                            <div class="footer_account"><img src="~/Content/images/accountpic.png" alt="" /></div>
+
+
+                            <div class="footer_sppourt_login1">
+                                <div class="footer_pi_text_login">
+                                    <span id="lblAdd" style="color:White;">Email ID</span>
+                                </div>
+                                <div class="footer_pi_text_login_input">
+                                    <input name="ctl00$txtEmail" type="text" id="txtEmail" style="width:80%;" />
+                                </div>
+                            </div>
+                            <div class="footer_sppourt_login1">
+                                <div class="footer_pi_text_login">
+                                    <span id="lblPass" style="color:White;">Password</span>
+                                </div>
+                                <div class="footer_pi_text_login_input">
+                                    <input name="ctl00$txtPass" type="password" id="txtPass" style="width:80%;" />
+                                </div>
+                            </div>
+                            <div class="footer_submit_bot">
+                                <input type="image" name="ctl00$imgbtnLogin" id="imgbtnLogin" src="~/Content/images/login_now.png" alt="Login" />
+                            </div>
+                        </div>
+                        <div class="footer_right_bot"><img src="~/Content/images/footer_accountlogin_bot.png" alt="" /></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer_bot"><img src="~/Content/images/footer_right.png" alt="" /></div>
+            <div style="text-align:center; color:Black; text-decoration:none">
+                <a href="Contact.aspx" style="color:Black; text-decoration:none; font-family:Calibri;">Contact Us</a> |
+                <a href="About.aspx" style="color:Black; text-decoration:none; font-family:Calibri;">About Us</a> |
+                <a href="Privacy.aspx" style="color:Black; text-decoration:none; font-family:Calibri;">Privacy Policy</a> |
+                <a href="Faq.aspx" style="color:Black; text-decoration:none; font-family:Calibri;">Faq's</a>
+            </div>
+        </div>
+        <!-- Footer Ends Here -->
+
+    </div>
+
+
+
+
+
+</body>
+</html>

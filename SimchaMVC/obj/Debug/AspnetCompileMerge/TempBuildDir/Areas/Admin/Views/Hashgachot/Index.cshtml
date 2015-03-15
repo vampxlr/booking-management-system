@@ -1,0 +1,78 @@
+﻿@model  IEnumerable<SimchaMVC.hashgacha_images>
+@{
+    ViewBag.Title = "Hashgachot";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+    int count = 0; bool tagOpen = false;
+}
+
+<div class="well">
+
+
+
+    <table class="table" width="90%" align="center">
+        <tbody>
+            <tr>
+                @foreach (var item in Model)
+                {
+                    using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.FirstOrDefault(t => t.id == item.id).id)
+                        @Html.HiddenFor(model => model.FirstOrDefault(t => t.id == item.id).hashgacha_image)
+                        <td>
+                            <table class="table well well-sm">
+
+                                <tbody>
+                                    <tr>
+                                        <td height="130" align="center" valign="middle"><img src="~/Content/thumbs/@item.hashgacha_image"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.FirstOrDefault(t => t.id == item.id).hashgacha_name, new { @class = "form-control", data_toggle = "tooltip", data_placement = "top", title = "", data_original_title = "Hashgacha Name" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.FirstOrDefault(t => t.id == item.id).notes, new { @class = "form-control", data_toggle = "tooltip", data_placement = "top", title = "", data_original_title = "Notes" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.FirstOrDefault(t => t.id == item.id).order_by, new { @class = "form-control", data_toggle = "tooltip", data_placement = "top", title = "", data_original_title = "Display Order" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td><button type="submit" class="btn btn-default" >Edit</button>&nbsp;&nbsp;&nbsp; @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-default" })</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </td>
+
+
+                    }
+
+                }
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <div style=" background-image:none; background-color:#FFFFFF; ">
+
+
+        <span class="maintext" id="uploaddiv">
+            @{Html.RenderPartial("_HGimageUploadPartial", new ViewDataDictionary { Model = new SimchaMVC.hashgacha_images() });}
+
+        </span><div class="maintext" id="uploaddiv1" align="center" style="color:red;font-weight:bold;"></div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>

@@ -1,0 +1,72 @@
+﻿@model SimchaMVC.caterer
+
+@{
+    ViewBag.Title = "Caterers";
+    ViewBag.SubTitle = "Caterer Information";
+    Layout = "~/Areas/Admin/Views/Caterers/_SubCaterersLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.id)
+            <table width="90%" cellpadding="3" cellspacing="3" align="center">
+                <tbody>
+                    <tr>
+                        <td><h2>Edit</h2></td>
+                    </tr>
+
+                    <tr>
+                        <td width="80" nowrap="" style="padding-right:15px;">
+                            <label class="field-title">
+                                Caterer Name
+                            </label>
+                        </td>
+                        <td style="padding:3px; ">
+                            @Html.TextBoxFor(model => model.caterer_name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.caterer_name)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="80" nowrap="" style="padding-right:15px;">
+                            <label class="field-title">
+                                Description
+                            </label>
+                        </td>
+                        <td style="padding:3px; ">
+                            @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.description)
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td colspan="2" style="text-align:center " align="center">
+
+                            <br />
+
+                            <button class="btn btn-default" type="submit" name="Update" value="Update" onclick="return(checkform())"> Submit </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+
+
+    </div>
+</div>
+                
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").parents("li").addClass("active");
+
+</script>

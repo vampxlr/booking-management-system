@@ -1,0 +1,165 @@
+﻿@{
+    
+    
+   IEnumerable<SimchaMVC.service_areas> Neighborhoods = ViewBag.Neighborhoods as IEnumerable<SimchaMVC.service_areas>;
+  IEnumerable<SimchaMVC.event_types> SimchaTypes =  ViewBag.SimchaTypes as IEnumerable<SimchaMVC.event_types>;
+    
+    ViewBag.Title = "Search";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSite.cshtml";
+}
+<div class="scond_mainBodyLeft">
+    <div class="makingsimichsppourt">
+        <img src="~/Content/images/serch_hall.jpg" alt="">
+        <div class="scond_box_sppourt">
+            <div class="scond_box_top" style="margin-left: -3px;">
+                <img src="~/Content/images/event.jpg" alt="">
+            </div>
+@using (Html.BeginForm("Index","Home",FormMethod.Post))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+            <div class="scond_box_bg">
+                <div class="second_left_box">
+                    <div class="hal_page">
+                        <div class="second_left_text">
+                            Event Date
+                        </div>
+                    </div>
+                    <div class="hal_page">
+                        <input name="StartDate" type="text" readonly="readonly" id="Content_txtStartDate" style="width:70px;">
+                        <input type="hidden" name="StartDate" id="Content_hdnStartDate">
+                    </div>
+                    <div class="hal_page">
+                        <a href="#">
+                            <img src="~/Content/images/link_lo.jpg" style="cursor: pointer; border: none;" id="imgCalEvent" onclick="showCalendarControl(this,'Content_txtStartDate',false);" alt="Click Here to Pick up the date">
+                        </a>
+                    </div>
+                    <div class="hal_page">
+                        <div class="second_left_text">
+                            Select Range
+                        </div>
+                    </div>
+                    <div class="hal_page">
+                        <input name="EndDate" type="text" readonly="readonly" id="Content_txtEndDate" style="width:70px;">
+                        <input type="hidden" name="EndDate" id="Content_hdnEndDate">
+                    </div>
+                    <div class="hal_page">
+                        <a href="#">
+                            <img src="~/Content/images/link_lo.jpg" style="cursor: pointer; border: none;" id="imgCalRange" onclick="showCalendarControl(this,'Content_txtEndDate',false);" alt="Click Here to Pick up the date">
+                        </a>
+                    </div>
+                    <div class="sppourt_hallpage">
+                        <div class="hall_text">
+                            Event Location: * (please select)
+                        </div>
+                        <table width="410" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td width="165">
+                                        <table id="Content_cblLocation" style="width: 300px !important">
+                                            <tbody>
+
+                                                @foreach (var item in Neighborhoods)
+                                                {
+                                                    <tr>
+                                                        <td><input id="Content_cblLocation_1" type="checkbox" name="area_ids" value="@item.id"><label for="Content_cblLocation_1">@item.service_area</label></td>
+                                                    </tr>
+                                                }
+                                              
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="hall_page_box">
+                            <div class="second_right_box">
+                                <div class="second_left_text">
+                                    <strong>Event Type:<span style="color: #FF0000">*</span></strong>
+                                </div>
+                                <div class="second_left_text">
+                                    <select name="event_type_ids" id="Content_ddlEventType" style="width: 160px; height: 21px;
+                                            border: 1px solid #999999;">
+                                        @foreach (var item in SimchaTypes)
+                                        {
+                                            <option value="@item.id">@item.type_name</option>
+
+                                        }
+
+                             
+
+                                    </select>
+
+                                </div>
+                                <div class="second_left_text">
+                                    <strong>Amount of Guests: <span style="color: #FF0000">*</span></strong>
+                                </div>
+                                <div class="second_left_text">
+                                    <select name="couple_ids" id="Content_ddlGuest" style="width: 160px; height: 21px;
+                                            border: 1px solid #999999;">
+                                        <option value="1">0-100 Couples</option>
+                                        <option value="2">100-200 Couples</option>
+                                        <option value="3">200-300 Couples</option>
+                                        <option value="4">300-600 Couples</option>
+                                        <option value="5">+400</option>
+
+                                    </select>
+                                </div>
+                           
+                                @*<div class="second_left_text">
+                                    <select name="ctl00$Content$ddlTimeOfDay" id="Content_ddlTimeOfDay" style="width: 160px; height: 21px;
+                                            border: 1px solid #999999;"></select>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+                <!--end left scond page=====-->
+                <div class="second_line">
+                    <img src="~/Content/images/line.jpg" alt="">
+                </div>
+                <div class="second_right_box">
+                    <table width="400" border="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    &nbsp;English Calendar
+                                </td>
+                                <td>
+                                    &nbsp;Hebrew Calendar
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="100">
+                                    <img src="~/Content/images/clander.jpg" alt="">
+                                </td>
+                                <td height="100">
+                                    <img src="~/Content/images/clander.jpg" alt="">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="hall_page_submit">
+                        <input type="submit" name="ctl00$Content$btnSubmit" value="Find My Hall">
+                    </div>
+                </div>
+
+                <div class="all_pic_sppourt">
+                    <div>
+
+                    </div>
+                </div>
+                <br>
+
+                <!--end right scond page=====-->
+            </div>
+}
+            <div class="scond_box_bott">
+                <img src="~/Content/images/sec_account_bott.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>

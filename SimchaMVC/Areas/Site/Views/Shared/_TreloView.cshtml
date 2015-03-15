@@ -1,0 +1,509 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]>          <html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>          <html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html ng-app="ngSimchaApp">
+<!--<![endif]-->
+<head>
+    <!-- Page Title -->
+    <title>Travelo | Responsive HTML5 Travel Template</title>
+    <script src="~/Content/travelo23/html/js/pace.min.js" data-pace-options='{ "ajax": false }'></script>
+    <script src="~/Content/travelo23/html/js/page-loading.js"></script>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Simcha | Responsive HTML5 Travel Template">
+    <meta name="author" content="SoapTheme">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Content/travelo23/html/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/ngApp/ngApp.js"></script>
+    <script src="~/Content/travelo23/html/js/jquery.noconflict.js"></script>
+
+
+    <script src="~/Content/travelo23/html/js/modernizr.2.7.1.min.js"></script>
+
+
+    <script src="~/Content/travelo23/html/js/jquery-migrate-1.2.1.min.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.js"></script>
+    <!-- Theme Styles -->
+
+    <link href="~/Content/travelo23/html/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/travelo23/html/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="~/Content/travelo23/html/css/animate.css" rel="stylesheet" />
+
+
+    <!-- Current Page Styles -->
+    <link href="~/Content/travelo23/html/components/revolution_slider/css/settings.css" rel="stylesheet" />
+
+    <link href="~/Content/travelo23/html/components/revolution_slider/css/style.css" rel="stylesheet" />
+    <link href="~/Content/travelo23/html/components/jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
+    <link href="~/Content/travelo23/html/components/flexslider/flexslider.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+    <!-- Main Style -->
+    <link href="~/Content/travelo23/html/css/style.css" rel="stylesheet" />
+
+    <!-- Custom Styles -->
+
+    <link href="~/Content/travelo23/html/css/custom.css" rel="stylesheet" />
+    <!-- Updated Styles -->
+
+    <link href="~/Content/travelo23/html/css/updates.css" rel="stylesheet" />
+    <!-- Responsive Styles -->
+
+    <link href="~/Content/travelo23/html/css/responsive.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- CSS for IE -->
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" type="text/css" href="css/ie.css" />
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script type='text/javascript' src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
+    <!--[if lt IE 9]><link rel="stylesheet" href="css/lt-ie-9.css" media="all" /><![endif]-->
+
+    <link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.318/kendo.rtl.min.css" rel="stylesheet" />
+
+    <script src="~/Content/function.js"></script>
+    <link href="~/Content/kendo/2014.1.318/kendo.silver.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/kendo/2014.1.318/kendo.dataviz.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.318/kendo.dataviz.bootstrap.min.css" rel="stylesheet" />
+
+
+    <script src="~/Scripts/kendo/2014.1.318/kendo.all.min.js"></script>
+    <script src="~/Scripts/kendo/2014.1.318/kendo.aspnetmvc.min.js"></script>
+
+
+
+
+
+</head>
+<body>
+    <div id="page-wrapper">
+        <header id="header" class="navbar-static-top">
+            <div class="topnav hidden-xs">
+                <div class="container">
+                    <ul class="quick-menu pull-left">
+                        <li><a href="#">MY ACCOUNT</a></li>
+                        <li class="ribbon">
+                            <a href="#">English</a>
+                            <ul class="menu mini">
+                                <li><a href="#" title="Dansk">Dansk</a></li>
+                                <li><a href="#" title="Deutsch">Deutsch</a></li>
+                                <li class="active"><a href="#" title="English">English</a></li>
+                                <li><a href="#" title="Español">Español</a></li>
+                                <li><a href="#" title="Français">Français</a></li>
+                                <li><a href="#" title="Italiano">Italiano</a></li>
+                                <li><a href="#" title="Magyar">Magyar</a></li>
+                                <li><a href="#" title="Nederlands">Nederlands</a></li>
+                                <li><a href="#" title="Norsk">Norsk</a></li>
+                                <li><a href="#" title="Polski">Polski</a></li>
+                                <li><a href="#" title="Português">Português</a></li>
+                                <li><a href="#" title="Suomi">Suomi</a></li>
+                                <li><a href="#" title="Svenska">Svenska</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="quick-menu pull-right">
+                        <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
+                        <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
+                        <li class="ribbon currency">
+                            <a href="#" title="">USD</a>
+                            <ul class="menu mini">
+                                <li><a href="#" title="AUD">AUD</a></li>
+                                <li><a href="#" title="BRL">BRL</a></li>
+                                <li class="active"><a href="#" title="USD">USD</a></li>
+                                <li><a href="#" title="CAD">CAD</a></li>
+                                <li><a href="#" title="CHF">CHF</a></li>
+                                <li><a href="#" title="CNY">CNY</a></li>
+                                <li><a href="#" title="CZK">CZK</a></li>
+                                <li><a href="#" title="DKK">DKK</a></li>
+                                <li><a href="#" title="EUR">EUR</a></li>
+                                <li><a href="#" title="GBP">GBP</a></li>
+                                <li><a href="#" title="HKD">HKD</a></li>
+                                <li><a href="#" title="HUF">HUF</a></li>
+                                <li><a href="#" title="IDR">IDR</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main-header">
+
+                <a href="#mobile-menu-01" data-toggle="collapse" class="mobile-menu-toggle">
+                    Mobile Menu Toggle
+                </a>
+
+                <div class="container">
+                    <h1 class="logo navbar-brand">
+                        <a href='@Url.Action("Index")' title="Travelo - home">
+                            <h3 style="text-transform:uppercase">Simcha Booking</h3>
+                        </a>
+                    </h1>
+
+                    <nav id="main-menu" role="navigation">
+                        <ul class="menu">
+                            <li class="menu-item-has-children">
+                                <a href='@Url.Action("Index")'>Home</a>
+
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href='@Url.Action("Acounts")'>Accounts</a>
+                                <ul>
+                                    <li><a href='@Url.Action("Register")'>Register</a></li>
+                                    <li><a href='@Url.Action("Login")'>Login</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href='@Url.Action("Search")'>Search</a>
+
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href='@Url.Action("Book")'>Book</a>
+
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href='@Url.Action("Contact")'>Contact</a>
+
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+
+                <nav id="mobile-menu-01" class="mobile-menu collapse">
+                    <ul id="mobile-primary-menu" class="menu">
+                        <li class="menu-item-has-children">
+                            <a href='@Url.Action("Home")'>Home</a>
+
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href='@Url.Action("MyAccounts")'>My Accounts</a>
+                            <ul>
+                                <li><a href='@Url.Action("Register")'>Register</a></li>
+                                <li><a href='@Url.Action("Login")'>Login</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href='@Url.Action("Search")'>Search</a>
+
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href='@Url.Action("Book")'>Book</a>
+
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href='@Url.Action("Contact")'>Contact</a>
+
+                        </li>
+
+                    </ul>
+
+                    <ul class="mobile-topnav container">
+                        <li><a href="#">MY ACCOUNT</a></li>
+                        <li class="ribbon language menu-color-skin">
+                            <a href="#" data-toggle="collapse">ENGLISH</a>
+                            <ul class="menu mini">
+                                <li><a href="#" title="Dansk">Dansk</a></li>
+                                <li><a href="#" title="Deutsch">Deutsch</a></li>
+                                <li class="active"><a href="#" title="English">English</a></li>
+                                <li><a href="#" title="Español">Español</a></li>
+                                <li><a href="#" title="Français">Français</a></li>
+                                <li><a href="#" title="Italiano">Italiano</a></li>
+                                <li><a href="#" title="Magyar">Magyar</a></li>
+                                <li><a href="#" title="Nederlands">Nederlands</a></li>
+                                <li><a href="#" title="Norsk">Norsk</a></li>
+                                <li><a href="#" title="Polski">Polski</a></li>
+                                <li><a href="#" title="Português">Português</a></li>
+                                <li><a href="#" title="Suomi">Suomi</a></li>
+                                <li><a href="#" title="Svenska">Svenska</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
+                        <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
+                        <li class="ribbon currency menu-color-skin">
+                            <a href="#">USD</a>
+                            <ul class="menu mini">
+                                <li><a href="#" title="AUD">AUD</a></li>
+                                <li><a href="#" title="BRL">BRL</a></li>
+                                <li class="active"><a href="#" title="USD">USD</a></li>
+                                <li><a href="#" title="CAD">CAD</a></li>
+                                <li><a href="#" title="CHF">CHF</a></li>
+                                <li><a href="#" title="CNY">CNY</a></li>
+                                <li><a href="#" title="CZK">CZK</a></li>
+                                <li><a href="#" title="DKK">DKK</a></li>
+                                <li><a href="#" title="EUR">EUR</a></li>
+                                <li><a href="#" title="GBP">GBP</a></li>
+                                <li><a href="#" title="HKD">HKD</a></li>
+                                <li><a href="#" title="HUF">HUF</a></li>
+                                <li><a href="#" title="IDR">IDR</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div id="travelo-signup" class="travelo-signup-box travelo-box">
+                <div class="login-social">
+                    <a href="#" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
+                    <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
+                </div>
+                <div class="seperator"><label>OR</label></div>
+                <div class="simple-signup">
+                    <div class="text-center signup-email-section">
+                        <a href="#" class="signup-email"><i class="soap-icon-letter"></i>Sign up with Email</a>
+                    </div>
+                    <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund olicy, and Host Guarantee Terms.</p>
+                </div>
+                <div class="email-signup">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="input-text full-width" placeholder="first name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="input-text full-width" placeholder="last name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="input-text full-width" placeholder="email address">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="input-text full-width" placeholder="password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="input-text full-width" placeholder="confirm password">
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Tell me about Travelo news
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund Policy, and Host Guarantee Terms.</p>
+                        </div>
+                        <button type="submit" class="full-width btn-medium">SIGNUP</button>
+                    </form>
+                </div>
+                <div class="seperator"></div>
+                <p>Already a Travelo member? <a href="#travelo-login" class="goto-login soap-popupbox">Login</a></p>
+            </div>
+            <div id="travelo-login" class="travelo-login-box travelo-box">
+                <div class="login-social">
+                    <a href="#" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
+                    <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
+                </div>
+                <div class="seperator"><label>OR</label></div>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="input-text full-width" placeholder="email address">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="input-text full-width" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="forgot-password pull-right">Forgot password?</a>
+                        <div class="checkbox checkbox-inline">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <div class="seperator"></div>
+                <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+            </div>
+        </header>
+
+
+
+
+
+
+        @RenderBody()
+
+
+        <footer id="footer">
+
+            <div class="bottom gray-area">
+                <div class="container">
+                    <div class="logo pull-left">
+                        <a href="#" title="Travelo - home">
+                            <h3 style="text-transform:uppercase">Simcha Booking</h3>
+                        </a>
+                    </div>
+                    <div class="pull-right">
+                        <a id="back-to-top" href="#" class="animated" data-animation-type="bounce"><i class="soap-icon-longarrow-up circle"></i></a>
+                    </div>
+                    <div class="copyright pull-right">
+                        <p>&copy; 2014 Travelo</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="~/Content/travelo23/html/js/jquery.placeholder.js"></script>
+
+    <script src="~/Content/travelo23/html/js/jquery-ui.1.10.4.min.js"></script>
+
+
+    <script src="~/Content/travelo23/html/js/bootstrap.js"></script>
+
+
+
+    <script src="~/Content/travelo23/html/components/revolution_slider/js/jquery.themepunch.plugins.min.js"></script>
+
+    <script src="~/Content/travelo23/html/components/revolution_slider/js/jquery.themepunch.revolution.js"></script>
+
+
+    <script src="~/Content/travelo23/html/components/flexslider/jquery.flexslider-min.js"></script>
+
+    <script src="~/Content/travelo23/html/components/jquery.bxslider/jquery.bxslider.js"></script>
+
+    <script src="~/Content/travelo23/html/js/jquery.stellar.min.js"></script>
+
+    <script src="~/Content/travelo23/html/js/waypoints.js"></script>
+    <script src="~/Content/travelo23/html/js/theme-scripts.js"></script>
+    <script src="~/Content/travelo23/html/js/scripts.js"></script>
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        tjq(".travelo-google-map").gmap3({
+            map: {
+                options: {
+                    center: [48.85661, 2.35222],
+                    zoom: 12
+                }
+            },
+            marker: {
+                values: [
+                    { latLng: [48.85661, 2.35222], data: "Paris" }
+
+                ],
+                options: {
+                    draggable: false
+                },
+            }
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        tjq(document).ready(function () {
+            tjq('.revolution-slider').revolution(
+            {
+                dottedOverlay: "none",
+                delay: 8000,
+                startwidth: 1170,
+                startheight: 646,
+                onHoverStop: "on",
+                hideThumbs: 10,
+                fullWidth: "on",
+                forceFullWidth: "on",
+                navigationType: "none",
+                shadow: 0,
+                spinner: "spinner4",
+                hideTimerBar: "on",
+            });
+        });
+    </script>
+
+    <style>
+        .k-multiselect-wrap {
+            background-color: #F5F5F5;
+            color: #ABABAB;
+            padding-left: 15px;
+            padding-right: 15px;
+            min-height: 34px;
+        }
+
+        .k-autocomplete .k-input, .k-multiselect {
+            border-radius: 0;
+        }
+
+            .k-multiselect.k-header {
+                border-color: #F5F5F5;
+            }
+
+
+        .k-autocomplete .k-input, .k-multiselect-wrap .k-input {
+            padding: 0;
+            height: 34px;
+            color: #ABABAB;
+        }
+
+        .k-multiselect-wrap li {
+            line-height: 28px;
+        }
+
+
+        .k-autocomplete .k-loading, .k-multiselect .k-loading {
+            position: absolute;
+            right: 10px;
+            bottom: 9px;
+        }
+
+        .k-autocomplete, input {
+            border: 0;
+            background: transparent; /* the important bit */
+        }
+    </style>
+
+
+
+
+
+
+</body>
+</html>

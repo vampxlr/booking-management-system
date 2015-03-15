@@ -1,0 +1,93 @@
+  <style scoped>
+        .demo-section {
+            height: 100%;
+            width: 100%;
+            margin:0 auto;
+        }
+
+        #special-days {
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            /*background: url('../../../../Content/web/calender.jpg') transparent no-repeat 0 bottom;*/
+        }
+
+        #calendar {
+            margin: 0 auto;
+            width: 940px;
+            text-align: center;
+           
+        }
+
+            #calendar .k-content {
+                height: 500px;
+            }
+
+            /*#calendar,
+            #calendar .k-content,
+            #calendar .k-header,
+            #calendar th,
+            #calendar .k-link,
+            #calendar .k-state-hover,
+            #calendar .k-state-selected,
+            #calendar .k-state-focused {
+                background: transparent;
+                border-color: transparent;
+                color: #fff;
+                box-shadow: none;
+            }*/
+
+                /*#calendar .k-content .k-state-hover,
+                #calendar .k-content .k-state-focused {
+                    font-size: 14px;
+                    font-weight: bold;
+                }*/
+
+                #calendar .k-state-selected, #calendar .k-state-selected.k-state-focused {
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+
+                #calendar .k-content .k-link {
+                    padding: 0;
+                    min-height: 94px;
+                    line-height: 94px;
+                }
+
+                #calendar th {
+                    padding-top: 20px;
+                    color: #8cbabf;
+                }
+
+                #calendar td.k-other-month .k-link {
+                    color: #8cbabf;
+                }
+
+                #calendar th,
+                #calendar td {
+                    text-align: center;
+                }
+
+        /* Template Days */
+        .exhibition, .party, .cocktail {
+           
+            height: 94px;
+       
+           border-radius:0px;
+            line-height: 94px;
+        }
+
+        .exhibition {
+            background-color: #ff6a00;
+            color: #000;
+        }
+
+        .party {
+            background-color: #70c114;
+        }
+
+        .cocktail {
+            background-color: #00a1e8;
+        }
+    </style>

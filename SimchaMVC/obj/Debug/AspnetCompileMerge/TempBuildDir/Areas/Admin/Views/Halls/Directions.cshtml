@@ -1,0 +1,49 @@
+﻿
+@model SimchaMVC.hall
+
+
+@{
+    ViewBag.Title = "Halls";
+    ViewBag.SubTitle = "Directions";
+    Layout = "~/Areas/Admin/Views/Halls/_SubHallsLayout.cshtml";
+}
+
+<h2>Directions</h2>
+                                  
+                                 @using (Html.BeginForm("Directions", "Halls", FormMethod.Post))
+                                                        {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
+                                  @Html.HiddenFor(m=>m.id)
+                                    
+                                      @(Html.Kendo().Editor()
+                                          .Name("editor")
+                                         
+                                          .Value(@<text>
+                                            @Html.Raw(Model.directions)
+                                        </text>)
+                                    .Name("Directions")
+
+                                    )
+                                     <br />
+                                    <button class="btn btn-default">Submit</button>
+                                                        }
+                               
+
+<script>
+                $(document).ready(function() {
+                    // create Editor from textarea HTML element with default set of tools
+                    $("#editor").kendoEditor();
+                });
+</script>
+
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").parents("li").addClass("active");
+
+</script>

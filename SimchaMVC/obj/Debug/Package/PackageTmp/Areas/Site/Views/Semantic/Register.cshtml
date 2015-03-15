@@ -1,0 +1,179 @@
+﻿@model SimchaMVC.user
+@{
+    ViewBag.Title = "Others";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSemanticOthers.cshtml";
+}
+
+
+
+<div class="ui page grid">
+
+    <div class="sixteen wide column">
+        @using (Html.BeginForm("Register", "Semantic", FormMethod.Post))
+        {
+            <div style="padding-top: 50px" class="ui form">
+                <h4 class="ui dividing header">Create an account</h4>
+
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Email</label>
+                        <div class="ui icon input">
+                            @Html.TextBoxFor(model => model.email, new { placeholder = "Email" })
+                            <i class="mail icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="required field">
+                        <label>Name</label>
+                        <div class="two fields">
+                            <div class="field">
+                                @*<input type="text" name="first-name" placeholder="First Name">*@
+                                @Html.TextBoxFor(model => model.first_name, new { placeholder = "First Name" })
+                            </div>
+                            <div class="field">
+                                @*<input type="text" name="last-name" placeholder="Last Name">*@
+                                @Html.TextBoxFor(model => model.last_name, new { placeholder = "Last Name" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Username</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Username">*@
+                            @Html.TextBoxFor(model => model.user_name, new { placeholder = "Username" })
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Password</label>
+                        <div class="ui icon input">
+                            @*<input type="password">*@
+                            @Html.PasswordFor(model => model.user_password)
+                            <i class="lock icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Address 1</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Address">*@
+                            @Html.TextBoxFor(model => model.address1, new { placeholder = "Address" })
+                            <i class="home icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Address 2</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Address">*@
+                            @Html.TextBoxFor(model => model.address2, new { placeholder = "Address" })
+                            <i class="home icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="required field">
+                        <label>City</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="City">*@
+                            @Html.TextBoxFor(model => model.city, new { placeholder = "City" })
+                            <i class="home icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>State</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="State">*@
+                            @Html.TextBoxFor(model => model.state, new { placeholder = "State" })
+                            <i class="home icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Zip Code</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Zip Code">*@
+                            @Html.TextBoxFor(model => model.zipcode, new { placeholder = "Zip Code" })
+                            <i class="home icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Phone Number</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Phone Number">*@
+                            @Html.TextBoxFor(model => model.phone, new { placeholder = "Phone Number" })
+                            <i class="call icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Fax</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Fax">*@
+                            @Html.TextBoxFor(model => model.fax, new { placeholder = "Fax" })
+                            <i class="call icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Best Time To Reach</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Best Time To Reach">*@
+                            @Html.TextBoxFor(model => model.best_time, new { placeholder = "Best Time To Reach" })
+                            <i class="wait icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Contact Me By</label>
+                        <div class="ui icon input">
+                            @*<input type="text" placeholder="Contact Me By">*@
+                            @Html.TextBoxFor(model => model.contact_method, new { placeholder = "Contact Me By" })
+                            <i class="call icon"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="hot-deals">
+                        <label>I Agree to Simcha Booking’s <a href="#">Terms of Service</a>.</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="hot-deals">
+                        <label>Add me to your mailing list</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="hot-deals">
+                        <label>Automatically sign me in when I visit Simcha Booking.</label>
+                    </div>
+                </div>
+
+                <div class="ui error message">
+                    <div class="header">We noticed some issues</div>
+                </div>
+                <button class="k-button" type="submit">Register</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+

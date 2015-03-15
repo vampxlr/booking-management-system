@@ -1,0 +1,85 @@
+﻿@model SimchaMVC.booking
+@{
+   SimchaMVC.hall hall= ViewBag.Hall as SimchaMVC.hall;
+    Layout = null;
+   var urlbook = "~/content/images/";
+   string style = "margin-left:50px; width:700px; height:1150px; background-image:url("+urlbook +");background-repeat:no-repeat;";
+}
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+    </style>
+
+</head>
+<body>
+    <div style="margin-left:50px; width:700px; height:1150px; background-image:url(@Url.Content("~/content/images/print_border.jpg"));
+	background-repeat:no-repeat; ">
+        <table cellpadding="5" cellspacing="0" class="maintext">
+            <tbody>
+                <tr><td height="220"></td></tr>
+                <tr>
+                    <td width="150"></td>
+                    <td width="120"><b>Booking ID</b></td>
+                    <td style="color:#0000FF;" width="230"><b>200029</b></td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><b>Hall Name: </b></td>
+                    <td>@hall.hall_name </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><b>Booking Date: </b></td>
+                    <td>@Model.booking_date</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><b>Time Slot</b></td>
+                    <td>@Model.time_slot</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td valign="top"><b>Information: </b></td>
+                    <td>
+                        @Model.first_name , @Model.last_name
+                        @Model.address1<br>
+                        @Model.address2<br>
+                        @Model.city @Model.state, @Model.zip_code
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td valign="top"><b>Billing</b></td>
+                    <td>
+
+                        <br>
+
+                        <br>
+
+                    </td>
+                </tr>
+                <tr><td height="60"></td></tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size:10px;" colspan="2">
+                        <div style="font-size:14px;"><b>Terms and Conditions</b><br><br></div>
+                        <div style="width:350px; ">
+                            Please not that all bookings are final. This is not a confirmation from the hall.....
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,156 @@
+#CalendarControlIFrame {
+  display: none;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  height: 140px;
+  width: 165px;
+  z-index: 99;
+}
+
+#CalendarControl {
+  position:absolute;
+  background-color:#FFF;
+  margin:0;
+  padding:0;
+  display:none;
+  z-index: 100;
+}
+
+#CalendarControl table.date {
+  font-family: Tahoma, arial, verdana, helvetica, sans-serif;
+  font-size: 8pt;
+  border-left: 1px solid #336;
+  border-right: 1px solid #336;
+  background-image:url(../images/bgCalender.gif);   
+}
+
+#CalendarControl table.date th {
+  font-weight: normal;
+}
+
+#CalendarControl table.date th a {
+  font-weight: normal;
+  text-decoration: none;
+  /*color: #E7E8ED; /*#FFF;*/
+  padding: 1px;
+  color:#000000;
+}
+
+#CalendarControl table.date td {
+  text-align: center;
+  line-height: 12px;
+  text-decoration: none;
+  padding: 2px 2px 2px 5px;
+}
+
+#CalendarControl .headerDate {
+ /*background-color:  #5B6588; /*#336;*/
+ background-color: #1E57A4;
+ height: 25px;
+}
+
+#CalendarControl .weekday {
+  /*background-color:  #E7E8ED;/*#DDD;*/
+  color: #000;
+}
+
+#CalendarControl .weekend {
+  /*background-color: #B1C1F2;/*#FFC;*/
+  color:Red;
+}
+
+#CalendarControl .current {
+  border: 1px solid #D4321B;
+  color: #000000;
+  font-size:7pt;
+  margin: -1px;
+}
+#CalendarControl .inactiveday {
+  color: #6F6F6F;
+  text-decoration:line-through;
+}
+
+#CalendarControl .weekday,
+#CalendarControl .weekend,
+#CalendarControl .current {
+  display: block;
+  text-decoration: none;
+  /*border: 1px solid #FFF;*/
+  width: 2em;
+}
+
+#CalendarControl .weekday:hover,
+#CalendarControl .weekend:hover,
+#CalendarControl .current:hover {
+  /*color: #E7E8ED; /*#FFF;*/
+  background-color: #FFF;
+  /*border: 1px solid #999;*/
+  color:#000000;
+}
+
+#CalendarControl .previous {
+  text-align: left;
+  color: #ffffff;
+}
+
+#CalendarControl .next {
+  text-align: right;
+  color: #ffffff;
+}
+
+#CalendarControl .previous,
+#CalendarControl .next {
+  padding: 1px 3px 1px 3px;
+  font-size: 1.4em;
+ color:#ffffff;
+}
+
+#CalendarControl .previous a,
+#CalendarControl .next a {
+  /*color: #E7E8ED; /*#FFF;*/
+  text-decoration: none;
+  font-weight: bold;
+  color:#ffffff;
+}
+
+#CalendarControl .title {
+  text-align: center;
+  font-weight: normal;
+  /*color: #E7E8ED; /*#FFF;*/
+   color:#ffffff;
+}
+
+#CalendarControl .empty {
+  background-color: -#B1C1F2; /*#CCC;*/
+  /*border: 1px solid #FFF;*/
+}
+
+a:link
+{
+	color:#000000;
+	/*text-decoration: none;	*/
+}
+
+a:visited
+{
+	color:#000000;
+	/*text-decoration: none;	*/
+}
+
+a:active
+{
+	color:#000000;
+	/*text-decoration: none;	*/
+}
+
+#CalendarControl .footer {
+ /*background-color:  #5B6588; /*#336;*/
+ background-color: #1E57A4;
+ height: 25px;
+ color:#FFFFFF;
+}
+#CalendarControl .footer a {
+ color:#FFFFFF;
+ text-decoration:none;
+}

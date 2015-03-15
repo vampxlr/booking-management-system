@@ -1,0 +1,96 @@
+﻿@model IEnumerable<SimchaMVC.service_areas>
+@{
+    int count = 0;
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSite.cshtml";
+}
+<div class="mainBody">
+
+    <div class="mainBodyLeft">
+        <div class="makingsimichsppourt">
+            <img src="~/Content/images/maiking.jpg" alt="">
+            <div class="pic_text">
+                <div class="pic"><img src="~/Content/images/pic.jpg" alt=""></div>
+                Please provide short paragraph describing your company. Please provide short paragraph
+                describing your company. Please provide short paragraph describing your company. <br>
+                Please provide short paragraph describing your company. Please provide short paragraph describing your company.
+                Please provide short paragraph describing your company. Please provide short paragraph describing your company.<br>
+                Please provide short paragraph describing your company. Please provide short paragraph describing your company.
+                If you haven’t installed your new software, begin by reading some information on installation and other preliminaries.
+                Before you begin working with your software, take a few moments to read an overview of Adobe Help and of the many resources
+            </div>
+        </div>
+    </div>
+
+    <div class="mainBodyRight">
+        <div class="searchavilabel">
+            <div class="searchavilabel_left"><img src="~/Content/images/searchavailable_top.jpg" alt=""></div>
+
+                    @using (Html.BeginForm())
+                                                        {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    
+            <div class="searchavilabel_bg">
+
+                <div class="searchavilabel_sppourt">
+                    <div class=" searchavilabel_text">
+                        <span id="Content_lblStartDate" style="color:Black;">Event Date:</span>
+                    </div>
+                    <div class="searchavilabel_input">
+                        <input name="StartDate" type="text" readonly="readonly" id="Content_txtStartDate" style="width:80px;">
+                        <input type="hidden" name="StartDate" id="Content_hdnStartDate">
+                    </div>
+                </div>
+                <div class="searcha_link">
+                    <img src="~/Content/images/link_lo.jpg" style="cursor:pointer;" id="imgCalEvent" onclick="showCalendarControl(this,'Content_txtStartDate',false);" alt="Click Here to Pick up the date">
+                </div>
+
+                <div style="margin:-100px 0px 0px 200px;">
+                    <div class="searchavilabel_sppourt1">
+                        <div class=" searchavilabel_text1">
+                            <span id="Content_lblEndDate" style="color:Black;">Select Range:</span>
+                        </div>
+                        <div class="searchavilabel_input1">
+                            <input name="EndDate" type="text" readonly="readonly" id="Content_txtEndDate" style="width:80px;">
+                            <input type="hidden" name="EndDate" id="Content_hdnEndDate">
+                        </div>
+                    </div>
+                    <div class="searcha_link2">
+                        <img src="~/Content/images/link_lo.jpg" style="cursor:pointer;" id="imgCalRange" onclick="showCalendarControl(this,'Content_txtEndDate',false);" alt="Click Here to Pick up the date">
+                    </div>
+                </div>
+
+                <div class=" searchavilabel_text4">
+                    <span id="Content_lblEvent" style="color:Black;">Event Location: (please select)</span>
+                </div>
+
+
+                @foreach (var item in Model)
+                {
+                <div class="redio_sppourt">
+
+                    <div class="redio">
+                        <input value="@item.id" type="checkbox" name="area_ids">
+                    </div>
+                    <div class="redio_text">@item.service_area</div>
+                </div>
+
+
+
+                }
+
+
+
+
+                <div class="submit">
+                    <input type="image" name="ctl00$Content$imgbtnSubmit" id="Content_imgbtnSubmit" src="~/Content/images/findmy.jpg" alt="Submit" onclick="return fnSetDate('Content_txtStartDate', 'Content_hdnStartDate', 'Content_txtEndDate', 'Content_hdnEndDate');">
+                </div>
+            </div>
+
+                    }
+            <div class="searchavilabel_right"><img src="~/Content/images/searchavailable_bottam.jpg" alt=""></div>
+        </div>
+    </div>
+
+</div>

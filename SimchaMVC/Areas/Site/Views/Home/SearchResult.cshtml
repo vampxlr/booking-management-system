@@ -1,0 +1,275 @@
+﻿@using System.Linq
+@using SimchaMVC
+@{
+    IEnumerable<SimchaMVC.hall> Halls = ViewBag.Halls as IEnumerable<SimchaMVC.hall>;
+
+    IEnumerable<SimchaMVC.service_areas> Neighborhoods = ViewBag.Neighborhoods as IEnumerable<SimchaMVC.service_areas>;
+
+
+    IEnumerable<SimchaMVC.weekday> AllWeekDays = ViewBag.AllWeekDays as IEnumerable<SimchaMVC.weekday>;
+
+
+    IEnumerable<SimchaMVC.booking> Allbookings = ViewBag.Allbookings as IEnumerable<SimchaMVC.booking>;
+
+    IEnumerable<SimchaMVC.calendar> AlldisabledDates = ViewBag.AlldisabledDates as IEnumerable<SimchaMVC.calendar>;
+
+    IEnumerable<SimchaMVC.hall_images> AllHallsImage = ViewBag.AllHallsImage as IEnumerable<SimchaMVC.hall_images>;
+    IEnumerable<SimchaMVC.event_types> SimchaTypes = ViewBag.SimchaTypes as IEnumerable<SimchaMVC.event_types>;
+
+
+    IEnumerable<int> event_type_ids = ViewBag.event_type_ids as IEnumerable<int>;
+    IEnumerable<int> area_ids = ViewBag.area_ids as IEnumerable<int>;
+    IEnumerable<int> couple_ids = ViewBag.couple_ids as IEnumerable<int>;
+
+
+
+
+    DateTime StartDate = ViewBag.startDate;
+    DateTime EndDate = ViewBag.endDate;
+
+    int count = 0;
+
+
+
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSite.cshtml";
+}
+<div class="mainBody">
+    <div class="scond_mainBodyLeft">
+        <div class="makingsimichsppourt">
+            <img src="~/Content/images/searchResult_img.jpg" alt="">
+            @using (Html.BeginForm("Index"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="scond_box_sppourt">
+                    <div class="scond_box_top1"><img src="~/Content/images/third_left.jpg" alt=""></div>
+                    <div class="scond_box_bg1">
+                        <div class="third_rifine_img">
+                            <img src="~/Content/images/refineYourSearch_img.jpg" alt="">
+                        </div>
+                        <div class="third_rifine_box_text">
+                            <span id="Content_lblStartDate" style="color:Black;">Event Date:</span>
+                        </div>
+                        <div class="third_rifine_box_text" style="vertical-align:top;">
+                            <input name="StartDate" type="text" value=@StartDate readonly="readonly" id="Content_txtStartDate" style="width:80px;">
+                            <input type="hidden" name="StartDate" id="Content_hdnStartDate" value=@StartDate>
+                        </div>
+                        <div class="third_rifine_box_text1">
+                            <img src="~/Content/images/link_lo.jpg" style="cursor:pointer;" id="imgCalEvent" onclick="showCalendarControl(this,'Content_txtStartDate',false);" alt="Click Here to Pick up the date">
+                        </div>
+                        <div class="third_rifine_box_text">
+                            <span id="Content_lblEndDate" style="color:Black;">Select Range:</span>
+                        </div>
+                        <div class="third_rifine_box_text" style="vertical-align:top;">
+                            <input name="EndDate" type="text" value=@EndDate readonly="readonly" id="Content_txtEndDate" style="width:80px;">
+                            <input type="hidden" name="EndDate" id="Content_hdnEndDate" value=@EndDate>
+                        </div>
+                        <div class="third_rifine_box_text1">
+                            <img src="~/Content/images/link_lo.jpg" style="cursor:pointer;" id="imgCalRange" onclick="showCalendarControl(this,'Content_txtEndDate',false);" alt="Click Here to Pick up the date">
+                        </div>
+                        <div class="third_rifine_box_text2">
+                            <input type="submit" name="ctl00$Content$btnSubmit" value="(Refresh Search)" onclick="return fnSetDate('Content_txtStartDate', 'Content_hdnStartDate', 'Content_txtEndDate', 'Content_hdnEndDate');" id="Content_btnSubmit">
+                        </div>
+
+                        <div class="third_rifine_box_text4">
+                            <div class="third_rifine_box_text5">Refine by Location:</div>
+                            <div class="third_rifine_box_text7">Refine by event type:</div>
+                            <div class="third_rifine_box_text8"> Refine by guest capacity:</div>
+                        </div>
+
+                        <div class="third_redio_sppourt">
+
+                            @foreach (var item in Neighborhoods)
+                            {
+                                <div class="third_rdieo">
+
+                                    @if (area_ids != null)
+                                    {<input id="@item.id" type="checkbox" name="area_ids" value="@item.id" @(area_ids.Contains(item.id) ? "checked" : "")>}
+                                    else
+                                    {<input id="@item.id" type="checkbox" name="area_ids" value="@item.id">}
+
+                                </div>
+                                <div class="third_rdieo_text">
+                                    @item.service_area
+                                </div>
+
+                            }
+
+
+
+
+                        </div>
+                        <div class="third_line"><img src="~/Content/images/third_line.jpg" alt=""></div>
+
+                        <div class="third_redio_sppourt1">
+
+                            @foreach (var item in SimchaTypes)
+                            {
+                                <div class="third_rdieo">
+
+                                    @if (event_type_ids != null)
+                                    {<input id="@item.id" type="checkbox" name="event_type_ids" value="@item.id" @(event_type_ids.Contains(item.id) ? "checked" : "")>}
+                                    else
+                                    {<input id="@item.id" type="checkbox" name="event_type_ids" value="@item.id">}
+
+
+                                </div>
+                                <div class="third_rdieo_text">@item.type_name</div>
+
+                            }
+
+
+
+
+                        </div>
+
+                        <div class="third_line"><img src="~/Content/images/third_line.jpg" alt=""></div>
+                        @if (couple_ids == null)
+                        {
+                            <div class="third_redio_sppourt3">
+                                <div class="third_rdieo">
+                                    <input id="Content_chk24" type="checkbox" name="couple_ids" value="1">
+                                </div>
+                                <div class="third_rdieo_text">0-100 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk25" type="checkbox" name="couple_ids" value="2">
+                                </div>
+                                <div class="third_rdieo_text">100-200 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk26" type="checkbox" name="couple_ids" value="3">
+                                </div>
+                                <div class="third_rdieo_text">200-300 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk27" type="checkbox" name="couple_ids" value="4">
+                                </div>
+                                <div class="third_rdieo_text">300-400 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk28" type="checkbox" name="couple_ids" value="5">
+                                </div>
+                                <div class="third_rdieo_text">400+ Couples</div>
+                            </div>                        }
+                        else
+                        {
+                            <div class="third_redio_sppourt3">
+                                <div class="third_rdieo">
+                                    <input id="Content_chk24" type="checkbox" name="couple_ids" value="1" @(couple_ids.Contains(1) ? "checked" : "")>
+                                </div>
+                                <div class="third_rdieo_text">0-100 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk25" type="checkbox" name="couple_ids" value="2" @(couple_ids.Contains(2) ? "checked" : "")>
+                                </div>
+                                <div class="third_rdieo_text">100-200 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk26" type="checkbox" name="couple_ids" value="3" @(couple_ids.Contains(3) ? "checked" : "")>
+                                </div>
+                                <div class="third_rdieo_text">200-300 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk27" type="checkbox" name="couple_ids" value="4" @(couple_ids.Contains(4) ? "checked" : "")>
+                                </div>
+                                <div class="third_rdieo_text">300-400 Couples</div>
+
+                                <div class="third_rdieo">
+                                    <input id="Content_chk28" type="checkbox" name="couple_ids" value="5" @(couple_ids.Contains(5) ? "checked" : "")>
+                                </div>
+                                <div class="third_rdieo_text">400+ Couples</div>
+                            </div>
+                        }
+
+
+                      
+
+                    </div>
+                    <div class="scond_box_bott1"><img src="~/Content/images/third_right.jpg" alt=""></div>
+
+                    <div id="Content_dvTotalRow" class="third_texta">
+                        We found <span id="Content_lblTotalRow" style="font-weight:bold;">
+                                   @Halls.Count()</span> Halls that match your search criteria.
+                    </div>
+                    <!-- <div class="third_texta1">
+                        <select name="" style="width:160px;"  ></select>
+                    </div>
+                    <div class="third_texta2">Sort by:</div> -->
+                </div>
+            }
+            <div class="all_pic_sppourt">
+                <div>
+                    <table cellspacing="0" id="Content_grdSearchResult" style="border-collapse:collapse;">
+                        <tbody>
+                            <tr>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                            @for (DateTime currentDate = StartDate; EndDate >= currentDate; currentDate = currentDate.AddDays(1))
+                            {
+
+
+
+                                foreach (var hall in Halls)
+                                {
+                                    if (Allbookings.Where(r => r.booking_date == currentDate && r.hall_id == hall.id).Count() == 0 && AlldisabledDates.Where(r => r.calendar_date == currentDate && r.hall_id == hall.id).Count() == 0)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tbody>
+                                                        <tr class="first_pic_box">
+                                                            <td>
+                                                                <table cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td colspan="5">
+                                                                                <b>Date : </b> @currentDate.ToString("dddd, MMM dd")
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="first_pic_box@((count % 2)==0 ? "1" : "")">
+                                                                            @if (AllHallsImage.Any(r => r.hall_id == hall.id))
+                                                                            {
+                                                                                <td class="first_pic"><img src="~/Content/thumbs/@(AllHallsImage.FirstOrDefault(r => r.hall_id == hall.id).image_name)" alt="" width="143px" height="90px"></td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="first_pic"><img src="" alt="No Image" width="143px" height="90px"></td>
+
+                                                                            }
+                                                                            <td class="first_text"><span style="color:Red; font-weight:bold; font-size:18px; font-family:Calibri;">@hall.hall_name</span><br><br>@hall.address1<br><br><span style="font-weight:bold;">T:</span>@hall.phone</td>
+                                                                            <td class="first_text"><span style="font-weight:bold;">Location:</span>@hall.service_area<br><br><span style="font-weight:bold;">Capacity:</span>@hall.capacity</td>
+                                                                            <td class="first_text"><span style="font-weight:bold;">Caterer:</span>test ca32<br><br><span style="font-weight:bold;">Meal Type:</span><br><br><span style="font-weight:bold;">Hashgacha:</span>Kof-ks</td>
+                                                                            <td class="first_text">@Html.ActionLink("View Details", "Book", new { hall_id = hall.id, event_date = currentDate })</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+
+
+
+
+                            }
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div><br>
+
+
+
+        </div>
+    </div>
+</div>

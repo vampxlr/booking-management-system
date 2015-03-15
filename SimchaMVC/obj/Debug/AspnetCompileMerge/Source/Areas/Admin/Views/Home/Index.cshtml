@@ -1,0 +1,292 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Calender</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="demo-section" style="display:none">
+                                    <div id="special-days">
+                                        <div id="calendar"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Booking Details</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div id="gridbox">
+                                    <div id="grid"></div>
+
+                                    <script>
+                                        loadGrid();
+                                        function loadGrid(bookings) {
+
+
+                                            $("#grid").kendoGrid({
+                                                dataSource: {
+                                                    data: bookings,
+                                                    schema: {
+                                                        model: {
+                                                            fields: {
+                                                                booking_id: { type: "number" },
+                                                                hall_name: { type: "string" },
+                                                                user_infromation: { type: "string" },
+                                                                fullbooking_url: { type: "string" },
+                                                                booking_date: { type: "string" }
+                                                            }
+                                                        }
+                                                    },
+                                                    pageSize: 20
+                                                },
+                                                height: 367,
+
+                                                pageable: {
+                                                    refresh: true,
+                                                    pageSizes: true,
+                                                    buttonCount: 5
+                                                },
+                                                columns: [{
+                                                    field: "booking_id",
+                                                    title: "Booking Id"
+                                                }, {
+                                                    field: "hall_name",
+                                                    title: "Hall Name"
+                                                }, {
+                                                    field: "user_infromation",
+                                                    title: "User Information"
+                                                }, {
+                                                    field: "booking_date",
+                                                    title: "Booking Date :"
+                                                }, {
+                                                    field: "fullbooking_url",
+                                                    title: "View Full Booking :",
+                                                    template: '<a href="/Admin/Bookings/Edit/#=fullbooking_url#?returnUrl=@Request.Url.ToString()">View Full Booking</a>'
+                                                }
+                                                ]
+                                            });
+
+                                        }
+
+
+
+                                    </script>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                  
+ 
+
+    <script>
+      
+        function success(items, data) {
+            var today = new Date(items[0]);
+            console.log(data);
+            $(".demo-section").css("display", "block");
+            $("#calendar").kendoCalendar({
+               
+                //value: (data[0]!=null) ? new Date(data[0].booking_date):new Date(),
+                value: new Date(),
+
+                    dates: items,
+                    change: onChange,
+                    navigate: onNavigate,
+                    month: {
+                        // template for dates in month view
+                        content: "#  if ($.inArray(+data.date, dates) != -1) {function same(element) {return element == +data.date;} var filtered = dates.filter(same);var count = filtered.length; #" +
+                                            "<div class='" +
+                                    
+                                            "booked" + 
+                                 
+                                     "'>" +
+                                      " <span class='" +
+                                    "" +
+                                     "'></span> " +
+                                     " #= data.value #<em> #= count #</em> </div>" +
+                                "# } else { #" +
+                                "#= data.value #" +
+                                "# } #"
+                    },
+                    footer: false
+                });
+           
+
+
+        }
+  
+    </script>
+
+
+<script>
+    $(document).ready(function () {
+     
+     $.getJSON(url + "/api/webapi/GetBooking", function (data) {
+
+
+
+        }).done(function (data) {
+            var items = [];
+            $.each(data, function (key, val) {
+                items.push(+new Date(val.booking_date));
+            })
+            success(items,data);
+        });
+
+
+
+
+    })
+ 
+  
+
+    function onChange() {
+     
+        var dateString = kendo.toString(this.value(), 'd');
+        var date = { booking_date: dateString };
+        console.log(date);
+        $.post(url + "/api/webapi/GetBookingRecord", date, function (data) {
+            console.log("data loaded");
+            console.log(data);
+            loadGrid(data);
+        });
+    }
+
+    function onNavigate() {
+       
+    }
+
+    function counts(arr, counts) {
+
+        for (var i = 0; i < arr.length; i++) {
+            var num = arr[i];
+            counts[num] = counts[num] ? counts[num] + 1 : 1;
+        }
+        return counts;
+    }
+
+
+    //  function same(element) {return element == 5;} var filtered = [12, 5, 8, 130, 44, 5].filter(same);var count = filterd.length;
+
+   
+</script>
+
+
+<style scoped>
+    .demo-section,#gridbox {
+      
+      width:500px;
+        margin: 0 auto;
+        text-decoration:none;
+    }
+
+    #special-days {
+   
+        margin: 0 auto;
+        padding: 0;
+        /*background: url('../../../../Content/web/calender.jpg') transparent no-repeat 0 bottom;*/
+    }
+
+    #calendar {
+      margin: 0 auto;
+        width: 500px;
+        text-align: center;
+       
+    }
+
+        #calendar .k-content {
+            height: 333px;
+           
+        }
+
+
+   
+        #calendar .k-content .k-link {
+            padding: 0;
+            min-height: 30px;
+            line-height:30px;
+        }
+
+        #calendar th {
+            padding-top: 20px;
+            color: #8cbabf;
+        }
+
+        #calendar td.k-other-month .k-link {
+            color: #8cbabf;
+        }
+
+        #calendar th,
+        #calendar td {
+            text-align: center;
+        }
+
+    /*.exhibition, .party, .cocktail {
+                width: 40px;
+                height: 40px;
+                margin: auto;
+                -webkit-border-radius: 100px;
+                -moz-border-radius: 100px;
+                border-radius: 50%;
+                line-height: 40px;
+        }*/
+
+    .booked {
+      
+        height:30px;
+        background-color: #8cbabf;
+        color: #ffffff;
+        
+    }
+
+      .booked em {
+        font-style: italic;
+        font-size:smaller;
+    }
+   
+    .party {
+        background-color: #ff6a00;
+        color: #ffffff;
+    }
+
+    .cocktail {
+        background-color: #ff6a00;
+        color: #ffffff;
+    }
+
+    .k-block, .k-button, .k-textbox, .k-drag-clue, .k-touch-scrollbar, .k-window, .k-window-titleless .k-window-content, .k-window-action, .k-inline-block, .k-grid .k-filter-options, .k-grouping-header .k-group-indicator, .k-autocomplete, .k-multiselect, .k-combobox, .k-dropdown, .k-dropdown-wrap, .k-datepicker, .k-timepicker, .k-colorpicker, .k-datetimepicker, .k-notification, .k-numerictextbox, .k-picker-wrap, .k-numeric-wrap, .k-colorpicker, .k-list-container, .k-calendar-container, .k-calendar td, .k-calendar .k-link, .k-treeview .k-in, .k-editor-inline, .k-tooltip, .k-tile, .k-slider-track, .k-slider-selection, .k-upload {
+        border-radius: 0px;
+    }
+    #grid {
+
+    height:333px;
+    margin: 0 auto;
+    }
+    #grid a {
+
+text-decoration:none;
+    }
+</style>
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>

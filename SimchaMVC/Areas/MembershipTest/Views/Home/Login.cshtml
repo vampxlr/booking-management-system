@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <meta charset="utf-8" />
+    <title>Simcha Dashboard</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+   
+    <link href="~/Content/bootswatch.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/BlueTheme/css/style.css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
+    <style>
+       
+    </style>
+</head>
+<body class="login">
+    <section>
+        <h1><strong>Simcha</strong> Booking</h1>
+        <p style="color:#ffffff;background-color:#eb4040;border-radius:2px;line-height:36px">@ViewBag.ErrorMsg </p>
+
+        @using (Html.BeginForm("Login","Home",FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+
+    <input class="custom" type="text" name="UserName" placeholder="username" />
+    <input class="custom" name="Password" placeholder="password" type="password" />
+          
+    <button class="blue custom">Login</button>
+    <div class="checkbox">
+        <label style="color:white;text-indent:-32px"><input style=" width:auto;margin-top: 0; position: absolute; margin-left: 110px;" name="rememberMe" type="checkbox" />Keep me logged in</label>
+    </div>
+        }
+
+    </section>
+    <script src="~/Scripts/kendo/2014.1.318/jquery.min.js"></script>
+    <script type="text/javascript">
+        // Page load delay by Curtis Henson - http://curtishenson.com/articles/quick-tip-delay-page-loading-with-jquery/
+        $(function () {
+            $('.login button').click(function (e) {
+                // Get the url of the link
+                var toLoad = $(this).attr('href');
+
+                // Do some stuff
+                $(this).addClass("loading");
+
+                // Stop doing stuff
+                // Wait 700ms before loading the url
+                setTimeout(function () { window.location = toLoad }, 10000);
+
+                // Don't let the link do its natural thing
+                e.preventDefault
+            });
+
+            $('input').each(function () {
+
+                var default_value = this.value;
+
+                $(this).focus(function () {
+                    if (this.value == default_value) {
+                        this.value = '';
+                    }
+                });
+
+                $(this).blur(function () {
+                    if (this.value == '') {
+                        this.value = default_value;
+                    }
+                });
+
+            });
+        });
+    </script>
+  
+</body>
+</html>

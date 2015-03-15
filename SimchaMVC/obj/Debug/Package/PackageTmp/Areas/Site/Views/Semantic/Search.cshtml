@@ -1,0 +1,600 @@
+﻿@using Kendo.Mvc.UI
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSemanticOthers.cshtml";
+}
+
+
+
+<style>
+    #header {
+        width: 976px;
+        height: 203px;
+        margin: 0 auto;
+        background: url("header.png") center top no-repeat;
+        text-align: center;
+        color: black;
+        text-transform: uppercase;
+        font-family: "league-gothic-1","league-gothic-2", sans-serif;
+        font-size: 36px;
+        margin-bottom: -100px;
+        text-shadow: none;
+    }
+
+    #header-sticky-wrapper {
+        width: 976px;
+        margin: 0 auto;
+    }
+
+    #header span {
+        display: block;
+        padding-top: 5px;
+    }
+
+        #header span em {
+            color: #ccc;
+            font-style: normal;
+        }
+</style>
+
+<div class="ui page grid">
+    <div class="column">
+
+        <div id="example">
+            <table id="grid">
+                <colgroup>
+                    <col class="photo" />
+                    <col class="details" />
+                    <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>
+                            Picture
+                        </th>
+                        <th>
+                            Short Details
+                        </th>
+                        <th>
+                            Location
+                        </th>
+                        <th>
+                            Event Types
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <script id="rowTemplate" type="text/x-kendo-tmpl">
+                <tr data-uid="#:hall_id#">
+                    <td class="photo">
+                        # if (image_name != null) { #
+                            <img height="100" src="@Url.Content("/Content/thumbs/")#: image_name#" />
+                        # } #
+                    </td>
+                    <td class="details">
+                        <a href="@Url.Action("SearchView", "Semantic")?hall_id=#:hall_id#&event_date=#:booking_date#">
+                            <span class="name">#: hall_name#</span>
+                        </a>
+                        <br />
+                        <span class="">Booking Date: #: booking_date #</span>
+                        <br /><br />
+                        <span class="">Capatity: #: capacity #</span>
+                        <br />
+                        <span class="">
+                            Caterer: 
+                            # for (var i = 0; i < Caterers.length; i++) { #
+                            # if (i > 0) { #,&nbsp;# } ##: Caterers[i] #
+                            # } #
+                        </span>
+                    </td>
+                    <td class="location">
+                        #: address1#
+                        <br />
+
+                        # if (address2 != null) { # #: address2 # <br /> # } #
+
+                        Tel: #: phone#
+                    </td>
+                    <td class="event-types">
+                        <ul>
+                            # for (var i = 0; i < EventTypes.length; i++) { #
+                                <li>#: EventTypes[i] #</li>
+                            # } #
+                        </ul>
+                    </td>
+                </tr>
+            </script>
+
+            <script id="altRowTemplate" type="text/x-kendo-tmpl">
+                <tr class="k-alt" data-uid="#: uid #">
+                    <td class="photo">
+                        <img src="../content/web/Employees/#:data.EmployeeID#.jpg" alt="#: data.EmployeeID #" />
+                    </td>
+                    <td class="details">
+                        <span class="name">#: FirstName# #: LastName# </span>
+                        <span class="title">Title: #: Title #</span>
+                    </td>
+                    <td class="country">
+                        #: Country #
+                    </td>
+                    <td class="employeeID">
+                        #: EmployeeID #
+                    </td>
+                </tr>
+            </script>
+
+            <style scoped>
+                .photo {
+                    width: 140px;
+                }
+
+                .details {
+                    width: 400px;
+                }
+
+                .name {
+                    display: block;
+                    font-size: 1.6em;
+                }
+
+                .title {
+                    display: block;
+                    padding-top: 1.6em;
+                }
+
+                .employeeID,
+                .country {
+                    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+                    font-size: 50px;
+                    font-weight: bold;
+                    color: #898989;
+                }
+
+                td.photo, .employeeID {
+                    text-align: center;
+                }
+
+                .k-grid-header .k-header {
+                    padding: 10px 20px;
+                }
+
+                .k-grid td {
+                    background: -moz-linear-gradient(top, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(100%,rgba(0,0,0,0.15)));
+                    background: -webkit-linear-gradient(top, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
+                    background: -o-linear-gradient(top, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
+                    background: -ms-linear-gradient(top, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
+                    background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
+                    padding: 20px;
+                }
+
+                .k-grid .k-alt td {
+                    background: -moz-linear-gradient(top, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.2)), color-stop(100%,rgba(0,0,0,0.1)));
+                    background: -webkit-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
+                    background: -o-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
+                    background: -ms-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
+                    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
+                }
+            </style>
+        </div>
+        
+        @*<button id="button-refresh" class="k-button" style="margin-top: 10px; padding: 5px 15px;">Refresh Search</button>*@
+
+    </div>
+
+</div>
+
+
+
+<script src="~/Content/multiselectUI/js/jquery.browser.js"></script>
+
+
+<a href="#" id="trigger1" class="trigger left">Halls</a>
+<div id="halls" class="panel left">
+
+
+
+    @(Html.Kendo().MultiSelect()
+               .Name("hall_id")
+               .DataTextField("hall_name")
+               .DataValueField("hall_id")
+               .Placeholder("Select Halls...")
+               .AutoBind(true)
+               .DataSource(source => source.Read(read => read.Action("GetHalls", "Semantic"))
+                   .ServerFiltering(true))
+    )
+
+
+</div>
+<a href="#" id="trigger3" class="trigger left">Date</a>
+<div id="date" class="panel left">
+
+
+    <p>
+        <input id="start" style="width: 200px" value="@ViewBag.StartDate" />
+    </p>
+
+    <p>
+        <input id="end" style="width: 200px" value="@ViewBag.EndDate" />
+    </p>
+
+
+
+
+</div>
+
+<a href="#" id="trigger2" class="trigger left">Where</a>
+<div id="location" class="panel left">
+
+    @(Html.Kendo().MultiSelect()
+               .Name("location_id")
+               .DataTextField("location_name")
+               .DataValueField("location_id")
+               .Placeholder("Select Locations...")
+               .AutoBind(true)
+               .DataSource(source => source.Read(read => read.Action("GetLocations", "Semantic"))
+                   .ServerFiltering(true))
+    )
+
+
+
+
+</div>
+
+<a href="#" id="trigger4" class="trigger right">Event</a>
+<div id="eventType" class="panel right">
+
+
+    @(Html.Kendo().MultiSelect()
+               .Name("event_id")
+               .DataTextField("event_name")
+               .DataValueField("event_id")
+               .Placeholder("Select Events...")
+               .AutoBind(true)
+               .DataSource(source => source.Read(read => read.Action("GetEvents", "Semantic"))
+                   .ServerFiltering(true))
+    )
+
+
+
+
+</div>
+
+
+<a href="#" id="trigger6" class="trigger right">Zip Code</a>
+<div id="zipCode" class="panel right">
+
+    <p style="padding-left: 20px;"><input placeholder="Enter Zip Code" class="k-textbox" type="text" name="zip_code" id="zip_code" /></p>
+    <p style="padding-left: 20px;"><input placeholder="Distance in miles radius" class="k-textbox" type="text" name="zipapprox" id="ZipAprox" /></p>
+
+</div>
+
+<a href="#" style="display:none" id="trigger5" class="trigger right">Count</a>
+<div id="capacity" class="panel right">
+
+
+    <select id="capacityList" multiple="multiple" data-placeholder="Select capacity...">
+        <option>0 - 100</option>
+        <option>100 - 200</option>
+        <option>200 - 300</option>
+        <option>300 - 400</option>
+        <option>400+</option>
+
+    </select>
+
+</div>
+
+
+
+<style scoped>
+    .demo-section {
+        width: 350px;
+        min-height: 140px;
+    }
+
+    .demo-section h2 {
+        font-weight: normal;
+    }
+
+    .demo-section label {
+        display: inline-block;
+        margin: 15px 0 5px 0;
+    }
+
+    .demo-section select {
+        width: 350px;
+    }
+
+    #get {
+        float: right;
+        margin: 25px auto 0;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        // create MultiSelect from select HTML element
+        $("#hallsList").kendoMultiSelect().data("kendoMultiSelect");
+        $("#locationsList").kendoMultiSelect().data("kendoMultiSelect");
+        $("#eventTypeList").kendoMultiSelect().data("kendoMultiSelect");
+        $("#capacityList").kendoMultiSelect().data("kendoMultiSelect");
+        $("#dateList").kendoMultiSelect().data("kendoMultiSelect");
+
+
+
+    });
+</script>
+
+<script src="~/Content/multiselectUI/js/jquery.slidePanel.js"></script>
+
+
+<style type="text/css">
+    a:focus {
+        outline: none;
+    }
+
+    a.trigger {
+        position: absolute;
+        background: #88bbd4 url(images/plus.png) 6% 55% no-repeat;
+        text-decoration: none;
+        font-size: 16px;
+        letter-spacing: -1px;
+        font-family: verdana, helvetica, arial, sans-serif;
+        color: #fff;
+        padding: 4px 12px 6px 24px;
+        font-weight: bold;
+        z-index: 2;
+    }
+
+    a.trigger.left {
+        left: 0;
+        border-top-right-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -webkit-border-bottom-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    a.trigger.right {
+        right: 0;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-topleft: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -webkit-border-top-left-radius: 5px;
+    }
+
+    a.trigger:hover {
+        background-color: #59B;
+    }
+
+    a.active.trigger {
+        background: #666 url(images/minus.png) 6% 55% no-repeat;
+    }
+
+    .panel {
+        color: #CCC;
+        position: absolute;
+        display: none;
+        background: #000000;
+        min-width: 300px;
+        height: auto;
+        z-index: 1;
+    }
+
+    .panel.left {
+        left: 0;
+        padding: 20px 30px 20px 100px;
+        border-top-right-radius: 15px;
+        -moz-border-radius-topright: 15px;
+        -webkit-border-top-right-radius: 15px;
+        -moz-border-radius-bottomright: 15px;
+        -webkit-border-bottom-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    .panel.right {
+        right: 0;
+        padding: 20px 100px 20px 30px;
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
+        -moz-border-radius-bottomleft: 15px;
+        -moz-border-radius-topleft: 15px;
+        -webkit-border-bottom-left-radius: 15px;
+        -webkit-border-top-left-radius: 15px;
+    }
+
+    .panel p {
+        font-size: 11px;
+    }
+</style>
+
+
+<script>
+
+    $(document).ready(function () {
+        var data = {
+            StartDate: "1/2/2014",
+            EndDate: "1/5/2014",
+            Hall_Ids: [],
+            ZipCode: null,
+            ZipAprox: 50,
+            LocationIds: [],
+            SimchaTypeIds: [],
+            Capacity: null
+        };
+        /*$.post("/api/webapi/GetBookingsWithStartDateAndEndDate", data).done(function (data) {
+            console.log(data);
+
+        });*/
+
+    });
+
+    $(document).ready(function () {
+        function startChange() {
+            var startDate = start.value(),
+                endDate = end.value();
+
+            if (startDate) {
+                startDate = new Date(startDate);
+                startDate.setDate(startDate.getDate());
+                end.min(startDate);
+            } else if (endDate) {
+                start.max(new Date(endDate));
+            } else {
+                endDate = new Date();
+                start.max(endDate);
+                end.min(endDate);
+            }
+        }
+
+        function endChange() {
+            var endDate = end.value(),
+                startDate = start.value();
+
+            if (endDate) {
+                endDate = new Date(endDate);
+                endDate.setDate(endDate.getDate());
+                start.max(endDate);
+            } else if (startDate) {
+                end.min(new Date(startDate));
+            } else {
+                endDate = new Date();
+                start.max(endDate);
+                end.min(endDate);
+            }
+        }
+
+        var start = $("#start").kendoDatePicker({
+            change: startChange
+        }).data("kendoDatePicker");
+
+        var end = $("#end").kendoDatePicker({
+            change: endChange
+        }).data("kendoDatePicker");
+
+        start.max(end.value());
+        end.min(start.value());
+    });
+
+    $(document).ready(function () {
+
+        // default settings
+        // $('.panel').slidePanel();
+
+        // custom settings
+        $('#halls').slidePanel({
+            triggerName: '#trigger1',
+            position: 'fixed',
+            triggerTopPos: '200px',
+            panelTopPos: '190px'
+        });
+
+        $('#location').slidePanel({
+            triggerName: '#trigger2',
+            position: 'fixed',
+            triggerTopPos: '300px',
+            panelTopPos: '290px'
+        });
+
+        $('#date').slidePanel({
+            triggerName: '#trigger3',
+            triggerTopPos: '400px',
+            position: 'fixed',
+            panelTopPos: '390px'
+        });
+
+        $('#eventType').slidePanel({
+            triggerName: '#trigger4',
+            triggerTopPos: '200px',
+            position: 'fixed',
+            panelTopPos: '190px'
+        });
+
+        $('#zipCode').slidePanel({
+            triggerName: '#trigger6',
+            triggerTopPos: '300px',
+            position: 'fixed',
+            panelTopPos: '290px'
+        });
+
+        $('#capacity').slidePanel({
+            triggerName: '#trigger5',
+            triggerTopPos: '400px',
+            position: 'fixed',
+            panelTopPos: '390px'
+        });
+    });
+
+
+
+    function getFilterData() {
+        var data = {
+            StartDate: kendo.toString($("#start").data("kendoDatePicker").value(), "MM/dd/yyyy"),
+            EndDate: kendo.toString($("#end").data("kendoDatePicker").value(), "MM/dd/yyyy"),
+            Hall_Ids: $("#hall_id").data("kendoMultiSelect").value(),
+            ZipCode: $("#zip_code").val(),
+            ZipAprox: $("#ZipAprox").val(),
+            LocationIds: $("#location_id").data("kendoMultiSelect").value(),
+            SimchaTypeIds: $("#event_id").data("kendoMultiSelect").value(),
+            Capacity: null
+        };
+
+        return data;
+    }
+
+    $(document).ready(function () {
+        $("#grid").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "/api/webapi/GetBookingsWithStartDateAndEndDate",
+                        type: "POST",
+                        dataType: "json",
+                        data: getFilterData()
+                    }
+                }
+            },
+            sortable: false,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+            rowTemplate: kendo.template($("#rowTemplate").html()),
+            //altRowTemplate: kendo.template($("#altRowTemplate").html()),
+            height: 550
+        });
+
+        $("#button-refresh").click(function () {
+            var grid = $("#grid").data('kendoGrid');
+            grid.dataSource.options.transport.read.data = getFilterData();
+            grid.dataSource.read();
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        
+        $(".trigger").click(function () {
+            var grid = $("#grid").data('kendoGrid');
+            grid.dataSource.options.transport.read.data = getFilterData();
+            grid.dataSource.read();
+
+        });
+
+    });
+   
+</script>

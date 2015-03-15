@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "_SubHallsLayout";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayoutWithOutAlert.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Hall Menu</div>
+    <div class="panel-body">
+        <ul class="nav nav-pills">
+            <li><a href="@Url.Action("Edit", new { id = Url.RequestContext.RouteData.Values["id"] })">Hall Information</a></li>
+            <li><a href="@Url.Action("TimeSlots", new { id = Url.RequestContext.RouteData.Values["id"] }) ">Time Slots</a></li>
+            <li><a href="@Url.Action("Calendar", new { id = Url.RequestContext.RouteData.Values["id"] }) ">Calendar</a></li>
+            <li><a href="@Url.Action("Images", new { id = Url.RequestContext.RouteData.Values["id"] }) ">Images</a></li>
+            <li><a href="@Url.Action("Caterers", new { id = Url.RequestContext.RouteData.Values["id"] }) ">Caterers</a></li>
+            <li><a href="@Url.Action("Directions", new { id = Url.RequestContext.RouteData.Values["id"] }) ">Directions</a></li>
+
+
+        </ul>
+    </div>
+</div>
+
+<div class="well bs-component">
+    @RenderBody()
+
+</div>
+
+

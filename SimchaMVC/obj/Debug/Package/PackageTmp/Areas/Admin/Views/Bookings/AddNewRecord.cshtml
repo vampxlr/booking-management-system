@@ -1,0 +1,688 @@
+﻿@using System.Data.Entity
+@using SimchaMVC
+@{
+    ViewBag.Title = "Bookings";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>
+@{
+   string CurrentDate = ViewBag.CurrentDate;
+    string Error = ViewBag.Error;
+    string[] hall_id = ViewBag.hall_id;
+    string[] service_area_id = ViewBag.service_area_id;
+    string[] type_name = ViewBag.type_name;
+    bool isPost = ViewBag.isPost;
+  
+    string zipcode = ViewBag.zipcode;
+    string zipprox = ViewBag.zipprox;
+    IQueryable<SimchaMVC.Models.ViewModelsWebApi.ViewModelDisabledHallCalenderTimeSlot> AllSpecialDisabledTimeSlots = ViewBag.AllSpecialDisabledTimeSlots as IQueryable<SimchaMVC.Models.ViewModelsWebApi.ViewModelDisabledHallCalenderTimeSlot>;
+
+    IQueryable<SimchaMVC.hall> Halls = ViewBag.Halls as IQueryable<SimchaMVC.hall>;
+    IQueryable<SimchaMVC.hall> AllHalls = ViewBag.AllHalls as IQueryable<SimchaMVC.hall>;
+   // List<SimchaMVC.hall> AllHallsList = AllHalls as List<SimchaMVC.hall>;
+    IQueryable<SimchaMVC.service_areas> Neighborhoods = ViewBag.Neighborhoods as IQueryable<SimchaMVC.service_areas>;
+
+    IQueryable<SimchaMVC.event_types> SimchaTypes = ViewBag.SimchaTypes as IQueryable<SimchaMVC.event_types>;
+
+    IQueryable<SimchaMVC.weekday> AllWeekDays = ViewBag.AllWeekDays as IQueryable<SimchaMVC.weekday>;
+
+    IQueryable<SimchaMVC.Models.ViewModelsWebApi.ViewModelHallCalenderTimeSlot> Alltimeslots = ViewBag.Alltimeslots as IQueryable<SimchaMVC.Models.ViewModelsWebApi.ViewModelHallCalenderTimeSlot>;
+    IQueryable<SimchaMVC.Models.ViewModelsWebApi.ViewModelHallCalenderTimeSlot> AllSpecialTimeSlots = ViewBag.AllSpecialTimeSlots as IQueryable<SimchaMVC.Models.ViewModelsWebApi.ViewModelHallCalenderTimeSlot>;
+
+
+
+    IQueryable<SimchaMVC.booking> Allbookings = ViewBag.Allbookings as IQueryable<SimchaMVC.booking>;
+
+    IQueryable<SimchaMVC.calendar> AlldisabledDates = ViewBag.AlldisabledDates as IQueryable<SimchaMVC.calendar>;
+
+    IQueryable<SimchaMVC.hall_images> AllHallsImage = ViewBag.AllHallsImage as IQueryable<SimchaMVC.hall_images>;
+
+    var AllDates = ViewBag.AllDates as IEnumerable<DateTime>;
+
+    ViewBag.Title = "AddNewRecord";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddNewRecord", "Bookings", FormMethod.Post, new { id="findhalls" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Custom Search</div>
+        <div class="panel-body">
+
+
+            <div class="row">
+                <div class="col-md-5">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <b>Search Date:</b>
+                            <br>
+                            <div>
+                                @if (isPost == true)
+                                {
+                                    <input value="@CurrentDate" style="height:30px;" type="text" name="CurrentDate" id="datepicker" />
+
+                                }
+                                else
+                                {
+                                    <input style="height:30px;" type="text" name="CurrentDate" id="datepicker" />
+
+                                }
+                                <br />
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <b>Zip Code:</b>
+                            <br>
+                            <div>
+                                @if (isPost == true && (zipcode != null || zipcode != ""))
+                                {
+                                    <input class="form-control" type="text" name="zipcode" value="@zipcode">
+
+                                }
+                                else
+                                {
+                                    <input class="form-control" type="text" name="zipcode" value="">
+
+                                }
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-4">
+
+                            <b>Select Distance</b>
+                            <br>
+                            <div>
+                                <select class="form-control" name="zipprox">
+                                    @for (int i = 0; i < 51; i = i + 5)
+                                    {
+                                        if (isPost == true && (zipprox != null && zipprox == i.ToString()))
+                                        {
+
+                                            <option value="@i" selected=""> @i Miles</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@i"> @i Miles</option>
+
+
+                                        }
+                                    }
+                                </select>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+             
+
+                </div>
+           
+
+
+                <div class="col-md-7">
+                    
+                    <div class="row">
+                    
+                        <div class="col-md-4">
+                            <b>Select Hall:</b>
+                            <br>
+
+                            <div style="width:200px;margin-top:5px; ">
+                                <div style="width:180px; height:100px; overflow:auto; line-height:20px;">
+
+                                    @foreach (var hall in AllHalls)
+                                    {
+
+
+                                        if (isPost && (hall_id != null))
+                                        {
+
+                                            <div style="height:20px; width:20px; float:left; clear:both;">
+                                                <input type="checkbox" name="hall_id" value=@hall.id @(hall_id.Contains(hall.id.ToString()) ? "checked" : "")>
+                                            </div>
+                                            <div style="float:left; height:20px; line-height:16px;">
+                                                @hall.hall_name
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="height:20px; width:20px; float:left; clear:both;">
+                                                <input type="checkbox" name="hall_id" value=@hall.id>
+                                            </div>
+                                            <div style="float:left; height:20px; line-height:16px;">
+                                                @hall.hall_name
+                                            </div>
+
+
+                                        }
+
+
+
+
+
+
+
+
+                                    }
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <b>Select Neighborhoods:</b>
+
+                            <div style="width:200px;margin-top:5PX;  ">
+                                <div style="width:180px; height:100px; overflow:auto; line-height:20px;">
+                                    @foreach (var Neighborhood in Neighborhoods)
+                                    {
+
+                                        if (isPost && (service_area_id != null))
+                                        {
+
+                                            <div style="height:20px; width:20px; float:left; clear:both;">
+                                                <input type="checkbox" name="service_area_id" value=@Neighborhood.id @(service_area_id.Contains(Neighborhood.id.ToString()) ? "checked" : "")>
+
+                                            </div>
+                                            <div style="float:left; height:20px; line-height:16px;">
+                                                @Neighborhood.service_area
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="height:20px; width:20px; float:left; clear:both;">
+                                                <input type="checkbox" name="service_area_id" value=@Neighborhood.id>
+
+                                            </div>
+                                            <div style="float:left; height:20px; line-height:16px;">
+                                                @Neighborhood.service_area
+                                            </div>
+
+
+                                        }
+
+
+
+
+
+
+                                    }
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-md-4 ">
+                            <b>Simcha Type:</b>
+                            <div style="width:200px;margin-top:5PX;  ">
+                                <div style="width:180px; height:100px; overflow:auto; line-height:20px;">
+
+                                    @foreach (var SimchaType in SimchaTypes)
+                                    {
+
+
+
+                                        if (isPost == true && (type_name != null))
+                                        {
+
+
+                                            <div style="height:20px; width:20px; float:left; clear:both;">
+                                                <input type="checkbox" name="type_name" value=@SimchaType.id @(type_name.Contains(SimchaType.id.ToString()) ? "checked" : "")>
+
+                                            </div>
+                                            <div style="float:left; height:20px; line-height:16px;">
+                                                @SimchaType.type_name
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="height:20px; width:20px; float:left; clear:both;">
+                                                <input type="checkbox" name="type_name" value=@SimchaType.id>
+
+                                            </div>
+                                            <div style="float:left; height:20px; line-height:16px;">
+                                                @SimchaType.type_name
+                                            </div>
+
+
+                                        }
+
+
+
+
+
+                                    }
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                 
+                     
+                </div>
+
+
+         
+
+                </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <button onclick="$('.loader').fadeIn('slow');" class="btn btn-default" type="submit" name="findhalls">Find Halls</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@if (ViewBag.PostPage == true)
+{
+    
+    <div style="padding-bottom:20px">
+        <button id="previous" onclick="submit('previous'); $('.loader').fadeIn('slow');" class="btn btn-default">Previous</button>
+        <button id="next" onclick="submit('next'); $('.loader').fadeIn('slow');" class="btn btn-default">Next</button>
+    </div>
+
+    foreach (var hall in Halls)
+    {
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><h4>Hall Name:<b> @hall.hall_name </b></h4></div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+
+                            @if (AllHallsImage.AsNoTracking().AsQueryable().FirstOrDefault(r => r.hall_id == hall.id) != null)
+                            {
+                                <img class="img-thumbnail" style=" height:90px; width:120px;" src="~/Content/thumbs/@AllHallsImage.AsNoTracking().AsQueryable().FirstOrDefault(r => r.hall_id == hall.id).image_name" alt=" ...">
+                            }
+
+                        </div>
+                        <div class="col-md-2" style="text-indent:-50px;">
+                            <h4 style="margin-top:4px;margin-bottom:2px">@hall.hall_name</h4>
+                            <p style="margin-top:0;margin-bottom:0">Capacity: @hall.capacity</p>
+                            <p style="margin-top:0;margin-bottom:0">@hall.address1</p>
+                            <p style="margin-top:0;margin-bottom:0">@hall.city, @hall.state @hall.zip_code</p>
+
+                        </div>
+                        @foreach (var day in AllDates)
+                        {
+                            var dayString = day.Date.ToString("MM/dd/yyyy");
+                            var timeslotCounter = 0;
+                            int weekdayid;
+                            switch (day.DayOfWeek.ToString())
+                            {
+                                case "Sunday":
+                                    weekdayid = 1;
+                                    break;
+                                case "Monday":
+                                    weekdayid = 2;
+                                    break;
+                                case "Tuesday":
+                                    weekdayid = 3;
+                                    break;
+                                case "Wednesday":
+                                    weekdayid = 4;
+                                    break;
+                                case "Thursday":
+                                    weekdayid = 5;
+                                    break;
+                                case "Friday":
+                                    weekdayid = 6;
+                                    break;
+                                case "Saturday":
+                                    weekdayid = 7;
+                                    break;
+                                default:
+                                    weekdayid = 0;
+                                    break;
+                            }
+                            System.Text.StringBuilder AvailableSlots = new System.Text.StringBuilder("");
+                            foreach (var timeslot in Alltimeslots.AsQueryable().AsNoTracking().Where(x => x.hall_id == hall.id && x.weekday_id == weekdayid))
+                            {
+
+                                bool ifDisabled = AllSpecialDisabledTimeSlots.Any(r => r.date == dayString && r.disable_time_slot_id.Value == timeslot.id);
+
+                                if (ifDisabled)
+                                {
+                                    continue;
+                                }
+                                timeslotCounter++;
+                                AvailableSlots.Append(timeslot.time_slot + "<br>");
+                            }
+                            var hall1 = hall;
+                            foreach (var timeslot in AllSpecialTimeSlots.AsNoTracking().AsQueryable().Where(x => x.hall_id == hall1.id && x.date == dayString && x.disabled == false))
+                            {
+
+                             
+                                timeslotCounter++;
+                                AvailableSlots.Append(timeslot.time_slot + "<br>");
+                            }
+                            
+                            
+                            int? isDisabled = null;
+                            var disabled = AlldisabledDates.AsNoTracking().AsQueryable().FirstOrDefault(x => x.calendar_date == day && x.hall_id == hall.id);
+                            if (disabled != null)
+                            {
+                                isDisabled = disabled.not_active;
+                            }
+
+
+                            if (day.Date < DateTime.Now.Date)
+                            {
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div title="This date has passed" class="square btn btn-default"><h6 style="text-transform: none;margin-top:0px;margin-bottom:0;font-size:10px;">@day.ToString("dddd"),</h6><h6 style="margin-top:0;margin-bottom:0;font-size:10px;">@day.ToString("MMM dd")</h6> <h6 style="font-size:10px;">Past</h6></div></div>
+
+                            }
+
+
+                            else if (timeslotCounter != 0 && (isDisabled == null || isDisabled == 0))
+                            {
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div onclick="location.href='@Url.Action("CreateBooking", "bookings", new { hall_id = hall.id, event_date = day.Date, weekday_id = weekdayid, returnUrl = Request.Url.ToString() })';" title="Available Slots: <br/> @AvailableSlots" class="square btn btn-info"><h6 style="text-transform: none;margin-top:0px;margin-bottom:0;color:white;font-size:10px">@day.ToString("dddd"),</h6><h6 style="text-transform: none;margin-top:0;margin-bottom:0;color:white;font-size:10px;">@day.ToString("MMM dd")</h6> <h6 style ="text-transform: none;color:white;font-size:10px">Book</h6></div></div>
+                            }
+
+                            else if (timeslotCounter == 0 && (isDisabled == null || isDisabled == 0))
+                            {
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div title="No Slots Available" class="square btn btn-default"><h6 style="text-transform: none;margin-top:0px;margin-bottom:0;font-size:10px;">@day.ToString("dddd"),</h6><h6 style="text-transform: none;margin-top:0;margin-bottom:0;font-size:10px;">@day.ToString("MMM dd")</h6> <h6 style="text-transform: none;font-size:10px;">No-Slots</h6></div></div>
+
+                            }
+                            else if (isDisabled != null || isDisabled == 1)
+                            {
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div title="This date is disabled" class="square btn btn-default"><h6 style="text-transform: none;margin-top:0px;margin-bottom:0;font-size:10px;">@day.ToString("dddd"),</h6><h6 style="text-transform: none;margin-top:0;margin-bottom:0;font-size:10px;">@day.ToString("MMM dd")</h6> <h6 style="text-transform: none;font-size:10px;">Disabled</h6></div></div>
+
+
+                            }
+                            @*<div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div title="This date is disabled" class="square btn btn-default"><h6 style="margin-top:0px;margin-bottom:0">Sunday,</h6><h6 style="margin-top:0;margin-bottom:0">Oct 26</h6> <h6>Disabled</h6></div></div>
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div title="Available TimeSlots <br/> Slot 1<br/>Slot 2" class="square btn btn-warning"><h6 style="margin-top:0;margin-bottom:0;color:white;">Sunday,</h6><h6 style="margin-top:0;margin-bottom:0;color:white;">Oct 26</h6> <h6 style="color:white;">Book</h6></div></div>
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div class="square btn btn-success"><h6 style="margin-top:0;margin-bottom:0;color:white;">Sunday,</h6><h6 style="margin-top:0;margin-bottom:0;color:white;">Oct 26</h6> <h6 style="color:white;">Book</h6></div></div>
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div class="square btn btn-success"><h6 style="margin-top:0;margin-bottom:0;color:white;">Sunday,</h6><h6 style="margin-top:0;margin-bottom:0;color:white;">Oct 26</h6> <h6 style="color:white;">Book</h6></div></div>
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div class="square btn btn-success"><h6 style="margin-top:0;margin-bottom:0;color:white;">Sunday,</h6><h6 style="margin-top:0;margin-bottom:0;color:white;">Oct 26</h6> <h6 style="color:white;">Book</h6></div></div>
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div class="square btn btn-success"><h6 style="margin-top:0;margin-bottom:0;color:white;">Sunday,</h6><h6 style="margin-top:0;margin-bottom:0;color:white;">Oct 26</h6> <h6 style="color:white;">Book</h6></div></div>
+                                <div style="margin-top:5px; margin-left:8px;" class="col-md-1"><div class="square btn btn-success"><h6 style="margin-top:0;margin-bottom:0;color:white;">Sunday,</h6><h6 style="margin-top:0;margin-bottom:0;color:white;">Oct 26</h6> <h6 style="color:white;">Book</h6></div></div>*@
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    }
+}
+else if (ViewBag.PostPage == false && Error != null)
+{
+    <h4 style="background-color:orangered;color:white; display:block; padding :15px;border-radius:5px">@ViewBag.Error</h4>
+
+}
+<style>
+    .square {
+        display: inline-block;
+        height: 75px;
+        line-height: 10px;
+        margin: 0 14px;
+        text-align: center;
+        width: 75px;
+        text-transform: none;
+    }
+</style>
+<script>
+    $(function () {
+        $(document).tooltip({
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function (position, feedback) {
+                    $(this).css(position);
+                    $("<div>")
+                        .addClass("arrow")
+                        .addClass(feedback.vertical)
+                        .addClass(feedback.horizontal)
+                        .appendTo(this);
+                }
+            }
+        });
+    });
+</script>
+<style>
+    .ui-tooltip, .arrow:after {
+        background: black;
+        border: 2px solid white;
+    }
+
+    .ui-tooltip {
+        padding: 10px 20px;
+        color: white;
+        border-radius: 20px;
+        font: bold 14px "Helvetica Neue", Sans-Serif;
+        text-transform: uppercase;
+        box-shadow: 0 0 7px black;
+    }
+
+    .arrow {
+        width: 70px;
+        height: 16px;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        margin-left: -35px;
+        bottom: -16px;
+    }
+
+        .arrow.top {
+            top: -16px;
+            bottom: auto;
+        }
+
+        .arrow.left {
+            left: 20%;
+        }
+
+        .arrow:after {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: -20px;
+            width: 25px;
+            height: 25px;
+            box-shadow: 6px 5px 9px -9px black;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .arrow.top:after {
+            bottom: -20px;
+            top: auto;
+        }
+</style>
+<script>
+    $(function () {
+        var tooltips = $("[title]").tooltip({
+            position: {
+                my: 'center bottom',  // for position, currently it is on top
+                at: 'center top-10'
+            }
+        });
+    });
+
+    $("[title]").tooltip('option', 'tooltipClass', 'top'); // Added top class here
+
+    $("[title]").each(function () {
+        $(this).tooltip({ content: $(this).attr("title") });
+    });    // It allows html content to tooltip.
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        // create DatePicker from input HTML element
+
+        var today = new Date();
+        var thirty5daysAhead = new Date();
+        thirty5daysAhead.setDate(today.getDate() + 35);
+
+        var datepicker = $("#datepicker").kendoDatePicker({
+            value: new Date("@CurrentDate"),
+            change: onChange,
+            min: today,
+            max: thirty5daysAhead
+        });
+
+
+    });
+
+
+
+
+</script>
+
+
+<script>
+    function onChange() {
+        var selectedDate= kendo.toString(this.value(), 'd');
+        $(".CurrentDate").val(selectedDate);
+    }
+   
+
+</script>
+
+<script>
+    Date.prototype.addDays = function (days) {
+        var dat = new Date(this.valueOf());
+        dat.setDate(dat.getDate() + days);
+        return dat;
+    }
+
+</script>
+
+<script>
+    function submit(data) {
+        var oldDate = new Date($("#datepicker").val().toString());
+
+      
+        var newDatePlus = oldDate.addDays(7);
+        var newDateMinus = oldDate.addDays(-7);
+      
+       
+
+        if (data == "next") {
+
+            if (newDatePlus >= new Date().addDays(5 * 7-7)) {
+
+                $("#next").attr('disabled', 'disabled');
+                var stringDate = (newDatePlus.getMonth() + 1).toString() + "/" + newDatePlus.getDate().toString() + "/" + newDatePlus.getFullYear().toString();
+                $("#datepicker").val(stringDate);
+                window.console.log(stringDate);
+            }
+             
+            else {
+                if (newDatePlus > new Date() && $("#previous").prop('disabled')) {
+                    $("#previous").removeAttr('disabled');
+                }
+                var stringDate = (newDatePlus.getMonth() + 1).toString() + "/" + newDatePlus.getDate().toString() + "/" + newDatePlus.getFullYear().toString();
+                $("#datepicker").val(stringDate);
+
+            }
+           
+
+           
+           
+          
+        }
+        else
+        {
+            if (newDateMinus < new Date()) {
+
+                $("#previous").attr('disabled', 'disabled');
+                var stringDate = (newDateMinus.getMonth() + 1).toString() + "/" + newDateMinus.getDate().toString() + "/" + newDateMinus.getFullYear().toString();
+                $("#datepicker").val(stringDate.toString());
+
+            }
+            else {
+                if (newDateMinus < new Date().addDays(5 * 7 -7) && $("#next").prop('disabled')) {
+                    $("#next").removeAttr('disabled');
+                }
+                var stringDate = (newDateMinus.getMonth() + 1).toString() + "/" + newDateMinus.getDate().toString() + "/" + newDateMinus.getFullYear().toString();
+                $("#datepicker").val(stringDate.toString());
+
+            }
+
+
+   
+
+       
+      
+        }
+        $("#findhalls").submit();
+
+
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        var date = new Date("@CurrentDate");
+        if (date >= new Date().addDays(5 * 7 - 1)) {
+
+            $("#next").attr('disabled', 'disabled');
+        }
+        if (date < new Date()) {
+
+            $("#previous").attr('disabled', 'disabled');
+        }
+    });
+</script>
+
+<style scoped>
+    .demo-section {
+    }
+
+        .demo-section h2 {
+            font-weight: normal;
+        }
+
+        .demo-section label {
+            display: inline-block;
+            margin: 15px 0 5px 0;
+        }
+
+        .demo-section select {
+        }
+
+    #get {
+        float: right;
+        margin: 25px auto 0;
+    }
+
+    .k-datepicker {
+    width:100%;
+    
+    }
+</style>
+
+
+
+

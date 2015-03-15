@@ -1,0 +1,9 @@
+#logo {
+background-image:url("../logo.png");
+background-repeat:repeat-x;
+@background-color:red;
+width:400px;
+height:300px;
+
+
+}

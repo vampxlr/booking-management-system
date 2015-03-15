@@ -1,0 +1,160 @@
+﻿@using EO.Pdf.Internal
+@using Kendo.Mvc.UI
+
+@{
+    var hall = ViewBag.hall as SimchaMVC.hall;
+    var eventDate = (DateTime) ViewBag.event_date;
+    var timeSlots = ViewBag.time_slots as IEnumerable<SimchaMVC.time_slots>;
+    var selectedEventTypes = ViewBag.selected_event_types as IEnumerable<SimchaMVC.event_types>; 
+    
+    ViewBag.Title = "SearchView";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSemanticOthers.cshtml";
+}
+
+<div class="ui page grid">
+    <div class="sixteen wide column">
+        
+        <div style="padding-top: 50px" class="ui form">
+            
+            <h2 class="ui dividing header">Book a Hall</h2>
+            
+            <p>Please provide short paragraph for the account login page. Please provide short paragraph for the account login page. Please provide short paragraph for the account login page. Please provide short paragraph for the account login page. </p>
+
+            <div class="two fields" style="margin-top: 30px; border: 1px solid #E6E6E6; padding: 10px;">
+                
+                <div class="field" style="border-right: 1px solid #E6E6E6">
+                    <img src="~/Content/images/confirm_img.jpg" alt="">
+                </div>
+                
+                <div class="field" style="padding-left: 50px;">
+                    <p>
+                        <b>@hall.hall_name</b>
+                        <br />
+                    </p>
+
+                    <p>
+                        Location: @hall.service_area
+                        <br />
+                        @hall.address1
+                        <br />
+                        @hall.address2
+                        <br />
+                        Tel: @hall.phone
+                        <br />
+                        Fax: @hall.fax
+                    </p>
+                    
+                    <br />
+                    
+                    <p><b>Event Date: </b> @eventDate.ToLongDateString() </p>
+
+                    <br />
+
+                    <p><b>Time Slots:</b></p>
+
+                    <ul>
+                        @foreach (var timeSlot in timeSlots)
+                        {
+                            <li>@timeSlot.time_slot</li>
+                        }
+                    </ul>
+                    
+                    <br />
+
+                    <p><b>Event Types:</b></p>
+
+                    <ul>
+                        @foreach (var eventType in selectedEventTypes)
+                        {
+                            <li>@eventType.type_name</li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+            
+            <p style="border: 1px solid #E6E6E6; padding: 10px;">
+                <b>Note:</b> Please make sure your options are correct before proceeding to add your billing information. We will hold your reservation for up to 24 hours if no deposit is made. More disclaimer text overe here. More disclaimer text over here. More disclaimer text over here. More disclaimer text over here. More disclaimer text over here. More disclaimer text over here. More disclaimer text over here. More disclaimer text over here. More disclaimer text over here..
+            </p>
+            
+            <h2 class="ui">Account Information</h2>
+            
+            <div class="two fields" style="margin-top: 10px; border: 1px solid #E6E6E6; padding: 10px;">
+
+                <div class="field" style="padding-left: 30px; border-right: 1px solid #E6E6E6;">
+                    <p>
+                        <b>@hall.hall_name</b>
+                        <br />
+                    </p>
+
+                    <p>
+                        Location: @hall.service_area
+                        <br />
+                        @hall.address1
+                        <br />
+                        @hall.address2
+                        <br />
+                        Tel: @hall.phone
+                        <br />
+                        Fax: @hall.fax
+                    </p>
+
+                    <br />
+
+                    <p><b>Event Types:</b></p>
+
+                    <ul>
+                        @foreach (var eventType in selectedEventTypes)
+                        {
+                            <li>@eventType.type_name</li>
+                        }
+                    </ul>
+                </div>
+                
+                <div class="field" style="padding: 20px 0 0 40px;">
+                    
+                    <div>
+                        <label style="width: 140px; display: inline-block; font-weight: bold;">Event Type:</label>
+                        <div style="display: inline-block;">
+                            @(Html.Kendo().DropDownList()
+                               .Name("event_id")
+                               .DataTextField("event_name")
+                               .DataValueField("event_id")
+                               .AutoBind(true)
+                               .DataSource(source => source.Read(read => read.Action("GetEvents", "Semantic")))
+                            )
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 10px;">
+                        <label style="width: 140px; display: inline-block; font-weight: bold;">Amount of Guests:</label>
+                        <div style="display: inline-block;">
+                            @(Html.Kendo().DropDownList()
+                                  .Name("guest_amount")
+                                  .BindTo(new List<string> { @hall.capacity })
+                                  )
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 10px;">
+                        <label style="width: 140px; display: inline-block; font-weight: bold;">Time of Day:</label>
+                        <div style="display: inline-block;">
+                            @(Html.Kendo().DropDownList()
+                                           .Name("time_slot")
+                                           .DataTextField("time_slot")
+                                           .DataValueField("id")
+                                           .BindTo(ViewBag.time_slots)
+                                  )
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #E6E6E6">
+                        <button style="margin-left: 140px;" class="k-button" type="submit">Submit Payment</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

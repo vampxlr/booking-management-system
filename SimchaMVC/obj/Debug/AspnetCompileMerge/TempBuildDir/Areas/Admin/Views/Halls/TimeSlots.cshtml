@@ -1,0 +1,157 @@
+﻿@model IEnumerable<SimchaMVC.time_slots>
+
+@{
+    int hall_id = Convert.ToInt32(Url.RequestContext.RouteData.Values["id"]);
+    var Weekdays = ViewBag.Weekdays as IEnumerable<SimchaMVC.weekday>;  
+    ViewBag.Title = "Halls";
+    ViewBag.SubTitle = "Time Slots";
+    Layout = "~/Areas/Admin/Views/Halls/_SubHallsLayout.cshtml";
+    string ReturnUrl = ViewBag.ReturnUrl; 
+}
+@if ( ReturnUrl != null)
+{
+     <h2><a href="@ReturnUrl" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a> <strong> Time Slots </strong></h2>
+    <br />
+}
+    @foreach (var weekday in Weekdays)
+    {
+
+        <table class="maintext table table-striped table-hover"  align="center">
+            <tbody>
+                <tr>
+                    <td class="field-title" width="100" style="font-size:25px; text-decoration:underline; "><label for="addtimeslot" class="col-lg-2 control-label">@weekday.day_name</label></td>
+                    <td class="field-title"><a name="addtimeslot" class="btn btn-default" href="javascript:togglethis('@Html.Raw("addme" + @weekday.id.ToString())')">Add time slot</a></td>
+                </tr>
+                <tr>
+                    <td  colspan="2" class="field-title">
+
+                        <div id="@Html.Raw("addme"+@weekday.id.ToString())" style="display: none; line-height:38px;">
+                            @using (Html.BeginForm("AddTimeSlots", "Halls", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                @Html.Hidden("hall_id", hall_id)
+                                @Html.Hidden("weekday_id", weekday.id)
+                                <div class="row">
+
+                                    <div style="vertical-align:bottom;" class="col-md-1">
+
+                                        <label for="time_slot" class="control-label">Slot Time:</label>
+
+
+                                    </div>
+                                    <div class="col-md-2">
+
+
+                                        <input type="text" class="txtbox-middle form-control" name="time_slot" value="">
+
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label for="slot_amount" class="control-label">Amount:</label>
+
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <input type="text" name="slot_amount" value="" class="txtbox-middle form-control">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label for="slot_price" class="control-label"> Slot Price:</label>
+
+
+                                    </div>
+                                    <div class="col-md-2">
+
+
+                                        <input type="text" class="txtbox-middle form-control" name="slot_price">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input class="btn btn-default" type="submit" name="addme" value="Add New Slot">
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                @foreach (var slot in Model.Where(t => t.weekday_id == weekday.id))
+                {
+                    <div>
+                        @using (Html.BeginForm("EditTimeSlots", "Halls", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            @Html.Hidden("hall_id", hall_id)
+                            @Html.Hidden("weekday_id", weekday.id)
+                            @Html.Hidden("slot_id", slot.id)
+                            <tr>
+                                <td colspan="2" class="field-title">
+
+                                    <div class="row">
+
+                                        <div style="vertical-align:bottom;" class="col-md-1">
+
+                                            <label for="time_slot" class="control-label">Slot Time:</label>
+
+
+                                        </div>
+                                        <div class="col-md-2">
+
+
+                                            <input type="text" class="txtbox-middle form-control" name="time_slot" value="@slot.time_slot">
+
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label for="slot_amount" class="control-label">Amount:</label>
+
+                                        </div>
+                                        <div class="col-md-2">
+
+                                            <input type="text" name="slot_amount" value="@slot.slot_amount" class="txtbox-middle form-control">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label for="slot_price" class="control-label"> Slot Price:</label>
+
+
+                                        </div>
+                                        <div class="col-md-2">
+
+
+                                            <input type="text" value="@Math.Round(Convert.ToDecimal(slot.slot_price), 2)" class="txtbox-middle form-control" name="slot_price">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input class="btn btn-default" type="submit" name="editme" value="Edit">
+
+                                            <a class="btn btn-default" href="#" onclick="if(confirm('Are you sure you want to delete this time slot?')){window.location.href='@Url.Action("DeleteTimeSlot", new { id = slot.id })'}"> Delete</a>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </td>
+                            </tr>
+                        }
+                    </div>
+                }
+
+
+            </tbody>
+
+
+
+        </table>
+
+    }
+
+
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").parents("li").addClass("active");
+
+</script>

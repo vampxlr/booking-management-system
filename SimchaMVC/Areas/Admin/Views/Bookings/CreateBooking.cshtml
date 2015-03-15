@@ -1,0 +1,330 @@
+﻿@model SimchaMVC.booking
+<script>
+
+</script>
+@{
+
+    DateTime Event_Date = ViewBag.Event_Date;
+    SimchaMVC.hall Hall = ViewBag.Hall as SimchaMVC.hall;
+    IEnumerable<SimchaMVC.user> Existing_Users = ViewBag.Users as IEnumerable<SimchaMVC.user>;
+    IEnumerable<SimchaMVC.Models.ViewModelsWebApi.ViewModelHallCalenderTimeSlot> Time_Slots = ViewBag.Time_Slots as IEnumerable<SimchaMVC.Models.ViewModelsWebApi.ViewModelHallCalenderTimeSlot>;
+    SimchaMVC.hall_images Image = ViewBag.Image as SimchaMVC.hall_images;
+    string ReturnUrl = @ViewBag.ReturnUrl;
+    ViewBag.Title = "CreateBooking";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+
+    bool errorOccured = ViewBag.errorOccured;
+    string Error = ViewBag.Error;
+}
+@using (Html.BeginForm("createbooking", "bookings", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (errorOccured)
+    {
+
+
+        <div style="background-color:orangered;color:white; display:block; padding :15px;border-radius:5px">@Html.Raw(Error)</div>
+
+    }
+
+
+    @Html.Hidden("hall_id", Hall.id)
+    @Html.Hidden("booking_status", "BOOKED")
+    @Html.Hidden("booking_date", Event_Date)
+    @Html.Hidden("create_date", DateTime.Now)
+    @Html.Hidden("returnUrl", ReturnUrl)
+    <div class="panel panel-default">
+        <div class="panel-heading"><h2><a href="@ReturnUrl" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a> Create Booking</h2></div>
+        <div class="panel-body">
+            @if (Time_Slots.Count() == 0)
+            {
+                <div style="background-color:orangered;color:white; display:block; padding :15px;border-radius:5px">No Slots Available</div>
+
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3>@Hall.hall_name </h3><span>@Event_Date.Date.ToString("dddd, dd MMM yyyy")</span>
+                        <br />
+                        <br />
+                        <div class="row">
+
+
+                            <img class="img-thumbnail" style="margin: 0 auto;height:90px; width:120px; display: block;" src="~/Content/thumbs/@if (Image != null)
+                                                                                                                                              {
+                                                                                                                                                  @Image.image_name
+                                                                                                                                              }" alt="No Image">
+
+                        </div>
+                        <br />
+                        <h4>Policies</h4>
+                        @Html.Raw(Hall.policies)
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="well">
+
+                                    <fieldset>
+                                        <legend>Booking Information</legend>
+
+                                        <div class="form-group">
+                                            <label for="select" class="col-lg-2 control-label">Time Slot</label>
+                                            <div class="col-lg-10">
+                                                <select name="time_slot" class="form-control" id="selectTimeSlot">
+                                                    @foreach (var slot in Time_Slots)
+                                                    {
+                                                        if (Model.time_slot == slot.id.ToString() + " " + slot.is_special_slot.ToString())
+                                                        {
+                                                            <option selected value='@slot.id @slot.is_special_slot.ToString()'>@slot.time_slot</option>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value='@slot.id @slot.is_special_slot.ToString()'>@slot.time_slot</option>
+
+                                                        }
+
+                                                    }
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select" class="col-lg-2 control-label">Existing User</label>
+                                            <div class="col-lg-10">
+
+
+                                                <select name="user_id" id="userid" class="tabletext form-control" onchange="fillprofile()">
+                                                    <option selected value="">Select an option</option>
+                                                    @foreach (var User in Existing_Users)
+                                                    {
+                                                       
+                                                 
+                                                            <option value=@User.id>@User.user_name</option>
+
+                                                        
+
+                                                    }
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="first_name" class="col-lg-2 control-label">First Name</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.first_name" name="first_name" class="form-control" id="first_name" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last_name" class="col-lg-2 control-label">Last Name</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.last_name" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address1" class="col-lg-2 control-label">Address</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.address1" name="address1" class="form-control" id="address1" placeholder="Address">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address2" class="col-lg-2 control-label">Address 2</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.address2" name="address2" class="form-control" id="address2" placeholder="Address 2">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city" class="col-lg-2 control-label">City</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.city" name="city" class="form-control" id="city" placeholder="City">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="state" class="col-lg-2 control-label">State</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.state" name="state" class="form-control" id="state" placeholder="State">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="zip_code" class="col-lg-2 control-label">Zip Code</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.zip_code" class="form-control" name="zip_code" id="zipcode" placeholder="Zip Code">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone" class="col-lg-2 control-label">Phone</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.phone" name="phone" id="phone" class="form-control" placeholder="Phone">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email" class="col-lg-2 control-label">Email</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" value="@Model.email" class="form-control" name="email" id="email" placeholder="Email">
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="well">
+
+                                    <fieldset>
+                                        <legend>Payment Information</legend>
+                                        <div class="form-group">
+                                            <label for="total" class="col-lg-2 control-label">Total Price</label>
+                                            <div class="col-lg-10">
+                                                <input value="@Model.total" disabled name="total" id="total" type="text" class="form-control" placeholder="Total Price">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="select" class="col-lg-2 control-label">Selects</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control" name="card_type" id="card_type">
+                                                    <option value="">Select Type</option>
+                                                    <option @((Model.card_type=="Visa")?"selected":"") value="Visa">Visa</option>
+                                                    <option @((Model.card_type == "Mastercard") ? "selected" : "") value="Mastercard">Mastercard</option>
+                                                    <option @((Model.card_type == "Amex") ? "selected" : "") value="Amex">American Express</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="card_number" class="col-lg-2 control-label">Card Number</label>
+                                            <div class="col-lg-10">
+                                                <input value="@Model.card_number" name="card_number" id="card_number" type="text" class="form-control" placeholder="Card Number">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="card_expiration" class="col-lg-2 control-label">Card Expiration</label>
+                                            <div class="col-lg-10">
+                                                <input value="@Model.card_expiration" name="card_expiration" id="card_number" type="text" class="form-control" placeholder="Card Expiration">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv" class="col-lg-2 control-label">CVV</label>
+                                            <div class="col-lg-10">
+                                                <input value="@Model.cvv" name="cvv" id="cvv" type="text" class="form-control" placeholder="CVV">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="customer_notes" class="col-lg-2 control-label">Order Notes</label>
+                                            <div class="col-lg-10">
+                                                <textarea name="customer_notes" class="form-control" rows="3" id="textArea">@Model.customer_notes</textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-lg-10 col-lg-offset-2">
+                                                <button class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Book Hall</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row"></div>
+                </div>
+            }
+      
+
+        </div>
+    </div>
+
+}
+
+<script language="javascript">
+
+
+    var XMLHttpRequestObject = false;
+    if (window.XMLHttpRequest) { XMLHttpRequestObject = new XMLHttpRequest(); }
+    else if (window.ActiveXObject) { XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP") }
+
+    function fillTotal() {
+
+
+    }
+
+    function fillprofile() {
+        var userid = document.getElementById('userid').value;
+        if (userid != '') {
+
+            if (XMLHttpRequestObject) {
+                XMLHttpRequestObject.open("GET", url + "/api/webapi/GetUserInfo/" + userid, true);
+                XMLHttpRequestObject.onreadystatechange = function () {
+                    if (XMLHttpRequestObject.readyState == 4 && XMLHttpRequestObject.status == 200) {
+                        var vals = JSON.parse(XMLHttpRequestObject.responseText);
+                        arrid = vals;
+
+                        document.getElementById('first_name').value = arrid.first_name;
+                        document.getElementById('last_name').value = arrid.last_name;
+                        document.getElementById('address1').value = arrid.address1;
+                        document.getElementById('address2').value = arrid.address2;
+                        document.getElementById('city').value = arrid.city;
+                        document.getElementById('state').value = arrid.state;
+                        document.getElementById('zipcode').value = arrid.zipcode;
+                        document.getElementById('phone').value = arrid.phone;
+                        document.getElementById('email').value = arrid.email;
+                    }
+                }
+            }
+            XMLHttpRequestObject.send(null);
+
+
+        }
+
+
+    }
+
+
+    function ajpage(ulink, divid) {
+        document.getElementById(divid).innerHTML = '<img src="../images/loading.gif">'
+        if (XMLHttpRequestObject) {
+            XMLHttpRequestObject.open("POST", ulink + "&ms=" + new Date().getTime(), true);
+            XMLHttpRequestObject.onreadystatechange = function () {
+                if (XMLHttpRequestObject.readyState == 4) {
+                    document.getElementById(divid).innerHTML = XMLHttpRequestObject.responseText;
+                }
+            }
+        }
+        XMLHttpRequestObject.send(null);
+    }
+
+</script>
+
+<script>
+    $("select")
+      .change(function () {
+          var str = "";
+          $("#selectTimeSlot option:selected").each(function () {
+              str = $(this).val();
+              data = { priceIsSpecialSlot: str }
+              $.get("/api/webapi/GetSlotPrice", data, function (data) {
+                  $("#total").val(data);
+              });
+
+          });
+          console.log(str);
+      })
+      .change();
+</script>

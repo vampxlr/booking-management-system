@@ -1,0 +1,43 @@
+﻿@model SimchaMVC.event_types
+
+@{
+    ViewBag.Title = "Event Types";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<div class="well bs-component">
+
+    @using (Html.BeginForm("AddNewRecord", "EventTypes", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+
+        <fieldset>
+            <legend>Add New Event Type</legend>
+
+            <div class="form-group">
+                @Html.Label("Event Type", new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(m => m.type_name, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <a href=@Url.Action("index") class="btn btn-default">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    }
+
+</div>
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>

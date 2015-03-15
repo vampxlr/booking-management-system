@@ -1,0 +1,709 @@
+﻿@model SimchaMVC.hall
+
+@{
+    ViewBag.Title = "Halls";
+    ViewBag.SubTitle = "Calendar";
+    Layout = "~/Areas/Admin/Views/Halls/_SubHallsCalenderLayout.cshtml";
+}
+
+
+<script>
+    var IsEnableBooking=true;
+
+</script>
+<script>
+    function CheckEnableBooking()
+    {
+        if(IsEnableBooking){
+            $("a:contains('Create Booking')").removeAttr('disabled','disabled');
+
+        }
+        else
+        {
+            $("a:contains('Create Booking')").attr('disabled','disabled');
+
+
+
+        }
+    }
+
+
+
+
+</script>
+@*<div style="font-size:16px; font-weight:bold;" align="center">@Model.hall_name</div>*@
+
+                             <div class="row">
+                                 <div class="col-md-5">
+                                     <div class="demo-section" style="display:none;">
+                                         <div id="special-days">
+                                             <div id="calendar"></div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-7 ">
+                            
+
+                                             <div id="gridbox">
+                                                 <div style="display:none;" id="gridBook"></div>
+                                                 <script type="text/x-kendo-template" id="template">
+                                                     <div class="toolbar">
+                                                        
+                                                         <button id="addbooking" class="btn btn-default btn-sm">Create Booking</button>
+                                                     </div>
+                                                 </script>
+                                              
+                                                     <script>
+                                                         loadBookingsGrid();
+                                                     function loadBookingsGrid(bookings) {
+
+
+                                                         $("#gridBook").kendoGrid({
+                                                             dataSource: {
+                                                                 data: bookings,
+                                                                 schema: {
+                                                                     model: {
+                                                                         fields: {
+                                                                             booking_id: { type: "number" },
+                                                                             hall_name: { type: "string" },
+                                                                             time_slot: { type: "string" },
+                                                                             user_infromation: { type: "string" },
+                                                                             fullbooking_url: { type: "string" },
+                                                                             booking_date: { type: "string" },
+                                                                             delete_booking: {stype:"string"}
+                                                                         }
+                                                                     }
+                                                                 },
+                                                                 pageSize: 20
+                                                             },
+                                                             toolbar: kendo.template($("#template").html()),
+                                                             selectable: "multiple",
+                                                             height: 289,
+
+                                                             pageable: {
+                                                                 refresh: true,
+                                                                 pageSizes: true,
+                                                                 buttonCount: 5
+                                                             },
+                                                             columns: [{
+                                                                 field: "booking_id",
+                                                                 title: "Booking Id"
+                                                             }, {
+                                                                 field: "hall_name",
+                                                                 title: "Hall Name"
+                                                             },
+                                                             {
+                                                                 field: "time_slot",
+                                                                 title: "Time Slot"
+                                                             },
+                                                             {
+                                                                 field: "user_infromation",
+                                                                 title: "User"
+                                                             }, {
+                                                                 field: "booking_date",
+                                                                 title: "Date :"
+                                                             }, {
+                                                                 field: "fullbooking_url",
+                                                                 title: "View / Edit :",
+                                                                 template: '<a class="btn btn-default btn-xs" href="/Admin/Bookings/Edit/#=fullbooking_url#?returnUrl=@Request.Url.ToString()">View / Edit</a>',
+                                                                 width:"100px"
+                                                             },
+                                                             {
+                                                                 field: "fullbooking_url",
+                                                                 title: "Delete :",
+                                                                 template: '<a class="btn btn-default btn-xs" href="/Admin/Bookings/Delete/#=fullbooking_url#">Delete</a>',
+                                                                 width:"70px"
+                                                             }
+
+                                                             ]
+                                                         }
+                                                         );
+
+                                                     }
+
+
+
+                                                 </script>
+                                             </div>
+                                             <div id="gridbox">
+                                                 <div style="display:none;" id="gridTime"></div>
+                                                 <script type="text/x-kendo-template" id="templateTime">
+                                                     <div class="toolbar">
+
+                                                         <button id="addtime" class="btn btn-default btn-sm">Add New Slot</button>
+                                                         <button id="edittime" class="btn btn-default btn-sm">Special Add / Edit Slot</button>
+                                                     </div>
+                                                 </script>
+
+                                                 <script>
+    loadTimeSlotGrid();
+    function loadTimeSlotGrid(timeslots) {
+
+     
+        $("#gridTime").kendoGrid({
+            dataSource: {
+                data: timeslots,
+                schema: {
+                    model: {
+                        fields: {
+                            id: { type: "number" },
+
+                            hall_id: { type: "string" },
+                            time_slot: { type: "string" },
+                            date: { type: "string" }
+
+                        }
+                    }
+                },
+                pageSize: 20
+            },
+            selectable: "multiple",
+            height: 289,
+            toolbar: kendo.template($("#templateTime").html()),
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+            columns: [{
+                field: "id",
+                title: "Id",
+                width:"50px"
+            }, {
+                field: "time_slot",
+                title: "Time Slot",
+                width:"150px"
+            },{
+                field: "disabled",
+                title: "is Disabled",
+                width:"80px"
+            },{
+                field: "date",
+                title: "Date :",
+                width:"80px"
+            }, {
+                field: "time_slot_id",
+                title: "Create Booking :",
+                template: '<a class="btn btn-default btn-xs" href="/Admin/bookings/CreateBooking?hall_id=#=hall_id#&returnUrl=@Request.Url.ToString()&event_date=#=date#">Create Booking</a>',
+                width:"150px"
+            }
+
+            ]
+        }
+        );
+        CheckEnableBooking();
+    }
+
+
+
+                                                 </script>
+                                             </div>
+
+                                 </div>
+                             </div>
+                                        
+                                          
+                                    
+                  <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Choose an option</h4>
+            </div>
+            <div class="modal-body">
+                Do you want to Enable/Disable Date ? <br />
+                <br />
+                <button data-dismiss="modal" id="disableDate" class="btn btn-success btn-sm"><p style="margin:0">Disable Date</p></button><br />
+
+                <br />
+                <div style="display:none" id="ViewBooking">
+
+                    Do you want to add/edit Booking Records ? <br /> <br />
+                    <button data-dismiss="modal" id="BookingRecords" class="btn btn-primary btn-sm">Veiw / Edit Bookings</button><br /> <br />
+                    Do you want to add/edit Time Slots?
+                    <br />
+                    <br />
+                </div>
+              
+                <button id="timeslots" data-dismiss="modal" class="btn btn-primary btn-sm">Edit Time Slots</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+              
+            </div>
+        </div>
+    </div>
+</div>                     
+                                    
+
+<script>
+    //onclick disable dates
+
+    function disableEnableDate(dateString,hall_id){
+
+        $("#disableDate").unbind( "click");
+        $("#disableDate").click(function(){
+            console.log("inside click event");
+            console.log(dateString);
+            var deleteOrEnableDate = {
+                booking_date: dateString,
+                hall_id:hall_id
+            };
+            $(".demo-section").hide('pulsate');
+            $.post(url + "/api/webapi/DeletBookingRecord", deleteOrEnableDate, function (data) {
+
+
+            }).done(function(data){
+                console.log("Disable Enable Operation Performed");
+                console.log(data);
+                GetNewDisabledDates();
+            });
+
+
+
+        })
+
+    }
+    //onclick load bookings
+
+    function loadBookingRecords(dateString,hall_id){
+
+        $("#BookingRecords").unbind("click");
+        $("#BookingRecords").click(function(){
+            console.log("inside click event");
+            console.log(dateString);
+            var LoadBookingRecords = {
+
+                hall_id:hall_id,
+                date: dateString
+            };
+            $("#addbooking").unbind("click");
+            $("#addbooking").click(function(){
+                var encodedstr = encodeURIComponent(dateString);
+                console.log(encodedstr);
+                console.log(encodeURIComponent(dateString));
+                window.location = "/Admin/bookings/Createbooking?returnUrl=@Request.Url.ToString()&hall_id="+hall_id+"&event_date="+encodedstr;
+            });
+            $("#gridTime").hide();
+            $("#gridBook").show();
+            console.log("loadbooking post date");
+            console.log(LoadBookingRecords);
+            $.post(url + "/api/webapi/GetBookingRecordWithHallIdAndDate", LoadBookingRecords, function (data) {
+
+
+            }).done(function(data){
+                console.log("Booking load Operation Performed");
+                console.log(data);
+                loadBookingsGrid(data);
+                $("td:contains(true)").parents("tr").css("text-decoration","line-through");
+            });
+
+
+
+        })
+
+    }
+    //onclick load timeSlots
+
+    function loadTimeSlotsRecords(dateString,hall_id){
+
+        $("#timeslots").unbind("click");
+        $("#timeslots").click(function(){
+            console.log("inside click event");
+            console.log(dateString);
+            var LoadTimeSlotsRecords = {
+
+                hall_id:hall_id,
+                date: dateString
+            };
+
+            $("#addtime").unbind("click");
+            $("#addtime").click(function(){
+
+                window.location = "/Admin/halls/timeslots/"+hall_id+"?returnUrl=@Request.Url.ToString()";
+            });
+            $("#edittime").unbind("click");
+            $("#edittime").click(function(){
+
+                window.location = "/Admin/Halls/SpecialTimeSlots?hall_id= "+hall_id+"&date="+dateString;
+            });
+            $("#gridBook").hide();
+            $("#gridTime").show();
+            console.log("LoadTimeSlotsRecords post date");
+            console.log(LoadTimeSlotsRecords);
+            $.post(url + "/api/webapi/GetTimeSlotsForHallCalender", LoadTimeSlotsRecords, function (data) {
+
+
+            }).done(function(data){
+                console.log("Booking load Operation Performed");
+                console.log(data);
+                loadTimeSlotGrid(data);
+                $("td:contains(true)").parents("tr").css("text-decoration","line-through");
+            });
+
+
+
+        })
+
+    }
+
+
+    //refresh dates
+
+    function GetNewDisabledDates(){
+
+        $.getJSON(url + "/api/webapi/GetDisabledAndBookingDates/"+@Model.id, function (data) {
+
+
+
+        }).done(function (data) {
+            var items = [[]];
+            items[0] = [];
+            items[1] = [];
+            $.each(data[1], function (key, val) {
+                items[1].push(+new Date(val.disabled_date));
+            });
+            $.each(data[0], function (key, val) {
+                items[0].push(+new Date(val.booking_date));
+            });
+            console.log(data);
+            $(".demo-section").show('pulsate');
+            updateCalender(items, data);
+        });
+
+    }
+
+
+
+</script>
+
+
+
+
+
+ <script>
+  
+    function updateCalender(items,data){
+      var  calendar = $("#calendar").data("kendoCalendar");
+    
+      calendar.destroy();
+      $( "#calendar" ).remove();
+      $("#special-days").append("<div id='calendar'></div>");
+      
+      $("#calendar").kendoCalendar({
+          //value: new Date(data[1][0].disabled_date),
+          value: new Date(),
+          dates: items,
+          change: onChange,
+          navigate: onNavigate,
+          month: {
+              // template for dates in month view
+              content: "# if ($.inArray(+data.date, dates[1]) != -1) { #" +
+                                  "<div class='" +
+
+                                  "disabled" +
+
+                           "'>#= data.value # <span class='" +
+                          "glyphicon glyphicon-remove"+
+                           "'></span> </div>" +
+                      "# } else if ($.inArray(+data.date, dates[0]) != -1) {function same(element) {return element == +data.date;} var filtered = dates[0].filter(same);var count = filtered.length; #" +
+                                  "<div class='" +
+                                    
+                                  "booked" + 
+                                 
+                           "'>" +
+                            " <span class='" +
+                          "" +
+                           "'></span> " +
+                           " #= data.value #<em> #= count #</em> </div>" +
+                      "# } else { #" +
+                      "#= data.value #" +
+                      "# } #"
+          },
+          footer: false
+      });
+      $(".demo-section").show('slow');
+    } 
+        function success(items, data) {
+            var today = new Date(data[1][0]);
+            console.log(items);
+            console.log(data);
+                $("#calendar").kendoCalendar({
+                  //  value: new Date(data[1][0].disabled_date),
+                    value: new Date(),
+                    dates: items,
+                    change: onChange,
+                    navigate: onNavigate,
+                    month: {
+                        // template for dates in month view
+                        content: "# if ($.inArray(+data.date, dates[1]) != -1) { #" +
+                                            "<div class='" +
+
+                                            "disabled" +
+
+                                     "'>#= data.value # <span class='" +
+                                    "glyphicon glyphicon-remove"+
+                                     "'></span> </div>" +
+                                "# } else if ($.inArray(+data.date, dates[0]) != -1) {function same(element) {return element == +data.date;} var filtered = dates[0].filter(same);var count = filtered.length; #" +
+                                            "<div class='" +
+                                    
+                                            "booked" + 
+                                 
+                                     "'>" +
+                                      " <span class='" +
+                                    "" +
+                                     "'></span> " +
+                                     " #= data.value #<em> #= count #</em> </div>" +
+                                "# } else { #" +
+                                "#= data.value #" +
+                                "# } #"
+                    },
+                    footer: false
+                });
+             
+            
+
+        }
+
+</script>
+
+
+<script>
+    function GetBookingRecordsWithHallIdAndDate(date,id){
+       
+        var dateAndId = { booking_date: dateString,
+                          hall_id: id  };
+        console.log(date);
+        
+        $.post(url + "/api/webapi/GetBookingRecordWithHallIdAndDate", dateAndId, function (data) {
+            console.log("data loaded");
+            console.log(data);
+            loadGrid(data);
+        }).done(function(data){
+            loadBookingsGrid(data);
+        });
+    
+    }
+    $(document).ready(function () {
+
+        $.getJSON(url + "/api/webapi/GetDisabledAndBookingDates/"+@Model.id, function (data) {
+
+
+
+        }).done(function (data) {
+            var items = [[]];
+            items[0] = [];
+            items[1] = [];
+            $.each(data[1], function (key, val) {
+                items[1].push(+new Date(val.disabled_date));
+            });
+            $.each(data[0], function (key, val) {
+                items[0].push(+new Date(val.booking_date));
+            });
+            console.log(data);
+            $(".demo-section").show('slow');
+            success(items, data);
+        });
+
+
+
+
+    })
+
+    function GetModal(date,hall_id){
+
+        var dateAndId = { date: date,
+            hall_id: hall_id  };
+
+        $.post(url + "/api/webapi/IsDisabled", dateAndId, function (data) {
+          
+        }).done(function(data){
+      
+            if(data==true){
+                $("#disableDate").removeClass("btn-success");
+                $("#disableDate").addClass("btn-danger");
+                $("#disableDate p").replaceWith("<p style='margin:0;'>Disable Date</p>");
+                $("#ViewBooking").show('slow');
+                console.log("disable/enable--true");
+                IsEnableBooking=true;
+            }
+            else if(data==false){
+                $("#disableDate").removeClass("btn-danger");
+                $("#disableDate").addClass("btn-success");
+                $("#disableDate p").replaceWith("<p style='margin:0;'>Enable Date</p>");
+                $("#ViewBooking").hide('slow');
+                IsEnableBooking=false;
+                console.log("disable/enable--false");
+
+            }
+        });
+        loadBookingRecords(date,hall_id)
+        disableEnableDate(date,hall_id);
+        loadTimeSlotsRecords(date,hall_id)
+        $('#myModal').modal();
+        console.log("getting modal");
+    }
+
+    function onChange() {
+        var hall_id=  @Model.id;
+        var dateString = kendo.toString(this.value(), 'd');
+        var date = { booking_date: dateString };
+        console.log(date);
+        GetModal(dateString,hall_id);
+       
+        var deleteOrEnableDate = {
+            booking_date: dateString,
+            hall_id:hall_id
+        };
+       
+        
+    
+
+    }
+
+    function onNavigate() {
+
+    }
+
+    function counts(arr, counts) {
+
+        for (var i = 0; i < arr.length; i++) {
+            var num = arr[i];
+            counts[num] = counts[num] ? counts[num] + 1 : 1;
+        }
+        return counts;
+    }
+
+
+    //  function same(element) {return element == 5;} var filtered = [12, 5, 8, 130, 44, 5].filter(same);var count = filterd.length;
+
+
+</script>
+
+
+
+
+<style scoped>
+    .demo-section {
+        
+     
+        
+    }
+
+    #special-days {
+     
+   
+        /*background: url('../../../../Content/web/calender.jpg') transparent no-repeat 0 bottom;*/
+    }
+
+    #calendar {
+        margin: 0 auto;
+        width: 400px;
+        text-align: center;
+    }
+
+ #calendar tbody {
+ 
+ }
+
+    .k-widget {
+    
+    }
+
+    .k-calendar {
+       
+    }
+
+        /*#calendar,
+                #calendar .k-content,
+                #calendar .k-header,
+                #calendar th,
+                #calendar .k-link,
+                #calendar .k-state-hover,
+                #calendar .k-state-selected,
+                #calendar .k-state-focused {
+                    background: transparent;
+                    border-color: transparent;
+                    color: #fff;
+                    box-shadow: none;
+                }
+
+            #calendar .k-content .k-state-hover,
+                    #calendar .k-content .k-state-focused {
+                        font-size: 14px;
+                        font-weight: bold;
+                    }*/
+
+        #calendar .k-state-selected, #calendar .k-state-selected.k-state-focused {
+            /*font-size: 15px;*/
+            font-weight: bold;
+        }
+
+        #calendar .k-content .k-link {
+            padding: 0;
+            min-height: 32px;
+            line-height: 32px;
+        }
+
+        #calendar th {
+            padding-top: 22px;
+            color: #8cbabf;
+        }
+
+        #calendar td.k-other-month .k-link {
+            color: #8cbabf;
+        }
+
+        #calendar th,
+        #calendar td {
+            text-align: center;
+        }
+
+    /*.exhibition, .party, .cocktail {
+                width: 40px;
+                height: 40px;
+                margin: auto;
+                -webkit-border-radius: 100px;
+                -moz-border-radius: 100px;
+                border-radius: 50%;
+                line-height: 40px;
+        }*/
+
+    .disabled {
+        background-color: #8cbabf;
+        color: #ffffff;
+    }
+
+        .disabled em ,em {
+            font-style: italic;
+            font-size: smaller;
+        }
+
+  .booked {
+      
+        height:32px;
+        background-color: #ff6a00;
+        color: #ffffff;
+        
+    }
+
+    .k-block, .k-button, .k-textbox, .k-drag-clue, .k-touch-scrollbar, .k-window, .k-window-titleless .k-window-content, .k-window-action, .k-inline-block, .k-grid .k-filter-options, .k-grouping-header .k-group-indicator, .k-autocomplete, .k-multiselect, .k-combobox, .k-dropdown, .k-dropdown-wrap, .k-datepicker, .k-timepicker, .k-colorpicker, .k-datetimepicker, .k-notification, .k-numerictextbox, .k-picker-wrap, .k-numeric-wrap, .k-colorpicker, .k-list-container, .k-calendar-container, .k-calendar td, .k-calendar .k-link, .k-treeview .k-in, .k-editor-inline, .k-tooltip, .k-tile, .k-slider-track, .k-slider-selection, .k-upload {
+        border-radius: 0px;
+    }
+
+    #grid {
+   
+    }
+</style>
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").parents("li").addClass("active");
+   
+</script>

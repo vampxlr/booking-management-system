@@ -1,0 +1,443 @@
+﻿@model SimchaMVC.hall
+
+@{
+    var slist = ViewBag.ServiceAreaSelectList as IQueryable<SelectListItem>;
+    var elist = ViewBag.EventTypesSelectList as IQueryable<SelectListItem>;
+    var halladminlist = ViewBag.halladminlist as IQueryable<SelectListItem>;
+    
+    ViewBag.Title = "Halls";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+    var user_name = WebSecurity.CurrentUserName;
+}
+
+<div class="well bs-component">
+    <div class="row">
+        <div class="col-md-6">
+
+            @using (Html.BeginForm("AddNewRecord", "Halls", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                if (ViewBag.isPost)
+                {
+                    <h4 style="background-color:orangered;color:white; display:block; padding :15px;border-radius:5px">@ViewBag.Error</h4>
+
+                }
+
+
+                @Html.AntiForgeryToken()
+                @Html.Hidden("user_name", user_name)
+    <fieldset>
+        <legend>Add New Hall</legend>
+
+        @if (halladminlist != null && (User.IsInRole("SuperAdmin") && halladminlist.Count() != 0))
+        {
+            <div class="form-group">
+                @Html.Label("Assigned to Hall Admin", new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.DropDownList("admin_user_id", halladminlist, new { @class = "form-control" })
+                </div>
+            </div>
+
+        }
+        else
+        {
+            @Html.Hidden("admin_user_id", WebSecurity.CurrentUserId)
+        }
+
+
+        <div class="form-group">
+            @Html.Label("Hall Name", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.hall_name, new { @class = "form-control",placeholder="This field is required", @data_bind = "event: { keyup: check}, value: hallname, valueUpdate: 'afterkeydown', css:{'error':(!hallname.isValid() && showErrors()) , 'success':hallname.isValid()}" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Contact Name", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.contact_name, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: contactname, valueUpdate: 'afterkeydown', css:{'error':(!contactname.isValid() && showErrors()) , 'success':contactname.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Address", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.address1, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: address, valueUpdate: 'afterkeydown', css:{'error':(!address.isValid() && showErrors()) , 'success':address.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Address 2", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.address2, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: address2, valueUpdate: 'afterkeydown', css:{'error':(!address2.isValid() && showErrors()) , 'success':address2.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("City", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.city, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: city, valueUpdate: 'afterkeydown', css:{'error':(!city.isValid() && showErrors()) , 'success':city.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("State", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.state, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: state, valueUpdate: 'afterkeydown', css:{'error':(!state.isValid() && showErrors()) , 'success':state.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Zip Code", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.zip_code, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: zipcode, valueUpdate: 'afterkeydown', css:{'error':(!zipcode.isValid() && showErrors()) , 'success':zipcode.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Service Area", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.ListBox("service_area_id", slist, new { multiple = "", @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Event Type", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.ListBox("event_type_id", elist, new { multiple = "", @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Phone", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.phone, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: phone, valueUpdate: 'afterkeydown', css:{'error':(!phone.isValid() && showErrors()) , 'success':phone.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Phone 2", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.phone2, new { @class = "form-control", @data_bind = "event: { keyup: check}, value: phone2, valueUpdate: 'afterkeydown', css:{'error':(!phone2.isValid() && showErrors())}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Fax", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.fax, new { @class = "form-control", @data_bind = "event: { keyup: check}, value: fax, valueUpdate: 'afterkeydown', css:{'error':(!fax.isValid() && showErrors()) }" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Capacity", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.capacity, new { @class = "form-control", placeholder = "This field is required", @data_bind = "event: { keyup: check}, value: capacity, valueUpdate: 'afterkeydown', css:{'error':(!capacity.isValid() && showErrors()) , 'success':capacity.isValid()}" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Features", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @(Html.Kendo().Editor()
+                                          .Name("editor")
+                                         .Name("features")
+
+                )
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Policies", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @(Html.Kendo().Editor()
+                                          .Name("editor")
+
+
+                                                                                                      .Name("policies")
+
+                )
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Preferred Contact Method", new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.DropDownListFor(m => m.preferred_contact_method,
+                           new List<SelectListItem> {
+                                                                 new SelectListItem { Text = "Phone 1", Value = "Phone 1"},
+                                                                 new SelectListItem { Text = "Phone 2", Value = "Phone 2"},
+                                                                 new SelectListItem { Text = "Email", Value = "Email"},
+                            }
+                            , new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <a href=@Url.Action("index") class="btn btn-default">Cancel</a>
+                <button id="submitButton" type="submit" class="btn btn-primary" disabled="">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .error {
+        background-color: #ff9c9c;
+    }
+
+    .success {
+        background-color: #daffa2;
+    }
+</style>
+
+
+@if (Model == null)
+{
+
+    <script>
+
+        function ViewModel() {
+            var self = this;
+            self.hallname = ko.observable().extend({
+                required: true,
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 3
+            });
+            self.contactname = ko.observable().extend({
+                required: true,
+
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 3
+            });
+
+            self.address = ko.observable().extend({
+                required: true,
+                minLength: 8
+            });
+
+            self.address2 = ko.observable().extend({
+                required: true,
+                minLength: 8
+            });
+
+            self.city = ko.observable().extend({
+                required: true,
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 3
+            });
+
+            self.state = ko.observable().extend({
+                required: true,
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 2
+            });
+
+            self.zipcode = ko.observable().extend({
+                required: true,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 5,
+                maxLength: 5
+            });
+
+            self.phone = ko.observable().extend({
+                required: true,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 10
+            });
+
+            self.phone2 = ko.observable().extend({
+                required: false,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 10
+            });
+
+            self.fax = ko.observable().extend({
+                required: false,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 10
+            });
+
+            self.capacity = ko.observable().extend({
+                required: true,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 2
+            });
+
+            self.showErrors = ko.observable(false);
+
+            self.check = function () {
+                console.log("check");
+                self.showErrors = ko.observable(true);
+
+                if (self.isValid()) {
+                    $('#submitButton').removeAttr('disabled');
+                }
+                if (!self.isValid()) {
+                    $('#submitButton').attr('disabled', 'disabled');
+
+                }
+            }
+
+            self.errors = ko.validation.group(self);
+        }
+
+        ko.validation.init({
+            registerExtenders: true,
+            messagesOnModified: true,
+            insertMessages: true
+        });
+
+        ko.applyBindings(new ViewModel());
+    </script>
+}
+else
+{
+
+    <script>
+
+    function ViewModel() {
+        var self = this;
+        self.hallname = ko.observable("@Model.hall_name").extend({
+                required: true,
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 3
+            });
+            self.contactname = ko.observable("@Model.contact_name").extend({
+                required: true,
+
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 3
+            });
+
+        self.address = ko.observable("@Model.address1").extend({
+                required: true,
+                minLength: 8
+            });
+
+        self.address2 = ko.observable("@Model.address2").extend({
+                required: true,
+                minLength: 8
+            });
+
+        self.city = ko.observable("@Model.city").extend({
+                required: true,
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 3
+            });
+
+        self.state = ko.observable("@Model.state").extend({
+                required: true,
+                pattern: {
+                    message: 'Only alphabets allowed',
+                    params: '^[a-zA-Z_]*$'
+                },
+                minLength: 2
+            });
+
+        self.zipcode = ko.observable("@Model.zip_code").extend({
+                required: true,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 5,
+                maxLength: 5
+            });
+
+        self.phone = ko.observable("@Model.phone").extend({
+                required: true,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 10
+            });
+
+        self.phone2 = ko.observable("@Model.phone2").extend({
+                required: false,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 10
+            });
+
+        self.fax = ko.observable("@Model.fax").extend({
+                required: false,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 10
+            });
+
+        self.capacity = ko.observable("@Model.capacity").extend({
+                required: true,
+                pattern: {
+                    message: 'Only numbers allowed',
+                    params: '^[0-9]*$'
+                },
+                minLength: 2
+            });
+
+            self.showErrors = ko.observable(false);
+
+            self.check = function () {
+                console.log("check");
+                self.showErrors = ko.observable(true);
+
+                if (self.isValid()) {
+                    $('#submitButton').removeAttr('disabled');
+                }
+                if (!self.isValid()) {
+                    $('#submitButton').attr('disabled', 'disabled');
+
+                }
+            }
+
+            self.errors = ko.validation.group(self);
+        }
+
+        ko.validation.init({
+            registerExtenders: true,
+            messagesOnModified: true,
+            insertMessages: true
+        });
+
+        ko.applyBindings(new ViewModel());
+    </script>
+}
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>

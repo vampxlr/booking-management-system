@@ -1,0 +1,54 @@
+﻿@model SimchaMVC.service_areas
+
+@{
+    ViewBag.Title = "Service Areas";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="well bs-component">
+
+            @using (Html.BeginForm("AddNewRecord", "ServiceAreas", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.ValidationSummary()
+                @Html.AntiForgeryToken()
+
+                <fieldset>
+                    <legend>Add New Service Area</legend>
+
+                    <div class="form-group">
+                        @Html.Label("Service Area Name", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.service_area, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Display Order", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.order_by, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <a href=@Url.Action("index") class="btn btn-default">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>

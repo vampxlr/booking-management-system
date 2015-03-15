@@ -1,0 +1,565 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@{
+    
+    IEnumerable<SimchaMVC.hall> Halls = ViewBag.Halls as IEnumerable<SimchaMVC.hall>;
+    IEnumerable<SimchaMVC.hall> AllHalls = ViewBag.AllHalls as IEnumerable<SimchaMVC.hall>;
+
+    IEnumerable<SimchaMVC.service_areas> Neighborhoods = ViewBag.Neighborhoods as IEnumerable<SimchaMVC.service_areas>;
+
+    IEnumerable<SimchaMVC.event_types> SimchaTypes = ViewBag.SimchaTypes as IEnumerable<SimchaMVC.event_types>;
+
+    IEnumerable<SimchaMVC.weekday> AllWeekDays = ViewBag.AllWeekDays as IEnumerable<SimchaMVC.weekday>; 
+
+    IEnumerable<SimchaMVC.time_slots> Alltimeslots = ViewBag.Alltimeslots as IEnumerable<SimchaMVC.time_slots>;
+
+    IEnumerable<SimchaMVC.booking> Allbookings = ViewBag.Allbookings as IEnumerable<SimchaMVC.booking>;
+
+    IEnumerable<SimchaMVC.calendar> AlldisabledDates = ViewBag.AlldisabledDates as IEnumerable<SimchaMVC.calendar>;
+
+    IEnumerable<SimchaMVC.hall_images> AllHallsImage = ViewBag.AllHallsImage as IEnumerable<SimchaMVC.hall_images>;
+
+    IEnumerable<DateTime> AllDates = ViewBag.AllDates as IEnumerable<DateTime>;
+    
+    ViewBag.Title = "AddNewRecord";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0" class="admintable">
+    <tbody>
+        <tr>
+            <td width="775" height="500" align="left" valign="top" bgcolor="#FFFFFF" class="box">
+                <div id="mid-col">
+
+                    <div class="box">
+                        <h4 class="white rounded_by_jQuery_corners" style="padding: 0px;">
+                            <div style="font-size: 1px; background-color: rgb(255, 255, 255);">
+                                <div style="margin: 0px 2px; height: 1px; overflow: hidden; background-color: rgb(198, 199, 200);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(109, 114, 116);">
+                                        <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(68, 74, 76);">
+                                            <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(58, 64, 67);"></div>
+                                        </div>
+                                    </div>
+                                </div><div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(157, 160, 161);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(58, 64, 67);">
+                                        <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(58, 64, 67);"></div>
+                                    </div>
+                                </div><div style="margin: 0px; height: 1px; overflow: hidden; background-color: rgb(198, 199, 200);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(58, 64, 67);"></div>
+                                </div><div style="margin: 0px; height: 1px; overflow: hidden; background-color: rgb(109, 114, 116);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(58, 64, 67);"></div>
+                                </div><div style="margin: 0px; height: 1px; overflow: hidden; background-color: rgb(68, 74, 76);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(58, 64, 67);"></div>
+                                </div>
+                            </div>
+                            <div style="padding: 5px 10px 10px;">Create Booking</div>
+                        </h4>
+                        <div class="box-container rounded_by_jQuery_corners" style="padding: 0px;">
+                            <div style="padding: 10px 10px 5px;">
+
+                                <style type="text/css">
+                                    #dhtmltooltip {
+                                        position: absolute;
+                                        border: 1px solid #000000;
+                                        width: 80px;
+                                        padding: 2px;
+                                        background-color: #ddCCFF;
+                                        visibility: hidden;
+                                        z-index: 100;
+                                        line-height: 18px;
+                                        filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=115);
+                                    }
+                                </style>
+                                <form action="" method="post">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td valign="top" width="160">
+                                                    <b>Search Date:</b>
+                                                    <br>
+                                                    <div style="width:90px; margin-top:5PX; float:left;">
+                                                        <input name="date" id="datepicker"  style="width:150px;" />
+                                                    </div>
+
+                                                    <div style="clear:both; margin-top:70px;"><input type="submit" name="findhalls" value="Find Halls"></div>
+                                                </td>
+
+
+                                                <td valign="top" width="190">
+                                                    <b>Zip Code:</b>
+                                                    <br>
+                                                    <div style="width:90px; float:left;  margin-top:5PX;  ">
+                                                        <input type="text" style="width:80px; " name="zipcode" value="">
+                                                    </div>
+                                                    <div style="float:left; margin-top:5PX; ">
+                                                        <select name="zipprox">
+                                                            <option value="5" selected=""> 5 Miles</option>
+                                                            <option value="10"> 10 Miles</option>
+                                                            <option value="15"> 15 Miles</option>
+                                                            <option value="25"> 25 Miles</option>
+                                                            <option value="50"> 50 Miles</option>
+                                                        </select>
+                                                    </div>
+
+                                                </td>
+
+                                                <td valign="top" width="210">
+
+                                                    <b>Select Hall:</b>
+                                                    <br>
+                                                    <div style="width:200px;margin-top:5PX; ">
+                                                        <div style="width:180px; height:100px; overflow:auto; line-height:20px;">
+
+                                                            @foreach (var hall in AllHalls)
+                                                            {
+                                                                <div style="height:20px; width:20px; float:left; clear:both;">
+                                                                    <input type="checkbox" name="hall_id" value=@hall.id>
+                                                                    @*@Html.CheckBox("hall_id", false, new { value = hall.id })*@
+                                                                </div>
+                                                                <div style="float:left; height:20px; line-height:16px;">
+                                                                    @hall.hall_name
+                                                                </div>
+
+
+                                                            }
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                                <td valign="top" width="210">
+                                                    <b>Select Neighborhoods:</b>
+
+                                                    <div style="width:200px;margin-top:5PX;  ">
+                                                        <div style="width:180px; height:100px; overflow:auto; line-height:20px;">
+                                                            @foreach (var Neighborhood in Neighborhoods)
+                                                            {
+                                                                <div style="height:20px; width:20px; float:left; clear:both;">
+                                                                    <input type="checkbox" name="service_area_id" value=@Neighborhood.id>
+
+                                                                </div>
+                                                                <div style="float:left; height:20px; line-height:16px;">
+                                                                    @Neighborhood.service_area
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                                <td valign="top" width="210">
+                                                    <b>Simcha Type:</b>
+                                                    <div style="width:200px;margin-top:5PX;  ">
+                                                        <div style="width:180px; height:100px; overflow:auto; line-height:20px;">
+
+                                                            @foreach (var SimchaType in SimchaTypes)
+                                                            {
+                                                                <div style="height:20px; width:20px; float:left; clear:both;">
+                                                                    <input type="checkbox" name="type_name" value=@SimchaType.id>
+
+                                                                </div>
+                                                                <div style="float:left; height:20px; line-height:16px;">
+                                                                    @SimchaType.type_name
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+
+
+@if (ViewBag.PostPage == true)
+                                {
+
+
+
+                                <div align="left" style="padding-top:40px; font-size:16px;">
+                                    <b>
+                                        @Halls.Count() Halls Found
+                                    </b>
+                                </div>
+}
+                                @if (ViewBag.PostPage == true)
+                                {
+
+
+                                    foreach (var hall in Halls)
+                                    {
+
+                                        <div style="margin-top:5px; padding-left:5px; border:solid 1px #cccddd; width:940px;">
+                                            <table border="1" style="margin:0px; padding:0px; ">
+                                                <tbody>
+                                                    <tr><td height="5"></td></tr>
+                                                    <tr>
+                                                        <td align="center" valign="middle">
+
+                                                            <img src="~/Content/thumbs/@AllHallsImage.FirstOrDefault(r=>r.hall_id == hall.id).image_name" border="0">
+
+                                                        </td>
+                                                        <td valign="top" style="padding-left:10px; line-height:18px; " width="175">
+                                                            <div align="left" style="font-size:12px;"><b>@hall.hall_name</b></div>
+                                                            <div align="left" style="font-size:12px;">Capacity: @hall.capacity</div>
+                                                            <div align="left" style="font-size:11px; line-height:16px;">
+                                                                @hall.address1<br>
+                                                                @hall.city, @hall.state @hall.zip_code
+                                                            </div>
+
+                                                        </td>
+                                                        <td width="100"></td>
+                                                        <script type="text/javascript">
+                                                            $(document).ready(function () {
+                                                                var iSliderItemsNumber = $(".item").length;
+                                                                var ItemsDispalyed = 7;
+                                                                var iCounter = ItemsDispalyed;
+                                                                //alert(ItemsDispalyed);
+                                                                if (iSliderItemsNumber <= ItemsDispalyed + 16) {
+                                                                    $(".right").hide();
+                                                                    $("#arrowcont1").hide();
+                                                                }
+
+                                                                function checkCounter() {
+                                                                    //alert(iCounter + 16)
+                                                                    if (iCounter + 12 >= iSliderItemsNumber) {
+                                                                        $('.right').hide();
+                                                                    }
+                                                                    else {
+                                                                        $('.right').show();
+                                                                    }
+
+                                                                    if (iCounter <= ItemsDispalyed) {
+                                                                        $('.left').hide();
+                                                                    }
+                                                                    else {
+                                                                        $('.left').show();
+                                                                    }
+                                                                }
+
+                                                                function scrollRight() {
+                                                                    iCounter = iCounter + 7;
+                                                                    checkCounter();
+                                                                    $('#slider_cntr').animate({ left: '-=128' }, function () {
+                                                                        $('.right').bind('click', scrollRight);
+                                                                    });
+                                                                }
+
+                                                                function srcrollLeft() {
+                                                                    iCounter = iCounter - 4;
+                                                                    checkCounter();
+                                                                    $('#slider_cntr').animate({ left: '+=128' }, function () {
+                                                                        $('.left').bind('click', srcrollLeft);
+                                                                    });
+
+                                                                }
+
+                                                                $('.right').click(function () {
+                                                                    $(this).unbind('click', scrollRight);
+                                                                    scrollRight();
+                                                                });
+                                                                $('.left').click(function () {
+                                                                    $(this).unbind('click', srcrollLeft);
+                                                                    srcrollLeft();
+                                                                });
+
+                                                                $(".item").click(function () {
+                                                                    var video_scr = $(this).find('img').attr('id');
+                                                                    var new_content = '<object width="395" height="250"><param name="movie" value="http://www.youtube.com/v/' + video_scr + '?fs=1&amp;hl=uk_UA&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/' + video_scr + '?fs=1&amp;hl=uk_UA&amp;rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="395" height="250"></embed></object>';
+                                                                    $('#video_cntr').html(new_content);
+                                                                });
+                                                            });
+                                                        </script>
+
+
+                                                        <td width="640">
+                                                            @foreach (var day in AllDates)
+                                                            {
+                                                                int timeslotCounter = 0;
+                                                                int weekdayid;
+                                                                switch (day.DayOfWeek.ToString())
+                                                                {
+                                                                    case "Sunday":
+                                                                        weekdayid = 1;
+                                                                        break;
+                                                                    case "Monday":
+                                                                        weekdayid = 2;
+                                                                        break;
+                                                                    case "Tuesday":
+                                                                        weekdayid = 3;
+                                                                        break;
+                                                                    case "Wednesday":
+                                                                        weekdayid = 4;
+                                                                        break;
+                                                                    case "Thursday":
+                                                                        weekdayid = 5;
+                                                                        break;
+                                                                    case "Friday":
+                                                                        weekdayid = 6;
+                                                                        break;
+                                                                    case "Saturday":
+                                                                        weekdayid = 7;
+                                                                        break;
+                                                                    default:
+                                                                        weekdayid = 0;
+                                                                        break;
+                                                                }
+                                                                System.Text.StringBuilder AvailableSlots = new System.Text.StringBuilder("");
+                                                                foreach (var timeslot in Alltimeslots.Where(x => x.hall_id == hall.id && x.weekday_id == weekdayid))
+                                                                {
+                                                                    timeslotCounter++;
+                                                                    AvailableSlots.Append(timeslot.time_slot + "<br>");
+                                                                }
+                                                                int? isDisabled = null;
+                                                                var disabled = AlldisabledDates.FirstOrDefault(x => x.calendar_date == day && x.hall_id == hall.id);
+                                                                if (disabled != null)
+                                                                {
+                                                                    isDisabled = disabled.not_active;
+                                                                }
+
+
+                                                                if (day.Date < DateTime.Now.Date)
+                                                                {
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+	border:solid 1px #464646; background-color:#cccccc; font-size:10px;">
+                                                                       @day.ToString("dddd, MMM dd")
+                                                                    </div>
+                                                                }
+
+                                                                else if (timeslotCounter != 0 && (isDisabled == null || isDisabled == 0))
+                                                                {
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px; border:solid 1px #464646; background-color:#fffccc; font-size:10px;font-weight:bold;
+                            " onmouseover="ddrivetip('<b><u>Available Slots</u></b><BR>@AvailableSlots','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                                                                @day.ToString("dddd, MMM dd")<br><br>
+                                                        <div align="center"><a href="book.asp?date=10/17/2014 4:03:50 PM&amp;hall=2">Create Booking</a></div>
+                                                        </div>
+
+                                                                }
+                                                                else if (timeslotCounter == 0 && (isDisabled == null || isDisabled == 0))
+                                                                {
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+	border:solid 1px #464646; background-color:#dddddd; font-size:10px;
+
+	" onmouseover="ddrivetip('No slots available','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                                                                        @day.ToString("dddd, MMM dd")
+                                                                    </div>
+                                                                }
+                                                                else if (isDisabled != null || isDisabled == 1)
+                                                                {
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+	border:solid 1px #464646; background-color:#666666; font-size:10px;
+
+	" onmouseover="ddrivetip('Date is disabled','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                                                                        @day.ToString("dddd, MMM dd")
+                                                                    </div>
+                                                                }
+
+
+
+
+                                                            }
+
+                                                            @*<div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+                border:solid 1px #464646; background-color:#dddddd; font-size:10px;
+
+                " onmouseover="ddrivetip('No slots available','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                                                                        Saturday, Oct 18
+                                                                    </div>
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+                border:solid 1px #464646; background-color:#fffccc; font-size:10px;
+
+                " onmouseover="ddrivetip('<b><u>Available Slots</u></b><BR>07:00-10:00AM<BR>07:00-11:00PM<BR>','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                    Sunday, Oct 19<br><br><div align="center"><a href="book.asp?date=10/19/2014 4:03:50 PM&amp;hall=2">Create Booking</a></div>
+            </div>
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+                border:solid 1px #464646; background-color:#fffccc; font-size:10px;
+
+                " onmouseover="ddrivetip('<b><u>Available Slots</u></b><BR>07:00-10:00AM<BR>07:00-11:00PM<BR>','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                    Monday, Oct 20<br><br><div align="center"><a href="book.asp?date=10/20/2014 4:03:50 PM&amp;hall=2">Create Booking</a></div>
+            </div>
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+                border:solid 1px #464646; background-color:#fffccc; font-size:10px;
+
+                " onmouseover="ddrivetip('<b><u>Available Slots</u></b><BR>07:00-11:00PM<BR>','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                    Tuesday, Oct 21<br><br><div align="center"><a href="book.asp?date=10/21/2014 4:03:50 PM&amp;hall=2">Create Booking</a></div>
+            </div>
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+                border:solid 1px #464646; background-color:#dddddd; font-size:10px;
+
+                " onmouseover="ddrivetip('No slots available','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                                                                        Wednesday, Oct 22
+                                                                    </div>
+
+                                                                    <div id="item" style="float:left; width:65px; height:65px; vertical-align:middle; padding:3px; margin-left:6px;
+                border:solid 1px #464646; background-color:#dddddd; font-size:10px;
+
+                " onmouseover="ddrivetip('No slots available','cccccc', 150)" ;="" onmouseout="hideddrivetip()">
+                                                                        Thursday, Oct 23
+                                                                    </div>*@
+
+                                                        </td>
+
+
+
+
+                                                    </tr>
+                                                    <tr><td height="5"></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    }
+
+
+
+                                }
+
+                          
+
+
+
+
+
+
+                                <div id="dhtmltooltip" style="left: -1000px; top: 457px; visibility: hidden;"><b><u>Available Slots</u></b><br>8:00 am - 12:00 pm<br>4:00 am - 5:00 pm<br>8:00 am - 12:00 pm<br></div>
+
+                                <script type="text/javascript">
+
+                                                /***********************************************
+                                                * Freejavascriptkit.com
+                                                * Visit http://www.freejavascriptkit.com for more free Javascripts source code
+                                                ***********************************************/
+
+                                                var offsetxpoint = -60 //Customize x offset of tooltip
+                                                var offsetypoint = 20 //Customize y offset of tooltip
+                                                var ie = document.all
+                                                var ns6 = document.getElementById && !document.all
+                                                var enabletip = false
+                                                if (ie || ns6)
+                                                    var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
+
+                                                function ietruebody() {
+                                                    return (document.compatMode && document.compatMode != "BackCompat") ? document.documentElement : document.body
+                                                }
+
+                                                function ddrivetip(thetext, thecolor, thewidth) {
+                                                    if (ns6 || ie) {
+                                                        if (typeof thewidth != "undefined") tipobj.style.width = thewidth + "px"
+                                                        if (typeof thecolor != "undefined" && thecolor != "") tipobj.style.backgroundColor = thecolor
+                                                        tipobj.innerHTML = thetext
+                                                        enabletip = true
+                                                        return false
+                                                    }
+                                                }
+
+                                                function positiontip(e) {
+                                                    if (enabletip) {
+                                                        var curX = (ns6) ? e.pageX : event.clientX + ietruebody().scrollLeft;
+                                                        var curY = (ns6) ? e.pageY : event.clientY + ietruebody().scrollTop;
+                                                        //Find out how close the mouse is to the corner of the window
+                                                        var rightedge = ie && !window.opera ? ietruebody().clientWidth - event.clientX - offsetxpoint : window.innerWidth - e.clientX - offsetxpoint - 20
+                                                        var bottomedge = ie && !window.opera ? ietruebody().clientHeight - event.clientY - offsetypoint : window.innerHeight - e.clientY - offsetypoint - 20
+
+                                                        var leftedge = (offsetxpoint < 0) ? offsetxpoint * (-1) : -1000
+
+                                                        //if the horizontal distance isn't enough to accomodate the width of the context menu
+                                                        if (rightedge < tipobj.offsetWidth)
+                                                            //move the horizontal position of the menu to the left by it's width
+                                                            tipobj.style.left = ie ? ietruebody().scrollLeft + event.clientX - tipobj.offsetWidth + "px" : window.pageXOffset + e.clientX - tipobj.offsetWidth + "px"
+                                                        else if (curX < leftedge)
+                                                            tipobj.style.left = "5px"
+                                                        else
+                                                            //position the horizontal position of the menu where the mouse is positioned
+                                                            tipobj.style.left = curX + offsetxpoint + "px"
+
+                                                        //same concept with the vertical position
+                                                        if (bottomedge < tipobj.offsetHeight)
+                                                            tipobj.style.top = ie ? ietruebody().scrollTop + event.clientY - tipobj.offsetHeight - offsetypoint + "px" : window.pageYOffset + e.clientY - tipobj.offsetHeight - offsetypoint + "px"
+                                                        else
+                                                            tipobj.style.top = curY + offsetypoint + "px"
+                                                        tipobj.style.visibility = "visible"
+                                                    }
+                                                }
+
+                                                function hideddrivetip() {
+                                                    if (ns6 || ie) {
+                                                        enabletip = false
+                                                        tipobj.style.visibility = "hidden"
+                                                        tipobj.style.left = "-1000px"
+                                                        tipobj.style.backgroundColor = ''
+                                                        tipobj.style.width = ''
+                                                    }
+                                                }
+
+                                                document.onmousemove = positiontip
+
+                                </script>
+
+
+                            </div>
+                            <div style="font-size: 1px; background-color: rgb(255, 255, 255);">
+                                <div style="margin: 0px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);"></div>
+                                </div>
+                                <div style="margin: 0px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);"></div>
+                                </div>
+                                <div style="margin: 0px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);"></div>
+                                </div><div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                        <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);"></div>
+                                    </div>
+                                </div>
+                                <div style="margin: 0px 2px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                    <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                        <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+                                            <div style="margin: 0px 1px; height: 1px; overflow: hidden; background-color: rgb(255, 255, 255);">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+
+
+        </tr>
+        <tr>
+            <td height="20" align="left" valign="top" bgcolor="#717272" class="box">&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+<script>
+                $(document).ready(function () {
+                    // create DatePicker from input HTML element
+                    $("#datepicker").kendoDatePicker({
+                        value: $.now()
+                    });
+
+
+                });
+</script>
+
+<script>
+
+   
+</script>

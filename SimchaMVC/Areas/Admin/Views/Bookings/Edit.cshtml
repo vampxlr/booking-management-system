@@ -1,0 +1,209 @@
+﻿
+@{
+    SimchaMVC.ViewModelBookingUserHall BookInfo = ViewBag.BookInfo as SimchaMVC.ViewModelBookingUserHall;
+    IEnumerable<SelectListItem> StatusSelect = ViewBag.StatusSelect as IEnumerable<SelectListItem>;
+    IEnumerable<SelectListItem> Card_Type_Select = ViewBag.Card_Type_Select as IEnumerable<SelectListItem>;
+
+    ViewBag.Title = "Bookings";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+}
+<div class="row well bs-component">
+    <div class="col-md-6">
+        <div>
+
+
+            @using (Html.BeginForm("Edit", "Bookings", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.ValidationSummary()
+                @Html.AntiForgeryToken()
+                @Html.Hidden("id", BookInfo.id)
+                @Html.Hidden("returnUrl", ViewBag.ReturnUrl as string)
+                <fieldset>
+
+                    <legend>
+                        <a href="@ViewBag.ReturnUrl" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                        Booking Details <a href="@Url.Action("PrintBooking", new { id = BookInfo.id })" class="btn btn-info pull-right"><span style="font-size:15px" class="glyphicon glyphicon-floppy-open"></span> PDF</a>
+                    </legend>
+                    <div class="form-group">
+                        @Html.Label("Date of Event", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+
+                            @Html.TextBox("BookInfo", BookInfo.booking_date, new { @class = "form-control", disabled = "" })
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Time Slot", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("time_slot", BookInfo.time_slot, new { @class = "form-control", disabled = "" })
+
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Name", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("hall_name", BookInfo.hall_name, new { @class = "form-control", disabled = "" })
+
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Date Booked", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("create_date", BookInfo.create_date, new { @class = "form-control", disabled = "" })
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </fieldset>
+                <fieldset>
+
+                    <legend>User Information</legend>
+
+                    <div class="form-group">
+                        @Html.Label("User Name", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("user_name", BookInfo.user_name, new { @class = "form-control", disabled = "" })
+
+                            @Html.Hidden("user_id", BookInfo.user_id)
+                            @Html.Hidden("user_password", BookInfo.user_password)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("First Name", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("first_name", BookInfo.first_name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Last Name", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("last_name", BookInfo.last_name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Address", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("address1", BookInfo.address1, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Apt#", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("address2", BookInfo.address2, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("City ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("city", BookInfo.city, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("State ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("state", BookInfo.state, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Zip Code", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("zipcode", BookInfo.zipcode, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Email ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("email", BookInfo.email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Booking Status", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.DropDownList("booking_status", StatusSelect, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+
+                </fieldset>
+                <fieldset>
+
+                    <legend>Billing Information</legend>
+
+                    <div class="form-group">
+                        @Html.Label("Total Price", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("total", BookInfo.total, new { disabled = "", @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label("Card", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.DropDownList("card_type", Card_Type_Select, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label("Card Number", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("card_number", BookInfo.card_number, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Card Expiration", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("card_expiration", BookInfo.card_expiration, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Booking Notes", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.TextBox("customer_notes", BookInfo.customer_notes, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href=@Url.Action("index") class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Edit Information</button>
+                        @*@Html.ActionLink("Download as PDF", "PrintBooking", new { id = BookInfo.id }, new { @class = "btn btn-primary" })*@
+                    </div>
+                </div>
+
+
+            }
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+
+</script>

@@ -1,0 +1,266 @@
+﻿
+@{
+    ViewBag.Title = "BookingConfirm";
+    Layout = "~/Areas/Site/Views/Shared/_TreloView.cshtml";
+   SimchaMVC.booking book= ViewBag.Booking as SimchaMVC.booking;
+   SimchaMVC.hall hall = ViewBag.hall as SimchaMVC.hall;
+}
+
+<div class="page-title-container">
+    <div class="container">
+        <div class="page-title pull-left">
+            <h2 class="entry-title">Simcha Search Results</h2>
+        </div>
+        <ul class="breadcrumbs pull-right">
+            <li><a href="#">HOME</a></li>
+            <li class="active">Simcha Search Results</li>
+        </ul>
+    </div>
+</div>
+<section id="content" class="gray-area">
+    <div class="container">
+        <div class="row">
+            <div id="main" class="col-sms-6 col-sm-8 col-md-9">
+                <div class="booking-section travelo-box">
+
+                    <form class="booking-form">
+                        <div class="person-information">
+                            <h2>Your Personal Information</h2>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>first name</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>last name</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Address 1</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Address 2</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>City</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>State</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Zip Code</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Phone</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Email</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Verify Email</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+
+                        
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> I want to receive <span class="skin-color">Travelo</span> promotional offers in the future
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-information">
+                            <h2>Your Card Information</h2>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Credit Card Type</label>
+                                    <div class="selector">
+                                        <select class="full-width">
+                                            <option value="">Select Type</option>
+                                            <option @((book.card_type == "Visa") ? "selected" : "") value="Visa">Visa</option>
+                                            <option @((book.card_type == "Mastercard") ? "selected" : "") value="Mastercard">Mastercard</option>
+                                            <option @((book.card_type == "Amex") ? "selected" : "") value="Amex">American Express</option>
+                                        </select><span class="custom-select full-width">select a card</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Card holder name</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Card number</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Card identification number</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Expiration Date</label>
+                                    <div class="constant-column-2">
+                                        <div class="selector">
+                                            <select class="full-width">
+                                                <option>month</option>
+                                            </select><span class="custom-select full-width">month</span>
+                                        </div>
+                                        <div class="selector">
+                                            <select class="full-width">
+                                                <option>year</option>
+                                            </select><span class="custom-select full-width">year</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <label>billing zip code</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2>Arrival/Flight Information</h2>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-md-5">
+                                <label>Airline Name</label>
+                                <div class="selector full-width">
+                                    <select>
+                                        <option value="">Select...</option>
+                                    </select><span class="custom-select">Select...</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-5">
+                                <label>Arriving Number</label>
+                                <input type="text" class="input-text full-width">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> By continuing, you agree to the <a href="#"><span class="skin-color">Terms and Conditions</span></a>.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-md-5">
+                                <button type="submit" class="full-width btn-large">CONFIRM BOOKING</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="sidebar col-sms-6 col-sm-4 col-md-3">
+                <div class="booking-details travelo-box">
+                    <h4>Booking Details</h4>
+                    <article class="car-detail">
+                        <figure class="clearfix">
+                            <a title="" href="car-detailed.html" class="middle-block" style="position: relative;"><img class="middle-item" alt="" src="http://placehold.it/75x75" style="position: absolute; top: 50%; margin-top: -37.5px; left: 50%; margin-left: -37.5px;"></a>
+                            <div class="travel-title">
+                                <h5 class="box-title">@hall.hall_name<small>@hall.state , @hall.city</small></h5>
+                                <a onclick="window.history.back()" class="button">EDIT</a>
+                            </div>
+                        </figure>
+                        <div class="details">
+                            <div class="icon-box style11 full-width">
+                                <div class="icon-wrapper">
+                                    <i class="soap-icon-departure"></i>
+                                </div>
+                                <dl class="details">
+                                    <dt class="skin-color">Date</dt>
+                                    <dd>@book.booking_date.ToString("dddd dd MMMM yyyy")</dd>
+                                </dl>
+                            </div>
+                            <div class="icon-box style11 full-width">
+                                <div class="icon-wrapper">
+                                    <i class="soap-icon-departure"></i>
+                                </div>
+                                <dl class="details">
+                                    <dt class="skin-color">Time</dt>
+                                    <dd>@book.time_slot</dd>
+                                </dl>
+                            </div>
+                            <div class="icon-box style11 full-width">
+                                <div class="icon-wrapper">
+                                    <i class="soap-icon-departure"></i>
+                                </div>
+                                <dl class="details">
+                                    <dt class="skin-color">Location</dt>
+                                    <dd>@hall.address1</dd>
+                                    <dd>@hall.address2</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </article>
+
+                    <h4>Other Details</h4>
+                    <dl class="other-details">
+
+
+                        @if (!string.IsNullOrEmpty(hall.contact_name))
+                        {
+                            <dt class="feature">Admin Name:</dt>
+                            <dd class="value">@hall.contact_name</dd>
+                        }
+                        @if (!string.IsNullOrEmpty(hall.phone))
+                        {
+                            <dt class="feature">Phone 1:</dt>
+                            <dd class="value">@hall.phone</dd>
+                        }
+                        @if (!string.IsNullOrEmpty(hall.phone2))
+                        {
+                            <dt class="feature">Phone 2:</dt>
+                            <dd class="value">@hall.phone2</dd>
+
+                        } @if (!string.IsNullOrEmpty(hall.email))
+                        {
+                            <dt class="feature">Email:</dt>
+                            <dd class="value">@hall.email</dd>
+
+                        } @if (book.total!=null)
+                        {
+
+                            <dt class="total-price">Total Price</dt>
+                            <dd class="total-price-value">$@book.total</dd>
+                        }
+
+                     
+
+                    
+
+                    </dl>
+                </div>
+
+                <div class="travelo-box contact-box">
+                    <h4>Need Travelo Help?</h4>
+                    <p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
+                    <address class="contact-details">
+                        <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
+                        <br>
+                        <a class="contact-email" href="#">help@travelo.com</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

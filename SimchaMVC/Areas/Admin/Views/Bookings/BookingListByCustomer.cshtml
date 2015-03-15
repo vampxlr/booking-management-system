@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Booking List By Customer";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayout.cshtml";
+   IEnumerable<SimchaMVC.booking> Bookings= ViewBag.BookingsByUserId  as IEnumerable<SimchaMVC.booking>; 
+   }
+<div class="row">
+
+    
+    <div class="col-md-12">
+        <h3>
+            <a href="@ViewBag.ReturnUrl" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            Booking List of @ViewBag.UserName
+        </h3>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">List Of @ViewBag.Title</h3>
+            </div>
+            <div class="panel-body">
+                <div id="clientsDb">
+                    @(Html.Kendo().Grid((IEnumerable<SimchaMVC.booking>)ViewBag.BookingsByUserId)
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.id).Title("Id");
+     
+        columns.Bound(p => p.time_slot).Title("Time Slot");
+        columns.Bound(p => p.booking_date).Title("Booking Date").ToString();
+        columns.Bound(p => p.booking_status).Title("Booking Status");
+        columns.Template(@<text>
+            @Html.ActionLink("Edit", "Edit","Bookings", new { id =item.id, returnUrl = Request.Url.ToString() }, new { @class = "btn btn-default btn-sm" })
+        </text>).Width(60);
+        columns.Template(@<text>
+                            @Html.ActionLink("Delete", "Delete", "Bookings", new { id = item.id }, new { @class = "btn btn-default btn-sm" })
+        </text>).Width(75);
+
+    }).Filterable()
+                                                                                                                                                    .DataSource(dataSource => dataSource
+                                                                                                                                                    .Server()
+                                                                                                                                                    .Model(model => model.Id(p => p.id))
+
+
+
+                                                                                                                                                            )
+
+
+                                                                                                                                                              .Selectable(s => s.Mode(GridSelectionMode.Multiple))
+                                                                                                                                                        .Sortable()
+                                                                                                                                                        .Pageable(pageable => pageable
+                                                                                                                                                            .Refresh(true)
+                                                                                                                                                            .PageSizes(true)
+                                                                                                                                                            .ButtonCount(5))
+
+                    )
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

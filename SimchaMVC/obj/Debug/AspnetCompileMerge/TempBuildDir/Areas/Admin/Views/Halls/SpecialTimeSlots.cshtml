@@ -1,0 +1,139 @@
+﻿@{
+    IEnumerable<SimchaMVC.time_slots> TimeSlots = ViewBag.timeslots as IEnumerable<SimchaMVC.time_slots>;
+    IEnumerable<SimchaMVC.Models.special_time_slots> special_timeslots = ViewBag.special_timeslots as IEnumerable<SimchaMVC.Models.special_time_slots>;
+    DateTime date = ViewBag.date;
+    int hall_id = ViewBag.hall_id;
+    ViewBag.Title = "SpecialTimeSlots";
+    Layout = "~/Areas/Admin/Views/Shared/_DashboardLayoutWithOutAlert.cshtml";
+    int weekdayid = ViewBag.weekdayid;
+     SimchaMVC.hall Hall = ViewBag.Hall as SimchaMVC.hall;
+}
+
+<h2>Special TimeSlots</h2>
+
+
+<h3><a href="@Url.Action("Calendar", new { id=hall_id })" class="btn btn-primary"> <span class="glyphicon glyphicon-chevron-left"></span></a><strong> Hall Name:</strong><em> @Hall.hall_name</em> </h3>
+<em> <strong> List of Slots for :</strong> @date.ToString("dddd, dd/MM/yyyy") </em>
+
+<br />
+<br />
+
+
+<div class="row">
+    <div class="col-md-4 ">
+        
+        <div class="list-group">
+
+
+            @foreach (var item in TimeSlots)
+            {
+                IEnumerable<SimchaMVC.Models.special_time_slots> s = special_timeslots.Where(r => r.disable_time_slot_id == item.id).ToList();
+
+                if (s.Count() == 0)
+                {
+
+                    <a href="@Url.Action("DisableEnableTimeSlot", new { time_slot_id = @item.id, hall_id = @item.hall_id, date = date, special_slot = false })" class=" list-group-item ">
+                        <span class="glyphicon glyphicon-ok"></span> @item.time_slot
+                    </a>
+
+                }
+                else
+                {
+                    <a href="@Url.Action("DisableEnableTimeSlot", new { time_slot_id = @item.id, hall_id = @item.hall_id, date = date, special_slot = false })" style="background-color: #e14b4b;border-color: #e14b4b;" class="active list-group-item">
+                        <span class="glyphicon glyphicon-remove"></span> @item.time_slot
+                    </a>
+
+
+                }
+            }
+
+            @foreach (var item in special_timeslots.Where(r => r.is_special_slot == true && r.special_date == date))
+            {
+                if (item.is_disable_record == false)
+                {
+                    <a href="@Url.Action("DisableEnableTimeSlot", new { time_slot_id = @item.id, hall_id = @item.hall_id, date = date, special_slot = true })" class=" list-group-item ">
+                        <span class="glyphicon glyphicon-ok"></span> @item.special_time_slot [Special Slot]
+                    </a>
+
+
+
+                }
+                else
+                {
+
+                    <a href="@Url.Action("DisableEnableTimeSlot", new { time_slot_id = @item.id, hall_id = @item.hall_id, date = date, special_slot = true })" style="background-color: #e14b4b;border-color: #e14b4b;" class="active list-group-item ">
+                        <span class="glyphicon glyphicon-remove"></span> @item.special_time_slot [Special Slot]
+                    </a>
+
+
+                }
+
+            }
+
+
+      
+        </div>
+        @using (Html.BeginForm("SpecialTimeSlots", "Halls", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.ValidationSummary()
+            @Html.Hidden("special_date", date)
+            @Html.Hidden("hall_id", hall_id)
+            @Html.Hidden("is_disable_record", false)
+            @Html.Hidden("is_special_slot", true)
+            @Html.Hidden("weekdayid", weekdayid)
+
+
+
+    <fieldset>
+        <legend>Add Special Time Slot</legend>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Special Time Slot</label>
+            <div class="col-lg-10">
+                @Html.TextBox("special_time_slot", null, new { placeholder = "Add New Special Slot", @class = "form-control" })
+
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Slot Price</label>
+            <div class="col-lg-10">
+                @Html.TextBox("slot_price", null, new { placeholder = "Slot Price", @class = "form-control" })
+
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Slot Capacity</label>
+            <div class="col-lg-10">
+                @Html.TextBox("slot_amount", null, new { placeholder = "Slot Capacity", @class = "form-control" })
+
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+             
+                <button type="submit" class="btn btn-primary">Add Slot</button>
+            </div>
+        </div>
+
+ 
+
+
+    </fieldset>
+
+
+
+
+
+
+        }
+    </div>
+
+</div>
+
+
+
+
+
+

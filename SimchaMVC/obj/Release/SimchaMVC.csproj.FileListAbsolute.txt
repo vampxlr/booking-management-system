@@ -1,0 +1,187 @@
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\SimchaMVC.dll.config
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\SimchaMVC.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\SimchaMVC.pdb
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\Antlr3.Runtime.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\EntityFramework.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\Kendo.Mvc.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\Microsoft.Web.Infrastructure.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\Newtonsoft.Json.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Net.Http.Formatting.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Http.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Http.WebHost.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Mvc.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Optimization.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Razor.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.WebPages.Deployment.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.WebPages.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.WebPages.Razor.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\WebGrease.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\EntityFramework.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\Kendo.Mvc.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\Newtonsoft.Json.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Net.Http.Formatting.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Http.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Http.WebHost.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Mvc.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Razor.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.WebPages.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.WebPages.Deployment.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.WebPages.Razor.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\bg-BG\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\da-DK\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\de-DE\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\es-ES\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\fr-FR\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\it-IT\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\nl-NL\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\pl-PL\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\pt-BR\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\pt-PT\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\ro-RO\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\ru-RU\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\sv-SE\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\uk-UA\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\zh-CN\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\obj\Release\SimchaMVC.csprojResolveAssemblyReference.cache
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\obj\Release\SimchaMVC.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\obj\Release\SimchaMVC.pdb
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Helpers.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Web.Helpers.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Net.Http.Extensions.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Net.Http.Primitives.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Net.Http.Extensions.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\System.Net.Http.Primitives.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\obj\Release\SimchaMVC.csproj.App.config
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\EntityFramework.SqlServer.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo\SimchaMVC\bin\EntityFramework.SqlServer.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.dll.config
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.pdb
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Antlr3.Runtime.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.SqlServer.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Kendo.Mvc.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Microsoft.Web.Infrastructure.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Newtonsoft.Json.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Extensions.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Formatting.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Primitives.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Helpers.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.WebHost.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Mvc.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Optimization.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Razor.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Deployment.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Razor.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebGrease.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.Data.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.WebData.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.SqlServer.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Kendo.Mvc.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Extensions.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Primitives.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Helpers.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Mvc.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Razor.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Deployment.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Razor.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Newtonsoft.Json.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Formatting.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.WebHost.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.Data.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.WebData.xml
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\bg-BG\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\da-DK\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\de-DE\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\es-ES\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\fr-FR\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\it-IT\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\nl-NL\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\pl-PL\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\pt-BR\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\pt-PT\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\ro-RO\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\ru-RU\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\sv-SE\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\uk-UA\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\zh-CN\Kendo.Mvc.resources.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\obj\Release\SimchaMVC.csproj.App.config
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\obj\Release\SimchaMVC.csprojResolveAssemblyReference.cache
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\obj\Release\SimchaMVC.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\obj\Release\SimchaMVC.pdb
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Providers.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Microsoft.Web.Helpers.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EO.Pdf.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EO.Pdf.Mvc.dll
+G:\NewProjects\Simcha\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EO.Pdf.Mvc5.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.dll.config
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.pdb
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.dll.CodeAnalysisLog.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\SimchaMVC.dll.lastcodeanalysissucceeded
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Antlr3.Runtime.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.SqlServer.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EO.Pdf.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EO.Pdf.Mvc.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EO.Pdf.Mvc5.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Kendo.Mvc.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Microsoft.Web.Helpers.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Microsoft.Web.Infrastructure.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Newtonsoft.Json.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Extensions.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Formatting.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Primitives.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Helpers.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.WebHost.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Mvc.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Optimization.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Providers.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Razor.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Deployment.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Razor.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebGrease.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.Data.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.WebData.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\EntityFramework.SqlServer.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Kendo.Mvc.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Extensions.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Primitives.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Helpers.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Mvc.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Razor.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Deployment.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.WebPages.Razor.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\Newtonsoft.Json.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Net.Http.Formatting.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\System.Web.Http.WebHost.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.Data.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\WebMatrix.WebData.xml
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\bg-BG\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\da-DK\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\de-DE\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\es-ES\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\fr-FR\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\it-IT\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\nl-NL\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\pl-PL\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\pt-BR\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\pt-PT\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\ro-RO\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\ru-RU\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\sv-SE\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\uk-UA\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\bin\zh-CN\Kendo.Mvc.resources.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\obj\Release\SimchaMVC.csproj.App.config
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\obj\Release\SimchaMVC.dll
+I:\NewProjects\SimchaMVC - Kendo - Before MemberShip\SimchaMVC\obj\Release\SimchaMVC.pdb

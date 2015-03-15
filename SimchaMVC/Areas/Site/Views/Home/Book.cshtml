@@ -1,0 +1,267 @@
+﻿@{
+    
+  var hall =  ViewBag.hall as SimchaMVC.hall;
+  DateTime event_date = ViewBag.event_date;
+
+  IEnumerable<SimchaMVC.time_slots> time_slots=ViewBag.time_slots as IEnumerable<SimchaMVC.time_slots>;
+  IEnumerable<SimchaMVC.event_types> selected_event_types= ViewBag.selected_event_types as IEnumerable<SimchaMVC.event_types>; 
+  
+  ViewBag.Title = "Book";
+    Layout = "~/Areas/Site/Views/Shared/_ShareSite.cshtml";
+}
+<div class="mainBody">
+    <div class="scond_mainBodyLeft">
+        <div class="makingsimichsppourt">
+            <img src="~/Content/images/bookHoll.jpg" alt="">
+            <div class="scond_box_bott_text">
+                Please provide short paragraph for the account login page. Please provide short
+                paragraph for the account login page. Please provide short paragraph for the account
+                login page. Please provide short paragraph for the account login page.
+            </div>
+            <div class="scond_box_sppourt">
+                <div class="scond_box_top" style="margin-left: 0px;">
+                    <a href="SearchHalls.aspx" style="border:none"><img src="~/Content/images/confirm.jpg" alt="" border="0"></a>
+                </div>
+                <div class="scond_box_bg">
+                    <div class="second_left_box">
+                        <div class="sppourt_hallpage">
+                            <div class="hall_text">
+                                <img src="~/Content/images/confirm_img.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!--end left scond page=====-->
+                    <div class="second_line">
+                        <img src="~/Content/images/line.jpg" alt="">
+                    </div>
+                    <div class="second_right_box">
+                        <table width="400" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <b>@hall.hall_name
+                                            </b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Location: <b>@hall.service_area
+                                            </b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>@hall.address1
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>@hall.city, @hall.state @hall.zip_code
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Tel:@hall.phone
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fax:@hall.fax
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <b>Event Date: @event_date.ToString("dddd MM yyyy")</b> &nbsp;&nbsp;
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <b>Time Slot:</b><ul>
+                                                        @foreach(var item in time_slots)
+                                                                                                    {
+                                                            <li> @item.time_slot </li>
+                                                                                                    }
+                                                    </ul>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <b>Event Type:</b> <ul>
+                                                                    @foreach(var item in selected_event_types)
+                                                                                                                {
+                                                                        <li> @item.type_name </li>
+                                                                                                                }
+                                                                </ul>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="scond_box_bott_text1" align="justify">
+                        <b>Note:</b> Please make sure your options are correct before proceeding to add
+                        your billing information. We will hold your reservation for up to 24 hours if no
+                        deposit is made. More disclaimer text overe here. More disclaimer text over here.
+                        More disclaimer text over here. More disclaimer text over here. More disclaimer
+                        text over here. More disclaimer text over here. More disclaimer text over here.
+                        More disclaimer text over here. More disclaimer text over here..
+                    </div>
+                    <div class="scond_box_bott_text1" style="margin-left: -0px;">
+                        <a href="SearchHalls.aspx" style="border:none"><img src="~/Content/images/acount_info_img.jpg" alt="" border="0"> </a>
+                    </div>
+                    <div class="second_right_box1">
+                        <table width="400" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <b>@hall.hall_name</b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Location: <b>@hall.service_area </b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>@hall.city, @hall.state @hall.zip_code
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Tel:@hall.phone
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fax:@hall.fax
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <b>
+                                                Event Type:
+                                            </b><ul>
+                                                @foreach(var item in selected_event_types)
+                                                {
+                                            <li> @item.type_name </li>
+                                                }
+                                            </ul>
+
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bookHoll_bg_sppourt">
+                        <div class="bookHoll_bg">
+                            <div class="second_right_box2">
+                                <div class="second_left_text">
+                                    <strong>Event Type:<span style="color: #FF0000">*</span></strong>
+                                </div>
+                                <div class="second_left_text">
+                                    <select name="type_name" id="Content_ddlEventType" style="width: 160px; height: 21px;
+                                            border: 1px solid #999999;">
+                                        @foreach(var item in selected_event_types){
+                                            <option value="@item.type_name">@item.type_name</option>
+                                        }
+
+
+
+                                    </select>
+                                </div>
+                                <div class="second_left_text">
+                                    <strong>Amount of Guests: <span style="color: #FF0000">*</span></strong>
+                                </div>
+                                <div class="second_left_text">
+                                    <select name="ctl00$Content$ddlGuest" id="Content_ddlGuest" style="width: 160px; height: 21px;
+                                            border: 1px solid #999999;">
+                                        <option value="@hall.capacity">Maximum @hall.capacity</option>
+                                      
+
+                                    </select>
+                                </div>
+                                <div class="second_left_text">
+                                    <strong>Time of Day:<span style="color: #FF0000">*</span></strong>
+                                </div>
+                                <div class="second_left_text">
+                                    <select name="time_slot" id="Content_ddlTimeOfDay" style="width: 160px; height: 21px;
+                                            border: 1px solid #999999;">
+                                        @foreach(var item in time_slots){
+
+                                            <option value="@item.time_slot">@item.time_slot</option>
+                                }
+                                    </select>
+                                </div>
+                                <div class="submit_bt" style="margin-top: 20px;">
+                                    <input type="submit" name="ctl00$Content$btnSubmit" value="Submit Payment" id="Content_btnSubmit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end right scond page=====-->
+                </div>
+                <div class="scond_box_bott">
+                    <img src="~/Content/images/sec_account_bott.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

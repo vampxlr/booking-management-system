@@ -1,0 +1,33 @@
+﻿@model SimchaMVC.hall_images
+           @{
+               int hall_id = Convert.ToInt32(Url.RequestContext.RouteData.Values["id"]);
+           }
+
+<div class="well">
+    <table class="table">
+        @using (Html.BeginForm("ImagesAddNewRecord", "Halls", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Hidden("hall_id", hall_id)
+            <tbody>
+           
+                <tr>
+                    <td><label class="field-title">Upload New Image:</label> </td>
+                    <td>@Html.TextBox("image", null, new { name = "file", type = "file", accept = "image/*" }) &nbsp;&nbsp;&nbsp;</td>
+                </tr>
+
+                <tr><td valign="top"><label class="field-title">Notes:</label> </td><td><input name="image_caption" class="form-control" /></td></tr>
+                <tr>
+                    <td><label class="field-title">Display Order:</label> </td>
+                    <td><input name="order_by" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="btn btn-default" name="uploadimage" value="Upload"></td>
+                </tr>
+
+            </tbody>
+        }
+    </table>
+</div>

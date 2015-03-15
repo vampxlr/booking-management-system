@@ -1,0 +1,87 @@
+﻿@model  IEnumerable<SimchaMVC.hall_images>
+
+@{
+    int hall_id = Convert.ToInt32(Url.RequestContext.RouteData.Values["id"]);
+    ViewBag.Title = "Halls";
+    ViewBag.SubTitle = "Images";
+    Layout = "~/Areas/Admin/Views/Halls/_SubHallsLayout.cshtml";
+}
+
+<table class="table" width="90%" align="center">
+    <tbody>
+        <tr>
+            @foreach (var item in Model.Where(r=>r.hall_id==hall_id))
+            {
+                using (Html.BeginForm("Images","Halls",FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.Hidden("hall_images_id", item.id)
+                    @Html.Hidden("image_name", item.image_name)
+                    @Html.Hidden("hall_id", item.hall_id)
+                    <td>
+                        <table class="table well well-sm">
+
+                            <tbody>
+                                <tr>
+                                    <td height="130" align="center" valign="middle"><img src="~/Content/thumbs/@item.image_name"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label for="inputEmail" class="col-lg-2 control-label">Image Caption:</label>
+                                            <div class="col-lg-10">
+                                                @Html.TextBox("image_caption", item.image_caption, new { name = "id", @class = "form-control", data_toggle = "tooltip", data_placement = "top", title = "", data_original_title = "Hashgacha Name" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                              
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label for="inputEmail" class="col-lg-2 control-label">Order by:</label>
+                                            <div class="col-lg-10">
+                                                @Html.TextBox("order_by", item.order_by, new { name = "order_by", @class = "form-control", data_toggle = "tooltip", data_placement = "top", title = "", data_original_title = "Display Order" })
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="submit" class="btn btn-default" value="Edit" > @Html.ActionLink("Delete", "ImagesDelete", new { id = item.id, hall_id = hall_id }, new { @class = "btn btn-default" })</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </td>
+
+
+                }
+
+            }
+        </tr>
+    </tbody>
+</table>
+
+
+
+<div style=" background-image:none; background-color:#FFFFFF; ">
+
+
+    <span class="maintext" id="uploaddiv">
+        @{Html.RenderPartial("_HIimageUploadPartial", new ViewDataDictionary { Model = new SimchaMVC.hall_images() });}
+
+    </span><div class="maintext" id="uploaddiv1" align="center" style="color:red;font-weight:bold;"></div>
+
+
+</div>
+
+
+<script>
+    $(".active").removeClass("active");
+    $("a:contains('@ViewBag.Title')").parents("li").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").addClass("active");
+    $("a:contains('@ViewBag.Subtitle')").parents("li").addClass("active");
+
+</script>
