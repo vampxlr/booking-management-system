@@ -11,7 +11,7 @@ namespace SimchaMVC.Models.Context
 
         public DbSet<admin_users> Users { get; set; }
         public LoginContext()
-            : base("name=SimchaDB")
+            : base("name=SimchaDBLocal")
         {
 
         }

@@ -24,8 +24,7 @@ namespace SimchaMVC
 
             
             AreaRegistration.RegisterAllAreas();
-            WebSecurity.InitializeDatabaseConnection("SimchaDB", "admin_users", "Id", "user_name", autoCreateTables: true);
-          
+            WebSecurity.InitializeDatabaseConnection("SimchaDBLocal", "admin_users", "Id", "user_name", autoCreateTables: true);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

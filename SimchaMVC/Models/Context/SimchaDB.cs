@@ -9,7 +9,7 @@ using SimchaMVC.Models;
     public partial class SimchaDB : DbContext
     {
         public SimchaDB()
-            : base("name=SimchaDB")
+            : base("name=SimchaDBLocal")
         {
         }
         public virtual DbSet<special_time_slots> special_time_slots { get; set; }
