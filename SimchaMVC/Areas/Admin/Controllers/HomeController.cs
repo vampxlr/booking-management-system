@@ -47,7 +47,7 @@ namespace SimchaMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       
         public ActionResult Login(FormCollection form)
         {
 

@@ -6,7 +6,7 @@
 <!--<![endif]-->
 <head>
     <!-- Page Title -->
-    <title>Travelo | Responsive HTML5 Travel Template</title>
+    <title>Amader Booking | Hall Booking Application</title>
     <script src="~/Content/travelo23/html/js/pace.min.js" data-pace-options='{ "ajax": false }'></script>
     <script src="~/Content/travelo23/html/js/page-loading.js"></script>
     <!-- Meta Tags -->
@@ -103,7 +103,7 @@
     <script src="~/Scripts/kendo/2014.1.318/kendo.all.min.js"></script>
     <script src="~/Scripts/kendo/2014.1.318/kendo.aspnetmvc.min.js"></script>
 
-
+    <script src="~/Content/kendo/popupfix.js"></script>
 
 
 
@@ -115,46 +115,12 @@
                 <div class="container">
                     <ul class="quick-menu pull-left">
                         <li><a href="#">MY ACCOUNT</a></li>
-                        <li class="ribbon">
-                            <a href="#">English</a>
-                            <ul class="menu mini">
-                                <li><a href="#" title="Dansk">Dansk</a></li>
-                                <li><a href="#" title="Deutsch">Deutsch</a></li>
-                                <li class="active"><a href="#" title="English">English</a></li>
-                                <li><a href="#" title="Español">Español</a></li>
-                                <li><a href="#" title="Français">Français</a></li>
-                                <li><a href="#" title="Italiano">Italiano</a></li>
-                                <li><a href="#" title="Magyar">Magyar</a></li>
-                                <li><a href="#" title="Nederlands">Nederlands</a></li>
-                                <li><a href="#" title="Norsk">Norsk</a></li>
-                                <li><a href="#" title="Polski">Polski</a></li>
-                                <li><a href="#" title="Português">Português</a></li>
-                                <li><a href="#" title="Suomi">Suomi</a></li>
-                                <li><a href="#" title="Svenska">Svenska</a></li>
-                            </ul>
-                        </li>
+                      
                     </ul>
                     <ul class="quick-menu pull-right">
                         <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
                         <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
-                        <li class="ribbon currency">
-                            <a href="#" title="">USD</a>
-                            <ul class="menu mini">
-                                <li><a href="#" title="AUD">AUD</a></li>
-                                <li><a href="#" title="BRL">BRL</a></li>
-                                <li class="active"><a href="#" title="USD">USD</a></li>
-                                <li><a href="#" title="CAD">CAD</a></li>
-                                <li><a href="#" title="CHF">CHF</a></li>
-                                <li><a href="#" title="CNY">CNY</a></li>
-                                <li><a href="#" title="CZK">CZK</a></li>
-                                <li><a href="#" title="DKK">DKK</a></li>
-                                <li><a href="#" title="EUR">EUR</a></li>
-                                <li><a href="#" title="GBP">GBP</a></li>
-                                <li><a href="#" title="HKD">HKD</a></li>
-                                <li><a href="#" title="HUF">HUF</a></li>
-                                <li><a href="#" title="IDR">IDR</a></li>
-                            </ul>
-                        </li>
+                     
                     </ul>
                 </div>
             </div>
@@ -166,13 +132,12 @@
                 </a>
 
                 <div class="container">
-                    <h1 class="logo navbar-brand">
+                    <div style="float:right;width:250px;height: 61px;" class="logo navbar-brand">
                         <a href='@Url.Action("Index")' title="Travelo - home">
-                            <h3 style="text-transform:uppercase">Simcha Booking</h3>
                         </a>
-                    </h1>
+                    </div>
 
-                    <nav id="main-menu" role="navigation">
+                    <nav style="float:left" id="main-menu" role="navigation">
                         <ul class="menu">
                             <li class="menu-item-has-children">
                                 <a href='@Url.Action("Index")'>Home</a>
@@ -190,10 +155,7 @@
                                 <a href='@Url.Action("Search")'>Search</a>
 
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href='@Url.Action("Book")'>Book</a>
-
-                            </li>
+                           
                             <li class="menu-item-has-children">
                                 <a href='@Url.Action("Contact")'>Contact</a>
 
@@ -363,14 +325,14 @@
                 <div class="container">
                     <div class="logo pull-left">
                         <a href="#" title="Travelo - home">
-                            <h3 style="text-transform:uppercase">Simcha Booking</h3>
+                            <h3 style="text-transform:uppercase">Hall Booking</h3>
                         </a>
                     </div>
                     <div class="pull-right">
                         <a id="back-to-top" href="#" class="animated" data-animation-type="bounce"><i class="soap-icon-longarrow-up circle"></i></a>
                     </div>
                     <div class="copyright pull-right">
-                        <p>&copy; 2014 Travelo</p>
+                        <p>&copy; 2014, Developed by Kamrul Ahsan</p>
                     </div>
                 </div>
             </div>

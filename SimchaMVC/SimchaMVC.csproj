@@ -1249,6 +1249,7 @@
     <Content Include="Content\kendo\2014.1.318\Uniform\slider-v.gif" />
     <Content Include="Content\kendo\2014.1.318\Uniform\sprite.png" />
     <Content Include="Content\kendo\2014.1.318\Uniform\sprite_2x.png" />
+    <Content Include="Content\kendo\popupfix.js" />
     <Content Include="Content\login.html" />
     <Content Include="Content\menu_style.css" />
     <Content Include="Content\multiselectUI\ajax.html" />
@@ -1791,6 +1792,8 @@
     <Content Include="Content\travelo23\html\css\font-awesome.css" />
     <Content Include="Content\travelo23\html\css\font-awesome.min.css" />
     <Content Include="Content\travelo23\html\css\ie.css" />
+    <Content Include="Content\travelo23\html\css\logo.png" />
+    <Content Include="Content\travelo23\html\css\logo2.png" />
     <Content Include="Content\travelo23\html\css\responsive.css" />
     <Content Include="Content\travelo23\html\css\soap-icon.css" />
     <Content Include="Content\travelo23\html\css\style-dark-blue.css" />
