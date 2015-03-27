@@ -42,27 +42,27 @@ namespace SimchaMVC.Areas.Admin.Controllers
              return View();
          }
 
-         public ActionResult Delete(int id)
-         {
-             hashgacha_images HG = DB.hashgacha_images.Find(id);
-             DB.hashgacha_images.Remove(HG);
-             DB.SaveChanges();
+         //public ActionResult Delete(int id)
+         //{
+         //    hashgacha_images HG = DB.hashgacha_images.Find(id);
+         //    DB.hashgacha_images.Remove(HG);
+         //    DB.SaveChanges();
 
-             if (DB.caterers_hashgachot.Any(r => r.hashgacha_id == id))
-             {
-                 IEnumerable<caterers_hashgachot> ToRemove = DB.caterers_hashgachot.Where(r => r.hashgacha_id == id).ToList();
+         //    if (DB.caterers_hashgachot.Any(r => r.hashgacha_id == id))
+         //    {
+         //        IEnumerable<caterers_hashgachot> ToRemove = DB.caterers_hashgachot.Where(r => r.hashgacha_id == id).ToList();
 
-                 foreach (var item in ToRemove)
-                 {
-                     DB.caterers_hashgachot.Remove(item);
-                     DB.SaveChanges();
+         //        foreach (var item in ToRemove)
+         //        {
+         //            DB.caterers_hashgachot.Remove(item);
+         //            DB.SaveChanges();
 
-                 }
-             }
+         //        }
+         //    }
 
 
-             return RedirectToAction("Index");
-         }
+         //    return RedirectToAction("Index");
+         //}
 
 
 

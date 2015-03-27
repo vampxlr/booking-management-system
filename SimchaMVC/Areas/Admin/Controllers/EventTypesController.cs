@@ -82,27 +82,27 @@ namespace SimchaMVC.Areas.Admin.Controllers
 
         [HttpGet, ActionName("Delete")]
 
-        public ActionResult DeleteConfirmed(int id)
-        {
-            event_types eventT = DB.event_types.Find(id);
-            DB.event_types.Remove(eventT);
-            DB.SaveChanges();
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    event_types eventT = DB.event_types.Find(id);
+        //    DB.event_types.Remove(eventT);
+        //    DB.SaveChanges();
 
 
-            if (DB.hall_event_types.Any(r => r.type_id == id))
-            {
-                IEnumerable<hall_event_types> hallEventsToRemove = DB.hall_event_types.Where(r => r.type_id == id).ToList();
+        //    if (DB.hall_event_types.Any(r => r.type_id == id))
+        //    {
+        //        IEnumerable<hall_event_types> hallEventsToRemove = DB.hall_event_types.Where(r => r.type_id == id).ToList();
 
-                foreach (var item in hallEventsToRemove)
-                {
-                    DB.hall_event_types.Remove(item);
-                    DB.SaveChanges();
+        //        foreach (var item in hallEventsToRemove)
+        //        {
+        //            DB.hall_event_types.Remove(item);
+        //            DB.SaveChanges();
 
-                }
-            }
+        //        }
+        //    }
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
 
 

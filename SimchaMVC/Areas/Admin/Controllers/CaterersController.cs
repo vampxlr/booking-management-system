@@ -78,26 +78,26 @@ namespace SimchaMVC.Areas.Admin.Controllers
 
 
 
-        public ActionResult Delete(int id)
-        {
-            caterer caterer = DB.caterers.Find(id);
-            DB.caterers.Remove(caterer);
-            DB.SaveChanges();
+        //public ActionResult Delete(int id)
+        //{
+        //    caterer caterer = DB.caterers.Find(id);
+        //    DB.caterers.Remove(caterer);
+        //    DB.SaveChanges();
 
-            if (DB.hall_caterers.Any(r => r.caterer_id == id))
-            {
-                IEnumerable<hall_caterers> caterersToRemove = DB.hall_caterers.Where(r => r.caterer_id == id).ToList();
+        //    if (DB.hall_caterers.Any(r => r.caterer_id == id))
+        //    {
+        //        IEnumerable<hall_caterers> caterersToRemove = DB.hall_caterers.Where(r => r.caterer_id == id).ToList();
 
-                foreach (var item in caterersToRemove)
-                {
-                    DB.hall_caterers.Remove(item);
-                    DB.SaveChanges();
+        //        foreach (var item in caterersToRemove)
+        //        {
+        //            DB.hall_caterers.Remove(item);
+        //            DB.SaveChanges();
 
-                }
-            }
+        //        }
+        //    }
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
 
 
@@ -173,16 +173,16 @@ namespace SimchaMVC.Areas.Admin.Controllers
 
          }
 
-         public ActionResult deleteCaterer(int id, string caterer_id)
-        {
-            int hashgachotId = id;
-            int catererid = Convert.ToInt32(caterer_id);
-            caterers_hashgachot caterers_hashgachot = DB.caterers_hashgachot.FirstOrDefault(r => r.hashgacha_id == hashgachotId && r.caterer_id == catererid);
+        // public ActionResult deleteCaterer(int id, string caterer_id)
+        //{
+        //    int hashgachotId = id;
+        //    int catererid = Convert.ToInt32(caterer_id);
+        //    caterers_hashgachot caterers_hashgachot = DB.caterers_hashgachot.FirstOrDefault(r => r.hashgacha_id == hashgachotId && r.caterer_id == catererid);
 
-            DB.caterers_hashgachot.Remove(caterers_hashgachot);
-            DB.SaveChanges();
-            return RedirectToAction("CatererHashgachot", new { id = caterer_id });
-        }
+        //    DB.caterers_hashgachot.Remove(caterers_hashgachot);
+        //    DB.SaveChanges();
+        //    return RedirectToAction("CatererHashgachot", new { id = caterer_id });
+        //}
 
 
         protected override void Dispose(bool disposing)

@@ -80,27 +80,27 @@ namespace SimchaMVC.Areas.Admin.Controllers
 
 
 
-        [HttpGet, ActionName("Delete")]
+        //[HttpGet, ActionName("Delete")]
 
-        public ActionResult DeleteConfirmed(int id)
-        {
-            service_areas serviceArea = DB.service_areas.Find(id);
-            DB.service_areas.Remove(serviceArea);
-            DB.SaveChanges();
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    service_areas serviceArea = DB.service_areas.Find(id);
+        //    DB.service_areas.Remove(serviceArea);
+        //    DB.SaveChanges();
            
-            if (DB.hall_areas.Any(r => r.area_id == id)) {
-                IEnumerable<hall_areas> areaToRemove = DB.hall_areas.Where(r => r.area_id == id).ToList();
+        //    if (DB.hall_areas.Any(r => r.area_id == id)) {
+        //        IEnumerable<hall_areas> areaToRemove = DB.hall_areas.Where(r => r.area_id == id).ToList();
 
-                foreach (var item in areaToRemove)
-                {
-                    DB.hall_areas.Remove(item);
-                    DB.SaveChanges();
+        //        foreach (var item in areaToRemove)
+        //        {
+        //            DB.hall_areas.Remove(item);
+        //            DB.SaveChanges();
            
-                }
-            }
+        //        }
+        //    }
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
 
 

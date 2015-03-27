@@ -166,15 +166,15 @@ namespace SimchaMVC.Areas.Admin.Controllers
    
  
 
-        [HttpGet, ActionName("Delete")]
+        //[HttpGet, ActionName("Delete")]
        
-        public ActionResult DeleteConfirmed(int id)
-        {
-            admin_users user = DB.admin_users.Find(id);
-            DB.admin_users.Remove(user);
-            DB.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    admin_users user = DB.admin_users.Find(id);
+        //    DB.admin_users.Remove(user);
+        //    DB.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
         [HttpGet]
         public ActionResult Assign(int id)
         {

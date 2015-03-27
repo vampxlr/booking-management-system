@@ -438,15 +438,15 @@ namespace SimchaMVC.Areas.Admin.Controllers
 
 
 
-        [HttpGet, ActionName("Delete")]
+        //[HttpGet, ActionName("Delete")]
 
-        public ActionResult DeleteConfirmed(int id)
-        {
-            hall hall = DB.halls.Find(id);
-            DB.halls.Remove(hall);
-            DB.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    hall hall = DB.halls.Find(id);
+        //    DB.halls.Remove(hall);
+        //    DB.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpGet]
        public ActionResult TimeSlots(int id , string returnUrl)
@@ -516,15 +516,15 @@ namespace SimchaMVC.Areas.Admin.Controllers
              return RedirectToAction("TimeSlots", Convert.ToInt32(hallid));
          }
 
-         [HttpGet, ActionName("DeleteTimeSlot")]
+         //[HttpGet, ActionName("DeleteTimeSlot")]
 
-         public ActionResult DeleteTimeSlot(int id)
-         {
-             time_slots DbTimeslot = DB.time_slots.Find(id);
-             DB.time_slots.Remove(DbTimeslot);
-             DB.SaveChanges();
-             return RedirectToAction("TimeSlots", new { id = DbTimeslot.hall_id });
-         }
+         //public ActionResult DeleteTimeSlot(int id)
+         //{
+         //    time_slots DbTimeslot = DB.time_slots.Find(id);
+         //    DB.time_slots.Remove(DbTimeslot);
+         //    DB.SaveChanges();
+         //    return RedirectToAction("TimeSlots", new { id = DbTimeslot.hall_id });
+         //}
 
 
 
@@ -585,16 +585,16 @@ namespace SimchaMVC.Areas.Admin.Controllers
              return View(hallCaterers);
          }
                
-         public ActionResult deleteCaterer(int id,string hall_id)
-        {
-            int catererId = id;
-            int hallid = Convert.ToInt32(hall_id);
-            hall_caterers hall_caterers = DB.hall_caterers.FirstOrDefault(r=>r.hall_id==hallid && r.caterer_id==catererId);
+        // public ActionResult deleteCaterer(int id,string hall_id)
+        //{
+        //    int catererId = id;
+        //    int hallid = Convert.ToInt32(hall_id);
+        //    hall_caterers hall_caterers = DB.hall_caterers.FirstOrDefault(r=>r.hall_id==hallid && r.caterer_id==catererId);
 
-            DB.hall_caterers.Remove(hall_caterers);
-            DB.SaveChanges();
-            return RedirectToAction("Caterers", new { id = hallid });
-        }
+        //    DB.hall_caterers.Remove(hall_caterers);
+        //    DB.SaveChanges();
+        //    return RedirectToAction("Caterers", new { id = hallid });
+        //}
        
   
 
@@ -658,14 +658,14 @@ namespace SimchaMVC.Areas.Admin.Controllers
              return View(HI);
          }
 
-       public ActionResult ImagesDelete(int id, string hall_id)
-         {
-             int hallid = Convert.ToInt32(hall_id); 
-             hall_images HI = DB.hall_images.Find(id);
-             DB.hall_images.Remove(HI);
-             DB.SaveChanges();
-             return RedirectToAction("Images", new { id = hallid });
-         }
+       //public ActionResult ImagesDelete(int id, string hall_id)
+       //  {
+       //      int hallid = Convert.ToInt32(hall_id); 
+       //      hall_images HI = DB.hall_images.Find(id);
+       //      DB.hall_images.Remove(HI);
+       //      DB.SaveChanges();
+       //      return RedirectToAction("Images", new { id = hallid });
+       //  }
 
 
 

@@ -83,15 +83,15 @@ namespace SimchaMVC.Areas.Admin.Controllers
    
 
 
-        [HttpGet, ActionName("Delete")]
+        //[HttpGet, ActionName("Delete")]
 
-        public ActionResult DeleteConfirmed(int id)
-        {
-            user user = DB.users.Find(id);
-            DB.users.Remove(user);
-            DB.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    user user = DB.users.Find(id);
+        //    DB.users.Remove(user);
+        //    DB.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
 
 
