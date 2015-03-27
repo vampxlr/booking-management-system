@@ -21,7 +21,7 @@
                 <fieldset>
 
                     <legend>
-                        <a href="@ViewBag.ReturnUrl" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                        <a onclick="window.history.back()" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a>
                         Booking Details <a href="@Url.Action("PrintBooking", new { id = BookInfo.id })" class="btn btn-info pull-right"><span style="font-size:15px" class="glyphicon glyphicon-floppy-open"></span> PDF</a>
                     </legend>
                     <div class="form-group">

@@ -35,7 +35,7 @@
     @Html.Hidden("create_date", DateTime.Now)
     @Html.Hidden("returnUrl", ReturnUrl)
     <div class="panel panel-default">
-        <div class="panel-heading"><h2><a href="@ReturnUrl" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a> Create Booking</h2></div>
+        <div class="panel-heading"><h2><a onclick="window.history.back()" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a> Create Booking</h2></div>
         <div class="panel-body">
             @if (Time_Slots.Count() == 0)
             {

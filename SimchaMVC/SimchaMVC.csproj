@@ -296,6 +296,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\Bootstrap-Theme\Cerulean.css" />
     <Content Include="Content\Bootstrap-Theme\Cosmo.css" />
+    <Content Include="Content\Bootstrap-Theme\Lumen.css" />
     <Content Include="Content\Bootstrap-Theme\Sandstone.css" />
     <Content Include="Content\bootswatch.css" />
     <Content Include="Content\bootstrap.min.css" />

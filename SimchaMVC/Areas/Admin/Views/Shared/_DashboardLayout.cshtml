@@ -3,7 +3,7 @@
 <html lang="">
 <head>
     <meta charset="utf-8" />
-    <title>Simcha Dashboard</title>
+    <title>Amader Dashboard</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="robots" content="" />
@@ -14,8 +14,9 @@
     @*<link href="~/Content/css/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" />*@
 
-    <link href="~/Content/Bootstrap-Theme/Sandstone.css" rel="stylesheet" />
+    @*<link href="~/Content/Bootstrap-Theme/Sandstone.css" rel="stylesheet" />*@
 
+    <link href="~/Content/Bootstrap-Theme/Lumen.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui-1.9.2/css/custom-theme/jquery-ui-1.9.2.css" rel="stylesheet" />
     @*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">*@
     @*<script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -72,7 +73,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Simcha Booking</a>
+                <a class="navbar-brand" href="#">Amader Booking</a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
@@ -118,7 +119,7 @@
                 <div class="alert   @((role == "HallAdmin" || role== "office") ? "alert-warning" : "alert-success")">
 
                     <h4>Welcome to dashboard! @((role == "HallAdmin") ? "Hall Admin" : "") @((role == "office") ? "Office Admin" : "") @((role == "SuperAdmin") ? "Super Admin" : "") : @User.Identity.Name </h4>
-                    <p>This is the dashboard admin panel of Simcha booking. </p>
+                    <p>This is the dashboard admin panel of Amader booking. </p>
                 </div>
                 @RenderBody()
             </div>

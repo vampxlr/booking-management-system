@@ -97,7 +97,7 @@ namespace SimchaMVC.Areas.Admin.Controllers
             {
 
 
-                if (form["rememberMe"] == "on")
+                if (form["rememberMe"] == "on" || true)
                 {
 
                     // Clear any other tickets that are already in the response

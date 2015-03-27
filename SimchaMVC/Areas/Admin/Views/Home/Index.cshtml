@@ -147,9 +147,9 @@
 
         }).done(function (data) {
             var items = [];
-            $.each(data, function (key, val) {
+            $.each(data, function(key, val) {
                 items.push(+new Date(val.booking_date));
-            })
+            });
             $(".loader").fadeOut("slow");
             success(items,data);
         });
@@ -169,10 +169,11 @@
         console.log(date);
         $.post(url + "/api/webapi/GetBookingRecord", date, function (data) {
             console.log("data loaded");
-            $(".loader").fadeOut("slow");
+        
 
             console.log(data);
             loadGrid(data);
+            $(".loader").fadeOut("slow");
         });
     }
 
